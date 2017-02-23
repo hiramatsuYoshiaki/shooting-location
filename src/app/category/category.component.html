@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+          <h1>Category <small> </small></h1>
+        </div>
+    </div>  
+
+
+
+    <div  class="col-sm-3 col-md-3">
+      <ul  class="list-group">
+        <li *ngFor="let top of topCategorys | async" 
+        [class.selected]="top.name === selectCategory" 
+        (click)="onSelectCategory(top.name)" 
+        class="list-group-item">
+            <h4>{{top.name}}</h4>
+        </li>
+      </ul>
+    </div>
+       
+    <div class="col-sm-9 col-md-9">
+        <app-category-map [items]="items" [selectCategory]="selectCategory"></app-category-map>
+    </div>
+
+  </div>
+</div>
+<app-category-photo [items]="items" [image]="image" [selectCategory]="selectCategory"></app-category-photo>
+  
+
+ 
+

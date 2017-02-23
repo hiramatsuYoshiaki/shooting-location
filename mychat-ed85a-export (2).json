@@ -1,0 +1,156 @@
+{
+  "messages" : {
+    "2017stage01" : {
+      "category" : "TOURdeHDR+2016 STAGE LIST / 獅子舞",
+      "name" : "anonymous",
+      "stageno" : 1,
+      "tag" : "岡山",
+      "text" : "獅子舞",
+      "title" : "獅子舞"
+    },
+    "2017stage02" : {
+      "category" : "TOURdeHDR+2016 STAGE LIST / 神戸ＡＧＡＩＮ",
+      "name" : "anonymous",
+      "stageno" : 2,
+      "tag" : "神戸",
+      "text" : "神戸でＨＤＲしました。",
+      "title" : "神戸ＡＧＥＩＮ"
+    },
+    "2017stage03" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 3,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage04" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 4,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage05" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 5,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage06" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 6,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage07" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 7,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage08" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 8,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage09" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 9,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    },
+    "2017stage10" : {
+      "category" : "no-category",
+      "name" : "anonymous",
+      "stageno" : 10,
+      "tag" : "no-tag",
+      "text" : "no-text",
+      "title" : "no-title"
+    }
+  },
+  "photos" : {
+    "-KbEntTmjYuukiG5SlhG" : {
+      "camera" : "Canon 7D",
+      "displayName" : "Yoshiaki Hiramatsu",
+      "email" : "hiramatsu3300@gmail.com",
+      "id" : 1,
+      "img" : "twilite/img0113b.jpg",
+      "place" : "岡山市北区",
+      "renze" : "Tokina",
+      "sdate" : "2017.07.01",
+      "stime" : "19:00",
+      "text" : "岡山リサーチパークの夕暮れ",
+      "title" : "岡山リサーチパークの夕暮れ",
+      "uid" : "z6iRzzUk2oc44IYeR8WlXB7Pxhf2"
+    },
+    "photo1" : {
+      "camera" : "canon 7D",
+      "displayName" : "tourdehdr",
+      "email" : "m4a54fg8@m12.megaegg.ne.jp",
+      "id" : 5,
+      "img" : "twilite/img9056.jpg",
+      "place" : "岡山市岡山市南区7区",
+      "renze" : "tamuron",
+      "sdate" : "2015.11.10",
+      "stime" : "18:30",
+      "text" : "笹ヶ瀬川の夕暮れ",
+      "title" : "笹ヶ瀬川の夕暮れ",
+      "uid" : "none"
+    },
+    "photo2" : {
+      "camera" : "canon 7D",
+      "displayName" : "Yoshiaki Hiramatsu",
+      "email" : "hiramatsu3300@gmail.com",
+      "id" : 2,
+      "img" : "twilite/img9758.jpg",
+      "place" : "岡山県岡山市南区７区",
+      "renze" : "tamuron",
+      "sdate" : "2015.06.10",
+      "stime" : "18:30",
+      "text" : "ここは、岡山県岡山市南区七区の干拓地です。６月の田植え時期の夕暮れ、水田に反射する夕焼け空を撮影しています。",
+      "title" : "水田の夕暮れ",
+      "uid" : "z6iRzzUk2oc44IYeR8WlXB7Pxhf2"
+    },
+    "photo3" : {
+      "camera" : "canon 7D",
+      "displayName" : "Yoshiaki Hiramatsu",
+      "email" : "hiramatsu3300@gmail.com",
+      "id" : 3,
+      "img" : "twilite/img8507.jpg",
+      "place" : "岡山県岡山市南区郡",
+      "renze" : "tamuron",
+      "sdate" : "2015.06.05",
+      "stime" : "18:30",
+      "text" : "児島湾締切堤防の夕暮れ",
+      "title" : "児島湾締切堤防の夕暮れ",
+      "uid" : "z6iRzzUk2oc44IYeR8WlXB7Pxhf2"
+    },
+    "photo4" : {
+      "camera" : "canon 7D",
+      "displayName" : "tourdehdr",
+      "email" : "m4a54fg8@m12.megaegg.ne.jp",
+      "id" : 4,
+      "img" : "twilite/img4786.jpg",
+      "place" : "岡山県倉敷市水島",
+      "renze" : "tamuron",
+      "sdate" : "2016.04.10",
+      "stime" : "18:30",
+      "text" : "鷲羽山から見た夕暮れ1",
+      "title" : "鷲羽山から見た夕暮れ",
+      "uid" : "none"
+    }
+  }
+}

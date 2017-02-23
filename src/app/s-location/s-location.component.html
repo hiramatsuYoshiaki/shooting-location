@@ -1,0 +1,21 @@
+
+
+  <div *ngIf="selectSpot">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md12">
+        <div class="page-header">
+          <h1><small>Related information </small></h1>
+        </div>
+          <sebm-google-map [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" [zoom] = "zoom">
+            <sebm-google-map-marker [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" >
+              <sebm-google-map-info-window [disableAutoPan]="true">
+                  <strong>{{selectSpot.title}}</strong>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+      </div>
+    </div>
+    </div>
+  </div>
+

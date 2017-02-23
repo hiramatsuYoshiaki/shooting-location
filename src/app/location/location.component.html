@@ -1,0 +1,26 @@
+
+ <div class="container"> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+          <h1>All Photos Location <small></small></h1>
+        </div>
+
+         <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom">
+          <sebm-google-map-marker 
+            *ngFor="let m of items  | async; let i = index"
+              [latitude]="m.imgLat"
+              [longitude]="m.imgLan"
+             
+          >
+
+            <sebm-google-map-info-window [disableAutoPan]="true">
+              <strong>{{m.title}}</strong>
+            </sebm-google-map-info-window>
+
+          </sebm-google-map-marker>
+
+          </sebm-google-map>
+
+      </div>
+    </div>

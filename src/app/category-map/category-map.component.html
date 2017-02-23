@@ -1,0 +1,13 @@
+<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom">
+  
+  <sebm-google-map-marker 
+    *ngFor="let m of items  | async; let i = index"
+      [latitude]="m.imgLat"
+      [longitude]="m.imgLan">
+    <sebm-google-map-info-window [disableAutoPan]="true">
+      <strong>{{m.title}}</strong>
+    </sebm-google-map-info-window>
+  </sebm-google-map-marker>
+
+  </sebm-google-map>
+ 

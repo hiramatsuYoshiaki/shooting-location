@@ -1,0 +1,169 @@
+<div class="container">
+<div class="row">
+   <div class="col-sm-12 col-md-12">
+      <div class="page-header">
+        <h1>ACOUNT <small>  Google</small></h1>
+      </div>
+   </div>
+<!--ログイン-->
+    <div *ngIf="(af.auth | async)">
+      <div class="col-sm-12 col-md-12">
+        <div class="thumbnail">
+            <div class="media">
+              <div class="media-left">
+                  <img class="media-object photo-size" [src]="(af.auth | async)?.auth.photoURL"  alt="userphoto">
+              </div>
+              <div class="media-body">
+                <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
+                <p>こんにちは!写真をアップして絶景スポットを紹介しよう！</p>　
+               
+                <!--<p>あなたの写真の登録や自己紹介ができます。</p>
+                <p>１．基本情報を登録できます。</p>
+                <p>２．写真を登録できます。</p>-->
+              
+                  <div><button (click)="logout()" class="btn btn-default　btn-xs">Logout with Google</button></div>
+                <!--<p>uid:{{ (af.auth | async)?.uid }}</p>
+                      <p>name:{{ (af.auth | async)?.auth.displayName }}</p>
+                      <p>mail:{{ (af.auth | async)?.auth.email }}</p>
+                      <p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>-->
+              </div>
+
+            </div>
+
+        </div>
+      </div>
+
+   <!--<div class="col-sm-12 col-md-12">
+      <div class="page-header">
+        <h1><small>基本情報</small></h1>
+      </div>
+   </div>
+     <div class="col-sm-12 col-md-12">
+      
+        <div class="thumbnail">
+         
+           <p>Name:{{ (af.auth | async)?.auth.displayName }}</p>
+           <p>Mail:{{ (af.auth | async)?.auth.email }}</p>
+           <p>uid:{{ (af.auth | async)?.uid }}
+           <p>uid:{{ (af.auth | async)?.uid }}
+           <p>cnt:{{cnt }}
+          
+        </div>
+      </div> -->
+
+      <app-photo-category [items]="items" 
+                          [category]="category" 
+                          [image]="image" 
+                          [uid]="(af.auth | async)?.uid" 
+                          [displayName]="(af.auth | async)?.auth.displayName" 
+                          [email]="(af.auth | async)?.auth.email"
+      ></app-photo-category>     
+      <!--<app-photo-list-crud [items]="items" 
+                          [category]="category" 
+                          [image]="image" 
+                          [uid]="(af.auth | async)?.uid" 
+                          [displayName]="(af.auth | async)?.auth.displayName" 
+                          [email]="(af.auth | async)?.auth.email"
+                            
+                            ></app-photo-list-crud>-->
+
+
+      <!--<div class="col-sm-12 col-md-12">
+          <p>写真</p>
+          <div class="media">
+          <ul class="list-group">
+            <li *ngFor="let item of items  | async " [class.selected]="item === selectSpot" (click)="onSelect(item)" class="list-group-item">
+                <div *ngIf="item.uid === (af.auth | async)?.uid ">
+                <div  class="media-left media-middle">
+                  <a href="#">
+                    <img [src]="image[item.id]" class="media-object img-size-list" alt=""/>
+                  
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{item.title}}<br><small>{{item.text}}</small></h4>
+                   <h4 class="media-heading"><small>投稿者：{{item.displayName}}</small></h4>
+                   <h4 class="media-heading"><small>id：{{item.uid}}</small></h4>
+                  ...
+                </div>
+              </div>
+
+            </li>
+          </ul>
+        </div> 
+      </div>  -->
+    
+<!--<app-photo-detail-crud></app-photo-detail-crud>-->
+
+</div>
+<!--ngif-->
+
+
+
+<div class="container">
+  <div class="row">   
+      <!--ログアウト-->
+      <div *ngIf="!(af.auth | async)">
+          <h3>Googleアカウントを使ってログインしましょう！</h3>
+        <div class="caption">
+          <p>あなたの写真や自己紹介を登録できます。</p>
+           <div><button (click)="login()" class="btn btn-primary btn-xs">Login with Google</button></div>
+         
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--<div class="col-sm-3 col-md-3">
+      <a href="#" class="thumbnail">
+        <img src="../../assets/img9553_mono.jpg" alt="..." class="img-responsive">
+      </a>
+      <h3>写真表示</h3>
+  </div>
+  <div class="col-sm-3 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="../../assets/img9553_mono.jpg" alt="..." class="img-responsive">
+    </a>
+    <h3>修正</h3>
+  </div>
+  <div class="col-sm-3 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="../../assets/img9553_mono.jpg" alt="..." class="img-responsive">
+    </a>
+    <h3>削除</h3>
+  </div>
+  <div class="col-sm-3 col-md-3">
+    <a href="#" class="thumbnail">
+    <img src="../../assets/img9553_mono.jpg" alt="..." class="img-responsive">
+    </a>
+    <h3>新規登録</h3>
+  </div>-->
+
+  </div>
+</div>
+
+
+<!--<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<div *ngIf="(af.auth | async)">
+				<img [src]="(af.auth | async)?.auth.photoURL"  class="media-object" alt="user photo"/>
+				<p>uid:{{ (af.auth | async)?.uid }}</p>
+				<p>name:{{ (af.auth | async)?.auth.displayName }}</p>
+				<p>mail:{{ (af.auth | async)?.auth.email }}</p>
+				<p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>
+				<div><button (click)="logout()" class="btn btn-default">Logout</button></div>
+			</div>
+			<div *ngIf="!(af.auth | async)">
+				  <div>
+          <button (click)="login()" class="btn btn-default">Login with Google</button>
+          
+          </div>
+			</div>
+
+		</div>
+	</div>
+</div> -->
+<!--<app-photo-list></app-photo-list>-->

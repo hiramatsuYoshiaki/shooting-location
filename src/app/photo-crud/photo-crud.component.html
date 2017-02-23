@@ -1,0 +1,248 @@
+
+
+<h4>新しい写真を登録するには「登録パネル」ボタンを押してください。</h4>
+<input type="button" value="登録パネルを開く" (click)="switch='upload'">
+<input type="button" value="閉じる" (click)="switch='upload-close'">
+<div [ngSwitch]="switch">
+  <div *ngSwitchCase="'upload'">
+  <br>
+  <form ngNoForm>
+    <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。</label>
+    <!--<input id="file" name="file" type="file" >-->
+    <input id="file" name="file" type="file" (change)="fileChange(input)" #input>
+    <div *ngFor="let file_src of file_srcs; let i = index">  
+        <img [attr.src]='file_src' #img alt=""/>
+        <!--<div><button (click)="addStrage(file_src)">Firebase Strage Add</button><div>-->
+        <!--<p>{{ debug_size_before[i] }} bytes <b>Before</b> </p>
+        <p>{{ debug_size_after[i] }} bytes <b>After</b></p>-->
+    </div>
+    <div class="form-group">
+      <label for="exampleInputtitle">タイトル</label>
+      <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
+    </div>
+
+    <div class="form-group">
+      <label for="title">タイトル　valid</label>
+      <input type="text" class="form-control" id="title"
+              required
+              [(ngModel)]="newSpot.title" name="title"
+              #title="ngModel"  >
+      <div [hidden]="title.valid || title.pristine"
+            class="alert alert-danger">
+        タイトルは必須入力です。
+      </div>
+     </div>
+
+
+
+
+
+
+    <div class="form-group">
+      <label for="exampleInputtext">説明</label>
+      <input type="textarea" #text [(ngModel)]="newSpot.text" class="form-control" placeholder="説明">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputpalace">場所</label>
+      <input type="text" #place [(ngModel)]="newSpot.place" class="form-control"  placeholder="場所">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputsdate">日付</label>
+      <input type="text" #sdate [(ngModel)]="newSpot.sdate" class="form-control" placeholder="日付">
+    </div>
+    <div class="form-group">
+      <label for="exampleInpustime">時間</label>
+      <input type="text" #stime [(ngModel)]="newSpot.stime" class="form-control" placeholder="時間">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputcamera">カメラ</label>
+      <input type="text" #camera [(ngModel)]="newSpot.camera" class="form-control"  placeholder="カメラ">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputrenze">レンズ</label>
+      <input type="text" #renze [(ngModel)]="newSpot.renze" class="form-control" placeholder="レンズ">
+    </div>
+     <div class="form-group">
+      <label for="exampleInputcategory">カテゴリー</label>
+      <input type="text" #category [(ngModel)]="newSpot.category" class="form-control"  placeholder="カテゴリー">
+    </div>
+   
+
+    <div class="form-group">
+  <label for="categoryName">Hero Power</label>
+  <select class="form-control"  #categoryName id="categoryName" required>
+    <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
+  </select>
+</div>
+
+
+
+
+
+    <div class="form-group">
+      <label for="exampleInputtag">タグ</label>
+      <input type="text" #tag [(ngModel)]="newSpot.tag" class="form-control" placeholder="タグ">
+    </div>
+    <br>
+    <div class="form-group">
+     <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
+     <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
+      <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputimagLat">経度</label>
+      <input type="number" #imgLat [(ngModel)]="newSpot.imgLat" class="form-control"  placeholder="経度">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputimgLan">緯度</label>
+      <input type="number" #imgLan [(ngModel)]="newSpot.imgLan" class="form-control" placeholder="緯度">
+    </div>
+    <br>
+    <button (click)="upload(
+                    0,
+                    '',
+                    title.value,
+                    text.value,
+                    place.value,
+                    sdate.value,
+                    stime.value,
+                   camera.value,
+                   renze.value,
+                    'uid',
+                   'displayName',
+                   'email',
+                   category.value,
+                   tag.value,
+                  'imgURL',
+                  'imgPath',
+                  imgLat.value,
+                  imgLan.value
+
+
+    )" type="button">写真をFIREBASE STRAGEにアップロードする</button>
+  </form>
+    
+
+  </div>
+</div>
+
+
+
+<!--Update-->
+<br><br>
+<h4>写真の情報を変更するには、リストから写真を選択してください。</h4>
+<input type="button" value="修正パネルを閉じる" (click)="closeUpdate()">
+<div *ngIf="selectSpot ">
+  <div class="container">
+    <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">修正パネル</div>
+        <div class="panel-body">
+        <img [src]="image[selectSpot.id]"  class="detail-photo-size"alt=""/>
+          <!--<form>-->
+
+        <div class="form-group">
+          <label for="exampleInputtitle">タイトル</label>
+          <input type="text" #title [(ngModel)]="selectSpot.title" class="form-control"  placeholder="タイトル">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputtext">説明</label>
+          <input type="textarea" #text [(ngModel)]="selectSpot.text" class="form-control" placeholder="説明">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputpalace">場所</label>
+          <input type="text" #place [(ngModel)]="selectSpot.place" class="form-control"  placeholder="場所">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputsdate">日付</label>
+          <input type="text" #sdate [(ngModel)]="selectSpot.sdate" class="form-control" placeholder="日付">
+        </div>
+        <div class="form-group">
+          <label for="exampleInpustime">時間</label>
+          <input type="text" #stime [(ngModel)]="selectSpot.stime" class="form-control" placeholder="時間">
+        </div>
+         <div class="form-group">
+          <label for="exampleInputcamera">カメラ</label>
+          <input type="text" #camera [(ngModel)]="selectSpot.camera" class="form-control"  placeholder="カメラ">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputrenze">レンズ</label>
+          <input type="text" #renze [(ngModel)]="selectSpot.renze" class="form-control" placeholder="レンズ">
+        </div>
+       
+        <div class="form-group">
+          <label for="exampleInputcategory">カテゴリー</label>
+          <input type="text" #category [(ngModel)]="selectSpot.category" class="form-control"  placeholder="カテゴリー">
+        </div>
+
+
+
+
+
+
+
+
+        <div class="form-group">
+          <label for="exampleInputtag">タグ</label>
+          <input type="text" #tag [(ngModel)]="selectSpot.tag" class="form-control" placeholder="タグ">
+        </div>
+        <br>
+        <div class="form-group">
+        <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
+        <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
+          <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputimagLat">経度</label>
+          <input type="number" #imgLatnum [(ngModel)]="selectSpot.imgLat" class="form-control"  placeholder="経度">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputimgLan">緯度</label>
+          <input type="number" #imgLannum [(ngModel)]="selectSpot.imgLan" class="form-control" placeholder="緯度">
+        </div>
+        <br>
+
+
+
+
+
+         <button (click)="updateItem(
+             selectSpot.$key, 
+             selectSpot.id,
+             selectSpot.img,
+             title.value,
+             text.value,
+             place.value,
+             sdate.value,
+             stime.value,
+             camera.value,
+            renze.value,
+            category.value,
+            tag.value,
+            imgLatnum.value,
+           imgLannum.value
+           )">Update</button>
+ 
+
+
+
+
+      <!--<button (click)="deleteItem(selectSpot.$key)">Delete</button>-->
+       <button (click)="delete(selectSpot.$key)" type="button">delete</button>
+     
+
+     
+        </div>
+
+       
+      </div>
+  </div><!--col-sm-12 col-md-6-->
+  </div><!--row-->
+  </div><!--conteiner-->
+</div><!--selectSpot-->
+
+
+

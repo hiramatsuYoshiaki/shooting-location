@@ -1,0 +1,34 @@
+
+ <!--Select Photo-->
+  <div *ngIf="selectSpot">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+          <h1><small>PHOTO DETAIL</small></h1>
+        </div>
+
+        <div class="thumbnail">
+          <div class="caption">
+            <h3>{{selectSpot.title}}</h3>
+            <p>{{selectSpot.text}}...</p>
+            <p>{{selectSpot.imgLat}}...</p>
+            <p>{{selectSpot.imgLan}}...</p>
+          </div>
+           <img [src]="image[selectSpot.id]"  alt=""/>
+           <br>
+            <p>撮影場所はここ</p>
+            <sebm-google-map [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" [zoom] = "zoom">
+            <sebm-google-map-marker [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" >
+              <sebm-google-map-info-window [disableAutoPan]="true">
+                  <strong>{{selectSpot.title}}</strong>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+        </div> <!--thumbnail-->
+      </div><!--col-sm-12 col-md-6-->
+    </div><!--row-->
+    </div><!--container-->
+  </div><!--selectSpot-->
+
+
