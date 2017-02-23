@@ -37,7 +37,8 @@ export class PhotoCrudComponent implements OnInit {
   @Input()  displayName: string;
   @Input()  email: string;
   topCategory: FirebaseListObservable<any[]>;
- 
+  newPanel: boolean = false;
+  appMessage: string ="新しい写真を登録するには「登録パネルを開く」ボタンを押してください。";
 
 
   // @Input() uid: string;

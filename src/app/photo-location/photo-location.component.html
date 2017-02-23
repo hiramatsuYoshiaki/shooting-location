@@ -19,10 +19,8 @@
             </div>
             <img [src]="image[idx]"  alt=""/>
             <br>
-              <p>撮影場所はここ</p>
-             <p> latitude{{item.imgLat}}</p>
-             
-             <p> longitude{{item.imgLan}}</p>
+              <p>撮影場所はここです。</p>
+            
             
               <sebm-google-map [latitude]="item.imgLat" [longitude]="item.imgLan" [zoom] = "zoom">
               <sebm-google-map-marker [latitude]="item.imgLat" [longitude]="item.imgLan">

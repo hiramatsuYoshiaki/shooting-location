@@ -9,12 +9,12 @@
            <!--<div *ngIf="!categorySW">-->
             <div class="panel-heading">
               <div class="well well-sm">
-                 <h1>PHOTOGRAPHER <small>Infomation</small></h1>
+                 <h3>PHOTOGRAPHER <small>Infomation</small></h3>
               </div>
                 <p>フォトグラファー名</p>
-                <h1>{{categoryName}}</h1>
+                <h3>{{categoryName}}</h3>
                 <p>自己紹介</p>
-                <h4>{{categoryIntro}}</h4>
+                <h4>{{categoryIntro}}</h4><br>
 
                 <div *ngIf="!categorySW">
                     <!--修正-->
@@ -37,25 +37,18 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey)" data-dismiss="modal">削除</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">キャンセル</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">キャンセル</button>
                           </div>
                         </div>
                       </div>
                     </div>
                 </div>
-
-             
-
-
-
-
-
-
             </div>
           </div>
 
             <!--新規登録-->
             <div *ngIf="categorySW">
+              
               <div class="panel-body"> 
                 <h4>各項目に入力して新規登録ボタンを押してください。</h4>
 
@@ -115,12 +108,6 @@
                 </form>
               </div>
             </div>
-
-            
-          
-              
-
-           
         </div> 
       </div>  
     </div> 
@@ -128,16 +115,16 @@
 
 
 
-<!--画像表示-->
+<!--新規登録・修正・削除・画像表示-->
 <div *ngIf="!categorySW">
  <app-photo-list-crud [items]="items" 
-                          [category]="category" 
-                          [image]="image" 
-                          [uid]="(af.auth | async)?.uid" 
-                          [displayName]="(af.auth | async)?.auth.displayName" 
-                          [email]="(af.auth | async)?.auth.email"
-                            
-                            ></app-photo-list-crud>
+                      [category]="category" 
+                      [image]="image" 
+                      [uid]="(af.auth | async)?.uid" 
+                      [displayName]="(af.auth | async)?.auth.displayName" 
+                      [email]="(af.auth | async)?.auth.email"
+                            >
+</app-photo-list-crud>
 </div>
 
 

@@ -1,13 +1,11 @@
-<!--新規アップロード-->
+<!--新規アップロード・修正・削除-->
  <app-photo-crud [selectSpot]="selectSpot" 
-                [image]="image" 
-               
-                [category]="category" 
-                [items]="items"
-                [uid]="uid" 
-                [displayName]="displayName" 
-                [email]="email"
-               
+                 [image]="image" 
+                 [category]="category" 
+                 [items]="items"
+                 [uid]="uid" 
+                 [displayName]="displayName" 
+                 [email]="email"
                 ></app-photo-crud>
  
  <!--登録写真リスト-->
@@ -16,10 +14,6 @@
         <h1><small>写真リスト</small></h1>
       </div>
    </div>
-
-   
-
-
  <div class="col-sm-12 col-md-12">
           <div class="media">
             <ul class="list-group">
@@ -57,7 +51,9 @@
                           <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
                         </ol>
                       <!--<button (click)="deleteItem(item.$key)">Delete</button>-->
-                      <button (click)="delete(item.$key, item.img)">Delete</button>
+                      <button (click)="onSelect(item, idx)">修正</button>
+                      <button (click)="delete(item.$key, item.img)">削除</button>
+                      
                     </div>
 
                 </div>
