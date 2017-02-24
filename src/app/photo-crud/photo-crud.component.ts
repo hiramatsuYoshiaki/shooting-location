@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 // import { EXIF } from 'exif-js/exif';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators} from '@angular/forms';
+import {MapsAPILoader, NoOpMapsAPILoader, MouseEvent} from 'angular2-google-maps/core';
 
 import { Spot } from '../app.spot';
 
@@ -62,12 +63,18 @@ export class PhotoCrudComponent implements OnInit {
     imgLat: 0,
     imgLan: 0
   };
- // storageRef;
-  //photoCount: number ; 
 
-//  <p>Name:{{ (af.auth | async)?.auth.displayName }}</p>
-//            <p>Mail:{{ (af.auth | async)?.auth.email }}</p>
-//            <p>uid:{{ (af.auth | async)?.uid }}
+  // google maps zoom level
+  zoom: number = 12;
+  // initial center position for the map
+  //center point
+  lat: number  = 34.6661326894375;
+  lng: number = 133.91807389155386;
+  latMap: number  = 34.6661326894375;
+  lngMap: number = 133.91807389155386;
+  infoMap: string = "撮影場所";
+
+
   constructor(public af: AngularFire, private changeDetectorRef: ChangeDetectorRef, private element: ElementRef, public router: Router) { 
     //  var storageRef = firebase.storage().ref();
     //  this.storageRef = storageRef;
@@ -78,15 +85,25 @@ export class PhotoCrudComponent implements OnInit {
   }
 
 
+ mapClicked($event: MouseEvent) {
+    // this.markers.push({
+      this.latMap = +$event.coords.lat;
+      this.lngMap = +$event.coords.lng;
+    // });
+  }
+
+
+
+
 
 //Resize images and convert file encoding
  public file_srcs: string[] = [];
  public big_file_srcs:string [] = [];//my add
-  public debug_size_before: string[] = [];
-  public debug_size_after: string[] = [];
-  public fileURL: string[] = [];
+ public debug_size_before: string[] = [];
+ public debug_size_after: string[] = [];
+ public fileURL: string[] = [];
   
-  public fileSrcs =[{ name:'',size:0,type:'',filePath:'' }];
+ public fileSrcs =[{ name:'',size:0,type:'',filePath:'' }];
   
  closeUpdate(){
    this.selectSpot = null;

@@ -16,9 +16,9 @@
 
                   </div>
               </div>
-                   <div [hidden]="newPanel">
+                <div [hidden]="newPanel">
                      <p>{{appMessage}}</p>
-                  </div>
+                   </div>
                   <div [hidden]="!newPanel">
                     <h4>登録パネル</h4>
                   </div>
@@ -29,20 +29,40 @@
                 <form ngNoForm>
                   <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。</label>
                   <!--<input id="file" name="file" type="file" >-->
-                  <input id="file" name="file" type="file" (change)="fileChange(input)" #input>
-                  <div *ngFor="let file_src of file_srcs; let i = index">  
+                  <input id="file" name="file" type="file" (change)="fileChange(input)" #input accept="image/*">
+                  <div *ngFor="let file_src of file_srcs; let i = index; let isLast=last;"  >  
+                    <div *ngIf="isLast">
                       <img [attr.src]='file_src' #img alt=""/>
+                    </div>
                       <!--<div><button (click)="addStrage(file_src)">Firebase Strage Add</button><div>-->
                       <!--<p>{{ debug_size_before[i] }} bytes <b>Before</b> </p>
                       <p>{{ debug_size_after[i] }} bytes <b>After</b></p>-->
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputtitle">タイトル</label>
-                    <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
+                  <br>
+
+                  <!--<app-location-get></app-location-get>-->
+                  <div>
+                    <div class="form-group">
+                          <label for="exampleInputimagLat">経度</label>
+                          <input type="number" #imgLat [(ngModel)]="+latMap" class="form-control"  placeholder="経度">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputimgLan">緯度</label>
+                          <input type="number" #imgLan [(ngModel)]="+lngMap" class="form-control" placeholder="緯度">
+                        </div>
+                      <sebm-google-map [latitude]="+lat" [longitude]="+lng" [zoom] = "zoom"
+                                        [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+                          <sebm-google-map-marker [latitude]="+latMap" [longitude]="+lngMap">
+                            <sebm-google-map-info-window [disableAutoPan]="true">
+                                <strong>{{infoMap}}</strong>
+                            </sebm-google-map-info-window>
+                          </sebm-google-map-marker>
+                        </sebm-google-map>
                   </div>
 
-                  <div class="form-group">
-                    <label for="title">タイトル　valid</label>
+                  <br>
+                   <div class="form-group">
+                    <label for="title">タイトル:<span> {{newSpot.title}}</span></label>
                     <input type="text" class="form-control" id="title"
                             required
                             [(ngModel)]="newSpot.title" name="title"
@@ -52,16 +72,25 @@
                       タイトルは必須入力です。
                     </div>
                   </div>
-
-
-
-
-
-
-          <div class="form-group">
+                  <div class="form-group">
+                    <label for="Inputtext">コメント:<span> {{newSpot.text}}</span></label>
+                    <input type="Inputtext" class="form-control" id="Inputtext"
+                            required
+                            [(ngModel)]="newSpot.text" name="Inputtext"
+                            #Inputtext="ngModel"  >
+                    <div [hidden]="Inputtext.valid || Inputtext.pristine"
+                          class="alert alert-danger">
+                     コメントは必須入力です。
+                    </div>
+                  </div>
+           <!--<div class="form-group">
+                    <label for="exampleInputtitle">タイトル</label>
+                    <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
+                  </div>-->
+          <!--<div class="form-group">
             <label for="exampleInputtext">説明</label>
             <input type="textarea" #text [(ngModel)]="newSpot.text" class="form-control" placeholder="説明">
-          </div>
+          </div>-->
           <div class="form-group">
             <label for="exampleInputpalace">場所</label>
             <input type="text" #place [(ngModel)]="newSpot.place" class="form-control"  placeholder="場所">
@@ -89,7 +118,7 @@
         
 
           <div class="form-group">
-        <label for="categoryName">Hero Power</label>
+        <label for="categoryName">カテゴリー</label>
         <select class="form-control"  #categoryName id="categoryName" required>
           <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
         </select>
@@ -103,20 +132,20 @@
             <label for="exampleInputtag">タグ</label>
             <input type="text" #tag [(ngModel)]="newSpot.tag" class="form-control" placeholder="タグ">
           </div>
-          <br>
+          <!--<br>
           <div class="form-group">
           <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
           <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
             <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
-          </div>
-          <div class="form-group">
+          </div>-->
+          <!--<div class="form-group">
             <label for="exampleInputimagLat">経度</label>
             <input type="number" #imgLat [(ngModel)]="newSpot.imgLat" class="form-control"  placeholder="経度">
           </div>
           <div class="form-group">
             <label for="exampleInputimgLan">緯度</label>
             <input type="number" #imgLan [(ngModel)]="newSpot.imgLan" class="form-control" placeholder="緯度">
-          </div>
+          </div>-->
           <br>
           <button (click)="upload(
                           0,
