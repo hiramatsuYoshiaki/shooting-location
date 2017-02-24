@@ -18,11 +18,11 @@
 
                 <div *ngIf="!categorySW">
                     <!--修正-->
-                    <button type="button" class="btn btn-info" (click)="updateSW=true">修正</button>
+                    <button type="button" class="btn btn-info btn-xs" (click)="updateSW=true">修正</button>
 
                     <!--削除-->
                     <!--<button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey) ">削除</button>-->
-                  <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#userDell" data-backdrop="false">削除</button>
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userDell" data-backdrop="false">削除</button>
                     <!-- モーダル・ダイアログ -->
                     <div class="modal fade" id="userDell" tabindex="-1">
                       <div class="modal-dialog">
@@ -36,8 +36,8 @@
                             <p>キャンセルする場合は、キャンセルを押してください。</p>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey)" data-dismiss="modal">削除</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">キャンセル</button>
+                            <button type="button" class="btn btn-primary btn-xs" (click)="deleteUser(categoryKey)" data-dismiss="modal">削除</button>
+                            <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
                           </div>
                         </div>
                       </div>
@@ -75,7 +75,7 @@
                     自己紹介は必須入力です。
                   </div>
                  </div>
-                    <button type="submit" class="btn btn-success" [disabled]="!PhotoCategoryComponent.form.valid">新規登録</button>
+                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">新規登録</button>
                 </form>
               </div>
             </div>
@@ -105,8 +105,8 @@
                     自己紹介は必須入力です。
                   </div>
                  </div>
-                    <button type="submit" class="btn btn-success" [disabled]="!PhotoCategoryComponent.form.valid">修正</button>
-                   <button type="button" class="btn" (click)="updateSW=false">閉じる</button>
+                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">修正</button>
+                   <button type="button" class="btn btn-info btn-xs" (click)="updateSW=false">閉じる</button>
                 </form>
               </div>
             </div>

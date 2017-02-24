@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators} from '@angular/forms';
 import {MapsAPILoader, NoOpMapsAPILoader, MouseEvent} from 'angular2-google-maps/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 import { Spot } from '../app.spot';
 
-
-
+//declare var google: any;
 //declare var firebase: any;
 
 interface Image {
@@ -39,26 +39,46 @@ export class PhotoCrudComponent implements OnInit {
   @Input()  email: string;
   topCategory: FirebaseListObservable<any[]>;
   newPanel: boolean = false;
-  appMessage: string ="新しい写真を登録するには「登録パネルを開く」ボタンを押してください。";
+  appMessage: string =null;
 
 
   // @Input() uid: string;
-  newSpot: Spot = {
+  // newSpot: Spot = {
+  //   id: 99,
+  //   img: "twilite/tourdehdr_premium1.jpg",
+  //   title: "New Title",
+  //   text: "New Text",
+  //   place: "New Place",
+  //   sdate: "New Date",
+  //   stime: "New Time",
+  //   camera: "New Camera",
+  //   renze: "New Renze",
+  //   uid: "New Camera",
+  //   displayName: "New Camera",
+  //   email: "New Camera",
+  //   category: "New Camera",
+  //   tag: "New Camera",
+  //   imgURL:"New umgURL",
+  //   imgPath:"",
+  //   imgLat: 0,
+  //   imgLan: 0
+  // };
+   newSpot: Spot = {
     id: 99,
-    img: "twilite/tourdehdr_premium1.jpg",
-    title: "New Title",
-    text: "New Text",
-    place: "New Place",
-    sdate: "New Date",
-    stime: "New Time",
-    camera: "New Camera",
-    renze: "New Renze",
-    uid: "New Camera",
-    displayName: "New Camera",
-    email: "New Camera",
-    category: "New Camera",
-    tag: "New Camera",
-    imgURL:"New umgURL",
+    img: "",
+    title: "",
+    text: "",
+    place: "",
+    sdate: "",
+    stime: "",
+    camera: "",
+    renze: "",
+    uid: "",
+    displayName: "",
+    email: "",
+    category: "",
+    tag: "",
+    imgURL:"",
     imgPath:"",
     imgLat: 0,
     imgLan: 0
@@ -82,9 +102,14 @@ export class PhotoCrudComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lat = 34.6661326894375;
+    this.lng = 133.91807389155386;
   }
 
-
+ openUploadPanel(){
+   this.appMessage ="";
+   this.newPanel = true;
+ }
  mapClicked($event: MouseEvent) {
     // this.markers.push({
       this.latMap = +$event.coords.lat;
@@ -331,6 +356,8 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                                    
                     });
              });
+             this.newPanel = false;
+             this.appMessage = "新規画像を登録しましたしました。";
         }
     }
     delete(key: string) {

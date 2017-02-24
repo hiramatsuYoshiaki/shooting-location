@@ -1,9 +1,40 @@
+<!--<div>
+  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom"
+                    (mapClick)="mapClicked($event)">
+      <sebm-google-map-marker [latitude]="latMap" [longitude]="lngMap">
+        <sebm-google-map-info-window [disableAutoPan]="true">
+            <strong>{{infoMap}}</strong>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </sebm-google-map>
+</div>
+<div>
+<div class="form-group">
+      <label for="imgLat">経度</label>
+      <input type="number" id="imgLat" #imgLat="ngModel" name="imgLat"
+        [(ngModel)]="latMap" class="form-control" novalidate  required [value]="+latMap">
+        <div [hidden]="imgLat.valid || imgLat.pristine"
+            class="alert alert-danger">
+        経度は必須入力です。
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="imgLan">緯度</label>
+      <input type="number" id="imgLan" #imgLan="ngModel" name="imgLan"
+      [(ngModel)]="lngMap" class="form-control" novalidate  required [value]="+imgLan">
+      <div [hidden]="imgLan.valid || imgLan.pristine"
+          class="alert alert-danger">
+      緯度は必須入力です。
+    </div>
+  </div>
+</div>-->
 
- 
- 
+
+
  <div class="container">
     <div class="row">
     <div class="col-sm-12 col-md-12">
+     
       <div class="panel panel-default">
           <div class="panel-heading">
               <div class="well well-sm">
@@ -26,128 +57,28 @@
 
            <div [hidden]="!newPanel">
               <div class="panel-body">
-                <form ngNoForm>
-                  <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。</label>
-                  <!--<input id="file" name="file" type="file" >-->
-                  <input id="file" name="file" type="file" (change)="fileChange(input)" #input accept="image/*">
-                  <div *ngFor="let file_src of file_srcs; let i = index; let isLast=last;"  >  
-                    <div *ngIf="isLast">
-                      <img [attr.src]='file_src' #img alt=""/>
-                    </div>
-                      <!--<div><button (click)="addStrage(file_src)">Firebase Strage Add</button><div>-->
-                      <!--<p>{{ debug_size_before[i] }} bytes <b>Before</b> </p>
-                      <p>{{ debug_size_after[i] }} bytes <b>After</b></p>-->
-                  </div>
-                  <br>
+                <!--<form ngNoForm>-->
+                <form (ngSubmit)="upload(
+                          0,
+                          '',
+                          title.value,
+                          text.value,
+                          place.value,
+                          sdate.value,
+                          stime.value,
+                        camera.value,
+                        renze.value,
+                          'uid',
+                        'displayName',
+                        'email',
+                        category.value,
+                        tag.value,
+                        'imgURL',
+                        'imgPath',
+                        imgLat.value,
+                        imgLan.value)" #PhotoCrudComponent="ngForm"> 
 
-                  <!--<app-location-get></app-location-get>-->
-                  <div>
-                    <div class="form-group">
-                          <label for="exampleInputimagLat">経度</label>
-                          <input type="number" #imgLat [(ngModel)]="+latMap" class="form-control"  placeholder="経度">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputimgLan">緯度</label>
-                          <input type="number" #imgLan [(ngModel)]="+lngMap" class="form-control" placeholder="緯度">
-                        </div>
-                      <sebm-google-map [latitude]="+lat" [longitude]="+lng" [zoom] = "zoom"
-                                        [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
-                          <sebm-google-map-marker [latitude]="+latMap" [longitude]="+lngMap">
-                            <sebm-google-map-info-window [disableAutoPan]="true">
-                                <strong>{{infoMap}}</strong>
-                            </sebm-google-map-info-window>
-                          </sebm-google-map-marker>
-                        </sebm-google-map>
-                  </div>
-
-                  <br>
-                   <div class="form-group">
-                    <label for="title">タイトル:<span> {{newSpot.title}}</span></label>
-                    <input type="text" class="form-control" id="title"
-                            required
-                            [(ngModel)]="newSpot.title" name="title"
-                            #title="ngModel"  >
-                    <div [hidden]="title.valid || title.pristine"
-                          class="alert alert-danger">
-                      タイトルは必須入力です。
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="Inputtext">コメント:<span> {{newSpot.text}}</span></label>
-                    <input type="Inputtext" class="form-control" id="Inputtext"
-                            required
-                            [(ngModel)]="newSpot.text" name="Inputtext"
-                            #Inputtext="ngModel"  >
-                    <div [hidden]="Inputtext.valid || Inputtext.pristine"
-                          class="alert alert-danger">
-                     コメントは必須入力です。
-                    </div>
-                  </div>
-           <!--<div class="form-group">
-                    <label for="exampleInputtitle">タイトル</label>
-                    <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
-                  </div>-->
-          <!--<div class="form-group">
-            <label for="exampleInputtext">説明</label>
-            <input type="textarea" #text [(ngModel)]="newSpot.text" class="form-control" placeholder="説明">
-          </div>-->
-          <div class="form-group">
-            <label for="exampleInputpalace">場所</label>
-            <input type="text" #place [(ngModel)]="newSpot.place" class="form-control"  placeholder="場所">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputsdate">日付</label>
-            <input type="text" #sdate [(ngModel)]="newSpot.sdate" class="form-control" placeholder="日付">
-          </div>
-          <div class="form-group">
-            <label for="exampleInpustime">時間</label>
-            <input type="text" #stime [(ngModel)]="newSpot.stime" class="form-control" placeholder="時間">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputcamera">カメラ</label>
-            <input type="text" #camera [(ngModel)]="newSpot.camera" class="form-control"  placeholder="カメラ">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputrenze">レンズ</label>
-            <input type="text" #renze [(ngModel)]="newSpot.renze" class="form-control" placeholder="レンズ">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputcategory">カテゴリー</label>
-            <input type="text" #category [(ngModel)]="newSpot.category" class="form-control"  placeholder="カテゴリー">
-          </div>
-        
-
-          <div class="form-group">
-        <label for="categoryName">カテゴリー</label>
-        <select class="form-control"  #categoryName id="categoryName" required>
-          <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
-        </select>
-      </div>
-
-
-
-
-
-          <div class="form-group">
-            <label for="exampleInputtag">タグ</label>
-            <input type="text" #tag [(ngModel)]="newSpot.tag" class="form-control" placeholder="タグ">
-          </div>
-          <!--<br>
-          <div class="form-group">
-          <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
-          <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
-            <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
-          </div>-->
-          <!--<div class="form-group">
-            <label for="exampleInputimagLat">経度</label>
-            <input type="number" #imgLat [(ngModel)]="newSpot.imgLat" class="form-control"  placeholder="経度">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputimgLan">緯度</label>
-            <input type="number" #imgLan [(ngModel)]="newSpot.imgLan" class="form-control" placeholder="緯度">
-          </div>-->
-          <br>
-          <button (click)="upload(
+                  <!--<button (click)="upload(
                           0,
                           '',
                           title.value,
@@ -168,11 +99,232 @@
                         imgLan.value
 
 
-          )" type="button">写真をFIREBASE STRAGEにアップロードする</button>
+          )" type="button">写真をFIREBASE STRAGEにアップロードする</button>-->
+                 
+                  
+                  <!--<app-location-get></app-location-get>-->
+                  <div>
+                     <sebm-google-map [latitude]="+lat" [longitude]="+lng" [zoom] = "+zoom"
+                                    (mapClick)="mapClicked($event)">
+                      <sebm-google-map-marker [latitude]="+latMap" [longitude]="+lngMap">
+                        <sebm-google-map-info-window [disableAutoPan]="true">
+                            <strong>{{infoMap}}</strong>
+                        </sebm-google-map-info-window>
+                      </sebm-google-map-marker>
+                    </sebm-google-map>
+
+                    <div class="form-group">
+                          <label for="imgLat">経度</label>
+                          <input type="number" id="imgLat" #imgLat="ngModel" name="imgLat"
+                           [(ngModel)]="latMap" class="form-control" novalidate  required [value]="+latMap"  step="0.0000000000001">
+                           <div [hidden]="imgLat.valid || imgLat.pristine"
+                                class="alert alert-danger">
+                            経度は必須入力です。
+                          </div>
+                     </div>
+                     <div class="form-group">
+                          <label for="imgLan">緯度</label>
+                          <input type="number" id="imgLan" #imgLan="ngModel" name="imgLan"
+                          [(ngModel)]="lngMap" class="form-control" novalidate  required [value]="+imgLan"  step="0.0000000000001">
+                          <div [hidden]="imgLan.valid || imgLan.pristine"
+                              class="alert alert-danger">
+                         緯度は必須入力です。
+                        </div>
+                     </div>
+                    
+                  </div>
+
+                  <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。</label>
+                  <!--<input id="file" name="file" type="file" >-->
+                  <input id="file" name="file" type="file" (change)="fileChange(input)" #input accept="image/*" required novalidate>
+                  <div *ngFor="let file_src of file_srcs; let i = index; let isLast=last;"  >  
+                    <div *ngIf="isLast">
+                      <img [attr.src]='file_src' #img alt=""/>
+                    </div>
+                      <!--<div><button (click)="addStrage(file_src)">Firebase Strage Add</button><div>-->
+                      <!--<p>{{ debug_size_before[i] }} bytes <b>Before</b> </p>
+                      <p>{{ debug_size_after[i] }} bytes <b>After</b></p>-->
+                  </div>
+                  <br>
+
+
+
+                  <br>
+                   <div class="form-group">
+                    <label for="title">タイトル</label>
+                    <input type="text" class="form-control" id="title"
+                            required
+                            [(ngModel)]="newSpot.title" name="title"
+                            #title="ngModel"  novalidate>
+                    <div [hidden]="title.valid || title.pristine"
+                          class="alert alert-danger">
+                      タイトルは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="text">コメント</label>
+                    <input type="text" class="form-control" id="text"
+                            required
+                            [(ngModel)]="newSpot.text" name="text"
+                            #text="ngModel"  novalidate>
+                    <div [hidden]="text.valid || text.pristine"
+                          class="alert alert-danger">
+                     コメントは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="place">場所</label>
+                    <input type="place" class="form-control" id="place"
+                            required
+                            [(ngModel)]="newSpot.place" name="place"
+                            #place="ngModel"  novalidate>
+                    <div [hidden]="place.valid || place.pristine"
+                          class="alert alert-danger">
+                     場所は必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="sdate">日付</label>
+                    <input type="sdate" class="form-control" id="sdate"
+                            required
+                            [(ngModel)]="newSpot.sdate" name="sdate"
+                            #sdate="ngModel"  novalidate>
+                    <div [hidden]="sdate.valid || sdate.pristine"
+                          class="alert alert-danger">
+                     日付は必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="stime">時間</label>
+                    <input type="stime" class="form-control" id="stime"
+                            required
+                            [(ngModel)]="newSpot.stime" name="stime"
+                            #stime="ngModel"  novalidate>
+                    <div [hidden]="stime.valid || stime.pristine"
+                          class="alert alert-danger">
+                     時間は必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="camera">カメラ</label>
+                    <input type="camera" class="form-control" id="camera"
+                            required
+                            [(ngModel)]="newSpot.camera" name="camera"
+                            #camera="ngModel"  novalidate>
+                    <div [hidden]="camera.valid || camera.pristine"
+                          class="alert alert-danger">
+                     カメラは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="renze">レンズ</label>
+                    <input type="renze" class="form-control" id="renze"
+                            required
+                            [(ngModel)]="newSpot.renze" name="renze"
+                            #renze="ngModel"  novalidate>
+                    <div [hidden]="renze.valid || renze.pristine"
+                          class="alert alert-danger">
+                     レンズは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="category">カテゴリー</label>
+                    <input type="category" class="form-control" id="category"
+                            required
+                            [(ngModel)]="newSpot.category" name="category"
+                            #category="ngModel"  novalidate>
+                    <div [hidden]="category.valid || category.pristine"
+                          class="alert alert-danger">
+                     カテゴリーは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="tag">タグ</label>
+                    <input type="tag" class="form-control" id="tag"
+                            required
+                            [(ngModel)]="newSpot.tag" name="tag"
+                            #tag="ngModel"  novalidate>
+                    <div [hidden]="tag.valid || tag.pristine"
+                          class="alert alert-danger">
+                     タグは必須入力です。
+                    </div>
+                  </div>
+           <!--<div class="form-group">
+                    <label for="exampleInputtitle">タイトル</label>
+                    <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
+                  </div>-->
+          <!--<div class="form-group">
+
+            <label for="exampleInputtext">説明</label>
+            <input type="textarea" #text [(ngModel)]="newSpot.text" class="form-control" placeholder="説明">
+          </div>-->
+          <!--<div class="form-group">
+
+            <label for="exampleInputpalace">場所</label>
+            <input type="text" #place [(ngModel)]="newSpot.place" class="form-control"  placeholder="場所">
+          </div>
+          <div class="form-group">
+
+            <label for="exampleInputsdate">日付</label>
+            <input type="text" #sdate [(ngModel)]="newSpot.sdate" class="form-control" placeholder="日付">
+          </div>
+          <div class="form-group">
+
+            <label for="exampleInpustime">時間</label>
+            <input type="text" #stime [(ngModel)]="newSpot.stime" class="form-control" placeholder="時間">
+          </div>
+          <div class="form-group">
+
+            <label for="exampleInputcamera">カメラ</label>
+            <input type="text" #camera [(ngModel)]="newSpot.camera" class="form-control"  placeholder="カメラ">
+          </div>
+          <div class="form-group">
+
+            <label for="exampleInputrenze">レンズ</label>
+            <input type="text" #renze [(ngModel)]="newSpot.renze" class="form-control" placeholder="レンズ">
+          </div>
+          <div class="form-group">
+
+            <label for="exampleInputcategory">カテゴリー</label>
+            <input type="text" #category [(ngModel)]="newSpot.category" class="form-control"  placeholder="カテゴリー">
+          </div>-->
+        
+
+          <!--<div class="form-group">
+            <label for="categoryName">カテゴリー</label>
+            <select class="form-control"  #categoryName id="categoryName" required>
+              <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
+            </select>
+          </div>-->
+
+          <!--<div class="form-group">
+            <label for="exampleInputtag">タグ</label>
+            <input type="text" #tag [(ngModel)]="newSpot.tag" class="form-control" placeholder="タグ">
+          </div>-->
+
+          <!--<br>
+          <div class="form-group">
+          <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
+          <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
+            <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
+          </div>-->
+          <!--<div class="form-group">
+            <label for="exampleInputimagLat">経度</label>
+            <input type="number" #imgLat [(ngModel)]="newSpot.imgLat" class="form-control"  placeholder="経度">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputimgLan">緯度</label>
+            <input type="number" #imgLan [(ngModel)]="newSpot.imgLan" class="form-control" placeholder="緯度">
+          </div>-->
+          <br>
+          
+           <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCrudComponent.form.valid">写真をFIREBASE STRAGEにアップロードする</button>
         </form>
         </div><!-- body -->
+         
       <div>
     </div><!--panel-->
+    
   </div><!--col-sm-12 col-md-6-->
   </div><!--row-->
   </div><!--conteiner-->
