@@ -102,8 +102,7 @@ export class PhotoCrudComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lat = 34.6661326894375;
-    this.lng = 133.91807389155386;
+   
   }
 
  openUploadPanel(){
