@@ -17,12 +17,16 @@
  <div class="col-sm-12 col-md-12">
           <div class="media">
             <ul class="list-group">
-              <li *ngFor="let item of items  | async; let idx = index; "
+              <!--<li *ngFor="let item of items  | async; let idx = index; "
                [class.selected]="item === selectSpot" 
                (click)="onSelect(item, idx)" 
-               class="list-group-item">
+               >-->
+              <li *ngFor="let item of items  | async; let idx = index; "
+               [class.selected]="item === selectSpot" 
+              class="list-group-item"
+               >
                
-                  <div *ngIf="item.uid === uid ">
+                  <div *ngIf="item.uid === uid " >
                     <div  class="media-left media-middle">
                       <!--<a href="#">-->
                         <!--<img [src]="image[item.id]" class="media-object img-size-list" alt="eye catch photo"/>-->
@@ -51,8 +55,35 @@
                           <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
                         </ol>
                       <!--<button (click)="deleteItem(item.$key)">Delete</button>-->
-                      <button (click)="onSelect(item, idx)">修正</button>
-                      <button (click)="delete(item.$key, item.img)">削除</button>
+                     
+                      <button (click)="onSelect(item, idx)" class="btn btn-success btn-xs">修正</button>
+                         <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
+                      <!--<button (click)="delete(item.$key, item.img)">削除</button>-->
+                       <!--<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userPhotoDell" data-backdrop="false">削除</button>
+                      <div class="modal fade" id="userPhotoDell" tabindex="-1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                              <h4 class="modal-title">この写真を削除しますか？</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>削除する場合は、削除ボタンを押してください。</p>
+                              <p>キャンセルする場合は、キャンセルを押してください。</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
+                              <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>-->
+
+
+
+
                       
                     </div>
 

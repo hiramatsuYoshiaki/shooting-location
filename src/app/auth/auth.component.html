@@ -51,13 +51,21 @@
         </div>
       </div> -->
 
-      <app-photo-category [items]="items" 
+      <!--<app-photo-category [items]="items" 
                           [category]="category" 
                           [image]="image" 
                           [uid]="(af.auth | async)?.uid" 
                           [displayName]="(af.auth | async)?.auth.displayName" 
                           [email]="(af.auth | async)?.auth.email"
-      ></app-photo-category>     
+      ></app-photo-category>  -->
+        <app-photo-category
+                         
+                         
+                          [uid]="(af.auth | async)?.uid" 
+                          [displayName]="(af.auth | async)?.auth.displayName" 
+                          [email]="(af.auth | async)?.auth.email"
+      ></app-photo-category>  
+
       <!--<app-photo-list-crud [items]="items" 
                           [category]="category" 
                           [image]="image" 

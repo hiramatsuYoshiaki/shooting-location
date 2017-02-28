@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   selectSpot: Spot;
 
   constructor(private DataService: DataService, public af: AngularFire) { 
-    console.log('constroctor onSelectUser User id ' + this.selectId)
+  //  console.log('constroctor onSelectUser User id ' + this.selectId)
     this.users = this.DataService.getFirebaseCategorys();
     //this.items = this.UidService.filterUserBy(this.selectId);
    // this.image = this.UidService.getStrageUser();

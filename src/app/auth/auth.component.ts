@@ -17,6 +17,8 @@ export class AuthComponent implements OnInit {
  image: string [] = [];
  items: FirebaseListObservable<any[]>;
  category: FirebaseListObservable<any[]>;
+ uid:string;
+ user = {};
 //  topCategory: FirebaseListObservable<any[]>;
  
 
@@ -28,6 +30,14 @@ export class AuthComponent implements OnInit {
        if (user) {
         // User is signed in.
          console.log('onAuthStateChanged logoin');
+        //  this.uid = user.uid;
+          // this.uid = user.uid.toString();
+          // this.user = user;
+
+        //  console.log('AuthComponent  user.uid: '+ user.uid);
+        //  console.log('AuthComponent  this.uid: '+this.uid);
+        //  console.log('AuthComponent  user: '+this.user);
+        //  console.log('AuthComponent  user: '+this.user.uid);
         //ユーザーのプロフィールを取得する
           // console.log('onAuthStateChanged login '+ user.displayName);
           // console.log('onAuthStateChanged login '+ user.email);
@@ -56,38 +66,35 @@ export class AuthComponent implements OnInit {
          console.log('onAuthStateChanged logoff ');
         // No user is signed in.
           // this.uerLogin =false;
+          this.uid = null;
       }
     });
 
-    // firebaseからのデータ取得
-    this.items = af.database.list('/photos');
-    this.category = af.database.list('/category');
-    // this.topCategory = af.database.list('/top-category');
+   
+    // this.items = af.database.list('/photos');
+    // this.items = af.database.list('/photos', {
+    //   query: {
+    //     orderByChild: 'uid',
+    //      equalTo: this.uid
+       // equalTo: 'z6iRzzUk2oc44IYeR8WlXB7Pxhf2'
+    //   }
+    // });
 
-    // firebase strageからの画像データ取得
-    this.items.subscribe(items => items.forEach(
-    (item , index )  => {
-      firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
-      
-       //console.log('title '+item.title);
-        console.log('title: '+ item.title +' index '+index+' image[index]: '+ item.img);
-    }       
-    ));
+    // this.category = af.database.list('/category');
+    // this.items.subscribe(items => items.forEach(
+    // (item , index )  => {
+    //   firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
+    // }       
+    // ));
 
-    this.items.subscribe(items => items.forEach(
-    (item , index )  => {
-      var path = firebase.storage().ref().child(item.img).fullPath;
-      var name = firebase.storage().ref().child(item.img).name;
-      var imagesRef = firebase.storage().ref().child(item.img).parent;
-      // console.log('path '+path);
-      // console.log('path '+path);
-      // console.log('path '+path);
-      // console.log('name '+name);
-      // console.log('imagesRef '+imagesRef);
-      // console.log('img '+item.img);
-      // console.log('image[item.id]'+this.image[item.id]);
-    }       
-    ));
+    // this.items.subscribe(items => items.forEach(
+    // (item , index )  => {
+    //   var path = firebase.storage().ref().child(item.img).fullPath;
+    //   var name = firebase.storage().ref().child(item.img).name;
+    //   var imagesRef = firebase.storage().ref().child(item.img).parent;
+     
+    // }       
+    // ));
 
   }//constructor
 

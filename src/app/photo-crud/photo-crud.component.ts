@@ -10,6 +10,7 @@ import { Validators} from '@angular/forms';
 import {MapsAPILoader, NoOpMapsAPILoader, MouseEvent} from 'angular2-google-maps/core';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
+
 import { Spot } from '../app.spot';
 
 //declare var google: any;
@@ -105,6 +106,10 @@ export class PhotoCrudComponent implements OnInit {
    
   }
 
+getUploadFile(){
+ 
+}
+
  openUploadPanel(){
    this.appMessage ="";
    this.newPanel = true;
@@ -115,7 +120,12 @@ export class PhotoCrudComponent implements OnInit {
       this.lngMap = +$event.coords.lng;
     // });
   }
-
+   mapClickedUpdate($event: MouseEvent) {
+    // this.markers.push({
+      this.selectSpot.imgLat = +$event.coords.lat;
+      this.selectSpot.imgLan = +$event.coords.lng;
+    // });
+  }
 
 
 
@@ -167,14 +177,14 @@ readFiles(files, index=0){
       var img = document.createElement("img");
       img.src = result;
       this.big_file_srcs[index] = img.src; 
-      // this.fileSrcs[index].name = files[index].name;
-      // this.fileSrcs[index].size = files[index].size;
-      // this.fileSrcs[index].type = files[index].type;
+      this.fileSrcs[index].name = files[index].name;
+      this.fileSrcs[index].size = files[index].size;
+      this.fileSrcs[index].type = files[index].type;
       // console.log('name: '+this.fileSrcs[index].name);
       // console.log('size: '+this.fileSrcs[index].size);
       // console.log('type: '+this.fileSrcs[index].type);
-    //  this.fileURL = result;
-    //     console.log('result: '+this.fileURL);
+     this.fileURL = result;
+        // console.log('result: '+this.fileURL);
      
       // Send this img to the resize function (and wait for callback)
       this.resize(img, 250, 250, (resized_jpeg, before, after)=>{
@@ -479,6 +489,7 @@ uploadTask.on('state_changed', function(snapshot){
      category: newcategory, 
       tag: newtag, 
     });
+     
   }
 
 
@@ -514,6 +525,8 @@ uploadTask.on('state_changed', function(snapshot){
                               imgLat: +newimgLat,
                              imgLan: +newimgLan
                            });
+      // this.selectSpo = null;
+      // this.appMessage = "画像情報を修正しました。";
   }
   deleteItem(key: string) {    
     this.items.remove(key); 

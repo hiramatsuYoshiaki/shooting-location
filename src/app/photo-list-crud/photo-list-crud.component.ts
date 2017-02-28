@@ -27,6 +27,12 @@ export class PhotoListCrudComponent implements OnInit {
   
 
   constructor(public af: AngularFire) {
+
+
+
+
+
+
     }
 
   ngOnInit() {
@@ -34,9 +40,9 @@ export class PhotoListCrudComponent implements OnInit {
   
    
   onSelect(spot:Spot,idx: number): void {
-   
     this.selectSpot = spot;
     this.selectSpot.id = idx;
+    
   }
   
  

@@ -18,7 +18,7 @@
 
                 <div *ngIf="!categorySW">
                     <!--修正-->
-                    <button type="button" class="btn btn-info btn-xs" (click)="updateSW=true">修正</button>
+                    <button type="button" class="btn btn-success btn-xs" (click)="updateSW=true">修正</button>
 
                     <!--削除-->
                     <!--<button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey) ">削除</button>-->
@@ -27,6 +27,7 @@
                     <div class="modal fade" id="userDell" tabindex="-1">
                       <div class="modal-dialog">
                         <div class="modal-content">
+
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                             <h4 class="modal-title">フォトグラファー情報を削除します。</h4>
@@ -39,9 +40,11 @@
                             <button type="button" class="btn btn-primary btn-xs" (click)="deleteUser(categoryKey)" data-dismiss="modal">削除</button>
                             <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
                           </div>
+
                         </div>
                       </div>
                     </div>
+                     <!-- モーダル・ダイアログここまで -->
                 </div>
             </div>
           </div>

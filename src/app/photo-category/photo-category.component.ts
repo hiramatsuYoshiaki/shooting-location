@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FormsModule }   from '@angular/forms';
-
+import { FirebaseApp } from 'angularfire2';
+import * as firebase from 'firebase';
 import { Category } from '../category';
 
 @Component({
@@ -10,9 +11,13 @@ import { Category } from '../category';
   styleUrls: ['./photo-category.component.scss']
 })
 export class PhotoCategoryComponent implements OnInit {
-  @Input()  items: FirebaseListObservable<any[]>;
-  @Input() category: FirebaseListObservable<any[]>;
-  @Input()  image: string [] = [];
+  // @Input()  items: FirebaseListObservable<any[]>;
+  // @Input() category: FirebaseListObservable<any[]>;
+   category: FirebaseListObservable<any[]>;
+    items: FirebaseListObservable<any[]>;
+ 
+  //@Input()  image: string [] = [];
+   image: string [] = [];
   @Input()  uid: string;
   @Input()  displayName: string;
   @Input()  email: string;
@@ -25,6 +30,8 @@ export class PhotoCategoryComponent implements OnInit {
  categoryKey: string;
 
   constructor(public af: AngularFire) {
+   
+    
     this.category = af.database.list('/category');
     this.category.subscribe(category => category.forEach(
     (categoryItem , index )  => {
@@ -38,10 +45,28 @@ export class PhotoCategoryComponent implements OnInit {
        
     }       
     ));
+
+
+
      
    }
 
   ngOnInit() {
+     //  this.items = af.database.list('/photos');
+    this.items = this.af.database.list('/photos', {
+      query: {
+        orderByChild: 'uid',
+          equalTo: this.uid
+      //  equalTo: 'z6iRzzUk2oc44IYeR8WlXB7Pxhf2'
+      }
+    });
+   
+    this.items.subscribe(items => items.forEach(
+    (item , index )  => {
+      firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
+    }       
+    ));
+
   }
   
 
