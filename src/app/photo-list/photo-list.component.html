@@ -1,11 +1,9 @@
- <app-photo-details [selectSpot]="selectSpot" [image]="image"  ></app-photo-details>
-  <app-s-location [selectSpot]="selectSpot" [image]="image" ></app-s-location>
+<app-photo-details [selectSpot]="selectSpot" [image]="image"  ></app-photo-details>
+<app-s-location [selectSpot]="selectSpot" [image]="image" ></app-s-location>
 <!--spot list-->
 <div class="container"> 
   <div class="row">
   <div class="col-sm-12 col-md-12">
-
-      
      
       <div class="page-header">
         <h1>LIST <small>Twilite </small></h1>
@@ -14,7 +12,8 @@
       
       <div class="media">
         <ul class="list-group">
-          <li *ngFor="let item of items  | async; let idx = index; " [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
+          <li *ngFor="let item of items  | async; let idx = index; "
+           [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
               <div class="media-left media-middle">
                 <!--<a href="#">-->
                    <img [src]="image[idx]" class="media-object img-size-list" alt=""/>

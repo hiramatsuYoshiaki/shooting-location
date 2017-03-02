@@ -1,3 +1,4 @@
+
 <!--新規アップロード・修正・削除-->
  <app-photo-crud [selectSpot]="selectSpot" 
                  [image]="image" 
@@ -6,6 +7,7 @@
                  [uid]="uid" 
                  [displayName]="displayName" 
                  [email]="email"
+                 
                 ></app-photo-crud>
  
  <!--登録写真リスト-->
@@ -54,9 +56,10 @@
                           <li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{item.category}}</li>
                           <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
                         </ol>
-                      <!--<button (click)="deleteItem(item.$key)">Delete</button>-->
+                    
                      
-                      <button (click)="onSelect(item, idx)" class="btn btn-success btn-xs">修正</button>
+                         <button (click)="onSelect(item, idx)" class="btn btn-success btn-xs">修正</button>
+                     
                          <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
                       <!--<button (click)="delete(item.$key, item.img)">削除</button>-->
                        <!--<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userPhotoDell" data-backdrop="false">削除</button>

@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef} from '@angular/core'
 import { Observable } from 'rxjs';
 // import { EXIF } from 'exif-js/exif';
+//declare var EXIF: any;
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Validators} from '@angular/forms';
 import {MapsAPILoader, NoOpMapsAPILoader, MouseEvent} from 'angular2-google-maps/core';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import {IMyOptions, IMyDateModel} from 'mydatepicker';
 
 
 import { Spot } from '../app.spot';
@@ -22,6 +24,7 @@ interface Image {
     downloadURL?: string;
     $key?: string;
 }
+
 
 @Component({
   selector: 'app-photo-crud',
@@ -41,29 +44,15 @@ export class PhotoCrudComponent implements OnInit {
   topCategory: FirebaseListObservable<any[]>;
   newPanel: boolean = false;
   appMessage: string =null;
+ 
+private myDatePickerOptions: IMyOptions = {
+        // other options...
+        dateFormat: 'dd.mm.yyyy',
+    };
+   
+ testDate : Date = new Date();
 
-
-  // @Input() uid: string;
-  // newSpot: Spot = {
-  //   id: 99,
-  //   img: "twilite/tourdehdr_premium1.jpg",
-  //   title: "New Title",
-  //   text: "New Text",
-  //   place: "New Place",
-  //   sdate: "New Date",
-  //   stime: "New Time",
-  //   camera: "New Camera",
-  //   renze: "New Renze",
-  //   uid: "New Camera",
-  //   displayName: "New Camera",
-  //   email: "New Camera",
-  //   category: "New Camera",
-  //   tag: "New Camera",
-  //   imgURL:"New umgURL",
-  //   imgPath:"",
-  //   imgLat: 0,
-  //   imgLan: 0
-  // };
+  // newSpot: NewSpot;
    newSpot: Spot = {
     id: 99,
     img: "",
@@ -84,7 +73,7 @@ export class PhotoCrudComponent implements OnInit {
     imgLat: 0,
     imgLan: 0
   };
-
+  
   // google maps zoom level
   zoom: number = 12;
   // initial center position for the map
@@ -94,7 +83,7 @@ export class PhotoCrudComponent implements OnInit {
   latMap: number  = 34.6661326894375;
   lngMap: number = 133.91807389155386;
   infoMap: string = "撮影場所";
-
+exif:any;
 
   constructor(public af: AngularFire, private changeDetectorRef: ChangeDetectorRef, private element: ElementRef, public router: Router) { 
     //  var storageRef = firebase.storage().ref();
@@ -105,30 +94,30 @@ export class PhotoCrudComponent implements OnInit {
   ngOnInit() {
    
   }
+onDateChanged(event: IMyDateModel) {
+ // event properties are: event.date, event.jsdate, event.formatted and event.epoc
+    }
+
+  
 
 getUploadFile(){
  
 }
 
+ 
  openUploadPanel(){
    this.appMessage ="";
    this.newPanel = true;
  }
+
  mapClicked($event: MouseEvent) {
-    // this.markers.push({
       this.latMap = +$event.coords.lat;
       this.lngMap = +$event.coords.lng;
-    // });
   }
    mapClickedUpdate($event: MouseEvent) {
-    // this.markers.push({
       this.selectSpot.imgLat = +$event.coords.lat;
       this.selectSpot.imgLan = +$event.coords.lng;
-    // });
   }
-
-
-
 
 //Resize images and convert file encoding
  public file_srcs: string[] = [];
@@ -143,29 +132,18 @@ getUploadFile(){
    this.selectSpot = null;
  } 
   
+
 fileChange(input){
   this.readFiles(input.files);
-
-    // EXIF.getData(input.files, function() {
-    //     var make = EXIF.getTag(this, "Make"),
-    //         model = EXIF.getTag(this, "Model");
-    //     alert("I was taken by a " + make + " " + model);
-    // });
-
 }
 readFile(file, reader, callback){
   reader.onload = () => {
     callback(reader.result);
   }
-
   reader.readAsDataURL(file);
-  
 }
 
 readFiles(files, index=0){
-
-  
-
   // Create the file reader
   let reader = new FileReader();
   
@@ -185,6 +163,14 @@ readFiles(files, index=0){
       // console.log('type: '+this.fileSrcs[index].type);
      this.fileURL = result;
         // console.log('result: '+this.fileURL);
+
+
+// EXIF.getData(files[index], function() {
+//         var make = this.exif.EXIF.getTag(this, "Make"),
+//             model = this.exif.EXIF.getTag(this, "Model");
+//         alert("I was taken by a " + make + " " + model);
+
+//     });
      
       // Send this img to the resize function (and wait for callback)
       this.resize(img, 250, 250, (resized_jpeg, before, after)=>{
@@ -252,11 +238,6 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
   };
 }
 
-
-
-
-
-
 //Angular 2 let user choose and image from their local machine
    // make FileReader work with Angular2
   
@@ -273,9 +254,6 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
 
         reader.readAsDataURL(event.target.files[0]);
     }
-
-
-
 //
   @ViewChild('fileInput') myFileInput: ElementRef;
 
@@ -287,15 +265,6 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
     // console.log('file '+event.target.files[0]);
    
   }
-
-
-  // addItem(newName: string) {
-  //   this.items.push({ title: newName });
-  // }
-  // onChange(event) {
-  //   this.newSpot.img = event;
-  //   console.log('img file name '+this.newSpot.img);
-  // }
 
 
   //Firebase Upload Component with Angular2
@@ -389,113 +358,6 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
 
     }
 
-
-
-
-
-
-   addStrage(srcURL:string) {
-     
-      
-       console.log('Firebase Strage Add File:' + srcURL);
-   
-
-    //C:\Users\kazunori\Desktop\firebase_strage\twilite\IMG_3350_1_2_tonemapped.jpg
-//C:\Users\kazunori\Desktop\firebase_strage\twilite\IMG_3359_60_61_tonemapped.jpg
-
-// Create a root reference
-var storageRef = firebase.storage().ref();
-
-// Create a reference to 'mountains.jpg'
-//var mountainsRef = storageRef.child('mountains.jpg');
-
-// Create a reference to 'images/mountains.jpg'
-var mountainImagesRef = storageRef.child('twilite/IMG_3350_1_2_tonemapped.jpg');
-
-// File or Blob named mountains.jpg
-var file = "C:/Users/kazunori/Desktop/firebase_strage/twilite/IMG_3350_1_2_tonemapped.jpg";
-// Upload the file to the path 'images/rivers.jpg'
-// We can use the 'name' property on the File API to get our file name
-var fileName = "IMG_3350_1_2_tonemapped.jpg"
-var uploadTask = storageRef.child('twilite/' + fileName).put(file);
-
-// Register three observers:
-// 1. 'state_changed' observer, called any time the state changes
-// 2. Error observer, called on failure
-// 3. Completion observer, called on successful completion
-uploadTask.on('state_changed', function(snapshot){
-  // Observe state change events such as progress, pause, and resume
-  // See below for more detail
-   console.log('firebase strage See below for more detail')
-}, function(error) {
-  // Handle unsuccessful uploads
-  console.log('firebase strage error')
-}, function() {
-  // Handle successful uploads on complete
-  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-  //var downloadURL = uploadTask.snapshot.downloadURL;
-  console.log('firebase strage success')
-});
-
-  }
-
-
-  addItem(
-   newid: number,
-   newimg: string,
-   newtitle: string,
-   newtext: string,
-   newplace: string,
-   newsdate: string,
-   newstime: string,
-   newcamera: string,
-   newrenze: string,
-   newuid: string,
-   newdisplayName: string,
-   newemail: string,
-   newcategory: string,
-   newtag: string
-   ) {
-  newid =10;
-    //  console.log('config '+this.config.configu.photoCount);
-     //newid = this.lastIndex + 1;
-    // var filename = fullPath.replace(/^.*[\\\/]/, '')
-     var filename = 'twilite/' +  newimg.replace(/^.*[\\\/]/, '')
-     console.log('filename '+filename)
-    // newdisplayName = this.displayName;
-    //  newemail = this.email;
-     newcategory = "twilite";
-     newtag = "sunset";
-     
-    this.items.push({ 
-     // id: newid, 
-      // id: this.photoCount, 
-      
-      id: newid, 
-      img: filename,
-      title: newtitle, 
-      text: newtext, 
-      place: newplace,
-      sdate: newsdate, 
-      stime: newstime,
-      camera: newcamera,
-      renze: newrenze, 
-      //uid: newuid, 
-      uid: this.uid, 
-      //displayName: newdisplayName, 
-      displayName: this.displayName, 
-     email: newemail, 
-      //email: this.email, 
-     category: newcategory, 
-      tag: newtag, 
-    });
-     
-  }
-
-
-
-
-
   updateItem(key: string,
              newid: number,
              newimg: string,
@@ -525,8 +387,8 @@ uploadTask.on('state_changed', function(snapshot){
                               imgLat: +newimgLat,
                              imgLan: +newimgLan
                            });
-      // this.selectSpo = null;
-      // this.appMessage = "画像情報を修正しました。";
+       this. selectSpot = null;
+       this.appMessage = "画像情報を修正しました。";
   }
   deleteItem(key: string) {    
     this.items.remove(key); 

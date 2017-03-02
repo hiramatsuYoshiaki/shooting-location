@@ -27,51 +27,27 @@ export class PhotoListCrudComponent implements OnInit {
   
 
   constructor(public af: AngularFire) {
-
-
-
-
-
-
     }
 
   ngOnInit() {
   }
   
-   
+ 
+
   onSelect(spot:Spot,idx: number): void {
     this.selectSpot = spot;
     this.selectSpot.id = idx;
     
+    if(this.selectSpot){
+      console.log('on select photo');
+    }else{
+      console.log('off select photo');
+    }
+    
   }
   
  
- // addItem(newName: string) {
-  //   this.items.push({ title: newName });
-  // }
-  addItem(
-   newid: number,
-   newimg: string,
-   newtitle: string,
-   newtext: string,
-   newplace: string,
-   newsdate: string,
-   newstime: string,
-   newcamera: string,
-   newrenze: string
-   ) {
-    this.items.push({ 
-      id: newid, 
-      img: newimg,
-      title: newtitle, 
-      text: newtext, 
-      place: newplace,
-      sdate: newsdate, 
-      stime: newstime,
-      camera: newcamera,
-      renze: newrenze 
-    });
-  }
+ 
 
   updateItem(key: string,
              newid,

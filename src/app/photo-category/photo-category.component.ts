@@ -17,7 +17,7 @@ export class PhotoCategoryComponent implements OnInit {
     items: FirebaseListObservable<any[]>;
  
   //@Input()  image: string [] = [];
-   image: string [] = [];
+  image: string [] = [];
   @Input()  uid: string;
   @Input()  displayName: string;
   @Input()  email: string;
@@ -28,7 +28,7 @@ export class PhotoCategoryComponent implements OnInit {
  categoryName: string;
  categoryIntro: string;
  categoryKey: string;
-
+ matadataName:string[];
   constructor(public af: AngularFire) {
    
     
@@ -40,7 +40,7 @@ export class PhotoCategoryComponent implements OnInit {
         this.categoryIntro = categoryItem.intro;
         this.categoryKey = categoryItem.$key;
         this.categorySW = false;
-        console.log('uid:'+this.uid+' photoName: '+ categoryItem.photoName);
+        // console.log('uid:'+this.uid+' photoName: '+ categoryItem.photoName);
       }
        
     }       
@@ -52,18 +52,26 @@ export class PhotoCategoryComponent implements OnInit {
    }
 
   ngOnInit() {
-     //  this.items = af.database.list('/photos');
+    
     this.items = this.af.database.list('/photos', {
       query: {
         orderByChild: 'uid',
           equalTo: this.uid
-      //  equalTo: 'z6iRzzUk2oc44IYeR8WlXB7Pxhf2'
       }
     });
    
     this.items.subscribe(items => items.forEach(
     (item , index )  => {
       firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
+      
+
+    //"2017-01-24T02:39:12.774Z"
+    //firebase metadata
+    //   var forestRef =  firebase.storage().ref().child(item.img)
+    //   forestRef.getMetadata().then(metadata =>  console.log(metadata)
+    //  ).catch(function(error) {
+    //   });
+   
     }       
     ));
 
@@ -71,8 +79,8 @@ export class PhotoCategoryComponent implements OnInit {
   
 
   newUser(photoName:string,intro:string){
-    console.log("displayName: "+this.displayName + " email: "+ this.email+ " uid "+ this.uid);
-    console.log("photoName: "+ photoName + " intro: "+ intro);
+   // console.log("displayName: "+this.displayName + " email: "+ this.email+ " uid "+ this.uid);
+   // console.log("photoName: "+ photoName + " intro: "+ intro);
     this.category.push({ 
                           cate1:"",
                           cate2:"",

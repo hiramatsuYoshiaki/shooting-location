@@ -9,9 +9,9 @@
            <!--<div *ngIf="!categorySW">-->
             <div class="panel-heading">
               <div class="well well-sm">
-                 <h3>PHOTOGRAPHER <small>Infomation</small></h3>
+                 <h4>USER <small>Infomation</small></h4>
               </div>
-                <p>フォトグラファー名</p>
+                <p>ユーザー名</p>
                 <h3>{{categoryName}}</h3>
                 <p>自己紹介</p>
                 <h4>{{categoryIntro}}</h4><br>
@@ -59,7 +59,7 @@
                 <!--<form *ngIf="photoName" (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> -->
                 
                  <div class="form-group">
-                   <label for="exampleInputPhotoName">フォトグラファー名:<span> {{categoryName}}</span></label>
+                   <label for="exampleInputPhotoName">ユーザー名:<span> {{categoryName}}</span></label>
                   <input type="text" class="form-control" id="exampleInputPhotoName"
                         required #photoName
                         [(ngModel)]="categoryName" name="exampleInputPhotoName" #name="ngModel" maxlength="30">
@@ -117,8 +117,6 @@
       </div>  
     </div> 
 </div> 
-
-
 
 <!--新規登録・修正・削除・画像表示-->
 <div *ngIf="!categorySW">

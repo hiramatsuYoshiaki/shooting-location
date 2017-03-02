@@ -1,36 +1,3 @@
-<!--<div>
-  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom"
-                    (mapClick)="mapClicked($event)">
-      <sebm-google-map-marker [latitude]="latMap" [longitude]="lngMap">
-        <sebm-google-map-info-window [disableAutoPan]="true">
-            <strong>{{infoMap}}</strong>
-        </sebm-google-map-info-window>
-      </sebm-google-map-marker>
-    </sebm-google-map>
-</div>
-<div>
-<div class="form-group">
-      <label for="imgLat">経度</label>
-      <input type="number" id="imgLat" #imgLat="ngModel" name="imgLat"
-        [(ngModel)]="latMap" class="form-control" novalidate  required [value]="+latMap">
-        <div [hidden]="imgLat.valid || imgLat.pristine"
-            class="alert alert-danger">
-        経度は必須入力です。
-      </div>
-  </div>
-  <div class="form-group">
-      <label for="imgLan">緯度</label>
-      <input type="number" id="imgLan" #imgLan="ngModel" name="imgLan"
-      [(ngModel)]="lngMap" class="form-control" novalidate  required [value]="+imgLan">
-      <div [hidden]="imgLan.valid || imgLan.pristine"
-          class="alert alert-danger">
-      緯度は必須入力です。
-    </div>
-  </div>
-</div>-->
-
-
-
  <div class="container">
     <div class="row">
     <div class="col-sm-12 col-md-12">
@@ -42,7 +9,9 @@
                 <!--<h3>UPLOAD <small> New Photo</small></h3>-->
 
                   <div [hidden]="newPanel">
-                    <button type="button" class="btn btn-success btn-xs" (click)="newPanel=true">写真をアップする。</button>
+                    <label for="file">新規写真を登録するには、[写真をアップする]ボタンを押してください。修正削除は写真リストの[修正][削除]ボタンを押してください。 </label>
+                   <div> <button type="button" class="btn btn-success btn-xs" (click)="newPanel=true">写真をアップする</button></div><br><br>
+                   
                   </div>
                   <div [hidden]="!newPanel">
                     <button type="button" class="btn btn-info btn-xs" (click)="newPanel=false">閉じる</button>
@@ -50,7 +19,7 @@
               <!--</div>-->
              
               <div [hidden]="newPanel">
-                    <p>{{appMessage}}</p>
+                    <p class="text_green">{{appMessage}}</p>
               </div>
               <div [hidden]="!newPanel">
                 <h4>登録パネル</h4>
@@ -112,7 +81,8 @@
                      </div>
                   </div>
                   
-                      <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。 </label>
+                  <div>
+                    <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。 </label>
                     <input id="file" name="file" type="file" (change)="fileChange(input)" #input accept="image/*"  style="display:none">
 
                     <div class="input-group">
@@ -126,12 +96,12 @@
                               </div>
                           </div>
                         </div>
-                       
-                      
 
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success">
-                            <label for="file">Browse</label>
+                          <button type="button" class="btn btn-success btn-sm">
+                            <label for="file">
+                               <span class="glyphicon glyphicon-save" aria-hidden="true"></span>写真を選択
+                              </label>
                           </button>
                         </span>
                    </div>
@@ -140,20 +110,8 @@
                       <img [attr.src]='file_src' #img alt="アップロード画像"/>
                     </div>
                   </div>
-                
-                  <br>
-                  <!--<div class="input-group">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-  <span class="input-group-addon" id="basic-addon2">@example.com</span>
-</div>-->
-
-                  <!--<input id="lefile" type="file" style="display:none">-->
-                  <!--<div class="input-group">
-                    <input type="text" id="photoCover" class="form-control" placeholder="select file...">
-                    <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input[id=lefile]').click();">Browse</button></span>
                   </div>
-                  <p class="help-block">● 〇〇MBまでの画像をアップロードできるよ！</p>-->
-
+                  <br>
                 
                   <div class="form-group">
                     <label for="title">タイトル</label>
@@ -190,7 +148,7 @@
                   </div>
                   <div class="form-group">
                     <label for="sdate">日付</label>
-                    <input type="sdate" class="form-control" id="sdate"
+                    <input type="date" class="form-control" id="sdate"
                             required
                             [(ngModel)]="newSpot.sdate" name="sdate"
                             #sdate="ngModel"  novalidate>
@@ -199,9 +157,13 @@
                      日付は必須入力です。
                     </div>
                   </div>
+ 
+                  <!--<my-date-picker [options]="myDatePickerOptions"
+                (dateChanged)="onDateChanged($event)" class="form-control"></my-date-picker>-->
+
                   <div class="form-group">
                     <label for="stime">時間</label>
-                    <input type="stime" class="form-control" id="stime"
+                    <input type="time" class="form-control" id="stime"
                             required
                             [(ngModel)]="newSpot.stime" name="stime"
                             #stime="ngModel"  novalidate>
@@ -210,27 +172,27 @@
                      時間は必須入力です。
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group hidden">
                     <label for="camera">カメラ</label>
                     <input type="camera" class="form-control" id="camera"
-                            required
+                           
                             [(ngModel)]="newSpot.camera" name="camera"
                             #camera="ngModel"  novalidate>
-                    <div [hidden]="camera.valid || camera.pristine"
+                    <!--<div [hidden]="camera.valid || camera.pristine"
                           class="alert alert-danger">
                      カメラは必須入力です。
-                    </div>
+                    </div>-->
                   </div>
-                  <div class="form-group">
+                  <div class="form-group hidden">
                     <label for="renze">レンズ</label>
                     <input type="renze" class="form-control" id="renze"
-                            required
+                          
                             [(ngModel)]="newSpot.renze" name="renze"
                             #renze="ngModel"  novalidate>
-                    <div [hidden]="renze.valid || renze.pristine"
+                    <!--<div [hidden]="renze.valid || renze.pristine"
                           class="alert alert-danger">
                      レンズは必須入力です。
-                    </div>
+                    </div>-->
                   </div>
                   <div class="form-group">
                     <label for="categor">カテゴリー</label>
@@ -242,96 +204,20 @@
                      カテゴリーは必須入力です。
                     </div>
                   </div>
-                  <!--<div class="form-group">
-                    <label for="category">カテゴリー</label>
-                    <input type="category" class="form-control" id="category"
-                            required
-                            
-                            #category="ngModel"  novalidate>
-                    <div [hidden]="category.valid || category.pristine"
-                          class="alert alert-danger">
-                     カテゴリーは必須入力です。
-                    </div>
-                  </div>-->
+                 
               
-                  <div class="form-group">
+                  <div class="form-group hidden">
                     <label for="tag">タグ</label>
                     <input type="tag" class="form-control" id="tag"
-                            required
+                          
                             [(ngModel)]="newSpot.tag" name="tag"
                             #tag="ngModel"  novalidate>
-                    <div [hidden]="tag.valid || tag.pristine"
+                    <!--<div [hidden]="tag.valid || tag.pristine"
                           class="alert alert-danger">
                      タグは必須入力です。
-                    </div>
+                    </div>-->
                   </div>
-           <!--<div class="form-group">
-                    <label for="exampleInputtitle">タイトル</label>
-                    <input type="text" #title [(ngModel)]="newSpot.title" class="form-control"  placeholder="タイトル">
-                  </div>-->
-          <!--<div class="form-group">
-
-            <label for="exampleInputtext">説明</label>
-            <input type="textarea" #text [(ngModel)]="newSpot.text" class="form-control" placeholder="説明">
-          </div>-->
-          <!--<div class="form-group">
-
-            <label for="exampleInputpalace">場所</label>
-            <input type="text" #place [(ngModel)]="newSpot.place" class="form-control"  placeholder="場所">
-          </div>
-          <div class="form-group">
-
-            <label for="exampleInputsdate">日付</label>
-            <input type="text" #sdate [(ngModel)]="newSpot.sdate" class="form-control" placeholder="日付">
-          </div>
-          <div class="form-group">
-
-            <label for="exampleInpustime">時間</label>
-            <input type="text" #stime [(ngModel)]="newSpot.stime" class="form-control" placeholder="時間">
-          </div>
-          <div class="form-group">
-
-            <label for="exampleInputcamera">カメラ</label>
-            <input type="text" #camera [(ngModel)]="newSpot.camera" class="form-control"  placeholder="カメラ">
-          </div>
-          <div class="form-group">
-
-            <label for="exampleInputrenze">レンズ</label>
-            <input type="text" #renze [(ngModel)]="newSpot.renze" class="form-control" placeholder="レンズ">
-          </div>
-          <div class="form-group">
-
-            <label for="exampleInputcategory">カテゴリー</label>
-            <input type="text" #category [(ngModel)]="newSpot.category" class="form-control"  placeholder="カテゴリー">
-          </div>-->
-        
-
-          <!--<div class="form-group">
-            <label for="categoryName">カテゴリー</label>
-            <select class="form-control"  #categoryName id="categoryName" required>
-              <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
-            </select>
-          </div>-->
-
-          <!--<div class="form-group">
-            <label for="exampleInputtag">タグ</label>
-            <input type="text" #tag [(ngModel)]="newSpot.tag" class="form-control" placeholder="タグ">
-          </div>-->
-
-          <!--<br>
-          <div class="form-group">
-          <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
-          <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
-            <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
-          </div>-->
-          <!--<div class="form-group">
-            <label for="exampleInputimagLat">経度</label>
-            <input type="number" #imgLat [(ngModel)]="newSpot.imgLat" class="form-control"  placeholder="経度">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputimgLan">緯度</label>
-            <input type="number" #imgLan [(ngModel)]="newSpot.imgLan" class="form-control" placeholder="緯度">
-          </div>-->
+          
           <br>
           
            <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCrudComponent.form.valid">写真をFIREBASE STRAGEにアップロードする</button>
@@ -348,7 +234,6 @@
 
 <!--Update-->
 <br><br>
-<!--<h4>写真の情報を変更するには、リストから写真を選択してください。</h4>-->
 
 <div *ngIf="selectSpot ">
  
@@ -451,7 +336,7 @@
           </div>
           <div class="form-group">
             <label for="sdate">日付</label>
-            <input type="sdate" class="form-control" id="sdate"
+            <input type="date" class="form-control" id="sdate"
                     required
                     [(ngModel)]="selectSpot.sdate" name="sdate"
                     #sdate="ngModel"  novalidate>
@@ -462,7 +347,7 @@
           </div>
           <div class="form-group">
             <label for="stime">時間</label>
-            <input type="stime" class="form-control" id="stime"
+            <input type="time" class="form-control" id="stime"
                     required
                     [(ngModel)]="selectSpot.stime" name="stime"
                     #stime="ngModel"  novalidate>
@@ -471,39 +356,29 @@
               時間は必須入力です。
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group hidden">
             <label for="camera">カメラ</label>
             <input type="camera" class="form-control" id="camera"
-                    required
+                  
                     [(ngModel)]="selectSpot.camera" name="camera"
                     #camera="ngModel"  novalidate>
-            <div [hidden]="camera.valid || camera.pristine"
+            <!--<div [hidden]="camera.valid || camera.pristine"
                   class="alert alert-danger">
               カメラは必須入力です。
-            </div>
+            </div>-->
           </div>
-          <div class="form-group">
+          <div class="form-group hidden">
             <label for="renze">レンズ</label>
             <input type="renze" class="form-control" id="renze"
-                    required
+                    
                     [(ngModel)]="selectSpot.renze" name="renze"
                     #renze="ngModel"  novalidate>
-            <div [hidden]="renze.valid || renze.pristine"
+            <!--<div [hidden]="renze.valid || renze.pristine"
                   class="alert alert-danger">
               レンズは必須入力です。
-            </div>
+            </div>-->
           </div>
-          <!--<div class="form-group">
-            <label for="category">カテゴリー</label>
-            <input type="category" class="form-control" id="category"
-                    required
-                    [(ngModel)]="selectSpot.category" name="category"
-                    #category="ngModel"  novalidate>
-            <div [hidden]="category.valid || category.pristine"
-                  class="alert alert-danger">
-              カテゴリーは必須入力です。
-            </div>
-          </div>-->
+         
            <div class="form-group">
             <label for="categor">カテゴリー</label>
             <select class="form-control"  #category="ngModel" [(ngModel)]="selectSpot.category" name="category"  id="category" required>
@@ -514,141 +389,20 @@
               カテゴリーは必須入力です。
             </div>
           </div>
-              <!--<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>-->
-          <div class="form-group">
+             
+          <div class="form-group hidden">
             <label for="tag">タグ</label>
             <input type="tag" class="form-control" id="tag"
-                    required
+                   
                     [(ngModel)]="selectSpot.tag" name="tag"
                     #tag="ngModel"  novalidate>
-            <div [hidden]="tag.valid || tag.pristine"
+            <!--<div [hidden]="tag.valid || tag.pristine"
                   class="alert alert-danger">
               タグは必須入力です。
-            </div>
+            </div>-->
           </div>
-         <!--<div class="form-group">
-          <label for="exampleInputtitle">タイトル</label>
-          <input type="text" #title [(ngModel)]="selectSpot.title" class="form-control"  placeholder="タイトル">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputtext">説明</label>
-          <input type="textarea" #text [(ngModel)]="selectSpot.text" class="form-control" placeholder="説明">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputpalace">場所</label>
-          <input type="text" #place [(ngModel)]="selectSpot.place" class="form-control"  placeholder="場所">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputsdate">日付</label>
-          <input type="text" #sdate [(ngModel)]="selectSpot.sdate" class="form-control" placeholder="日付">
-        </div>
-        <div class="form-group">
-          <label for="exampleInpustime">時間</label>
-          <input type="text" #stime [(ngModel)]="selectSpot.stime" class="form-control" placeholder="時間">
-        </div>
-         <div class="form-group">
-          <label for="exampleInputcamera">カメラ</label>
-          <input type="text" #camera [(ngModel)]="selectSpot.camera" class="form-control"  placeholder="カメラ">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputrenze">レンズ</label>
-          <input type="text" #renze [(ngModel)]="selectSpot.renze" class="form-control" placeholder="レンズ">
-        </div>
-       
-        <div class="form-group">
-          <label for="exampleInputcategory">カテゴリー</label>
-          <input type="text" #category [(ngModel)]="selectSpot.category" class="form-control"  placeholder="カテゴリー">
-        </div>-->
-
-
-
-
-
-
-
-
-        <!--<div class="form-group">
-          <label for="exampleInputtag">タグ</label>
-          <input type="text" #tag [(ngModel)]="selectSpot.tag" class="form-control" placeholder="タグ">
-        </div>-->
-        <!--<br>
-        <div class="form-group">
-        <p> 撮影場所をマップに表示するには、経度。緯度を入力してください。</p>
-        <p> GEO( 11.111111 , 22.222222)</p>経度：11.111111(左側)　緯度：22.22222(右側)<p><br>
-          <a href="http://wista.jp/Lib/G-Map1.htm" target="_blank" ><p> Ｇｅｏｌｏｃａｔｉｏｎ（経度。緯度）を調べる</p></a>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputimagLat">経度</label>
-          <input type="number" #imgLatnum [(ngModel)]="selectSpot.imgLat" class="form-control"  placeholder="経度">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputimgLan">緯度</label>
-          <input type="number" #imgLannum [(ngModel)]="selectSpot.imgLan" class="form-control" placeholder="緯度">
-        </div>
-        <br>-->
-
-
-
-
-
-         <!--<button (click)="updateItem(
-             selectSpot.$key, 
-             selectSpot.id,
-             selectSpot.img,
-             title.value,
-             text.value,
-             place.value,
-             sdate.value,
-             stime.value,
-             camera.value,
-            renze.value,
-            category.value,
-            tag.value,
-            imgLat.value,
-            imgLan.value
-          
-           )">Update</button>-->
- 
    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCrudComponent.form.valid">修正</button>
-   <!--<button (click)="delete(selectSpot.$key)" type="button" class="btn btn-primary btn-xs">削除</button>-->
-    <!--<button (click)="deleteItem(selectSpot.$key)">Delete</button>-->
-  
-
-   <!--<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userPhotoDell" data-backdrop="false">削除</button>
-   
-    <div class="modal fade" id="userPhotoDell" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-            <h4 class="modal-title">この写真を削除しますか？</h4>
-          </div>
-          <div class="modal-body">
-            <p>削除する場合は、削除ボタンを押してください。</p>
-            <p>キャンセルする場合は、キャンセルを押してください。</p>
-          </div>
-          <div class="modal-footer">
-             <button (click)="delete(selectSpot.$key)" type="button" class="btn btn-primary btn-xs">削除</button>
-            <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
-          </div>
-
-        </div>
-      </div>
-    </div>-->
-     
    </form>
-
-
-
-     
-     
-
-     
         </div>
 
        

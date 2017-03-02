@@ -29,7 +29,7 @@ import { UserComponent } from './user/user.component';
 import { UserPhotoListComponent } from './user-photo-list/user-photo-list.component';
 import { UserPhotoList2Component } from './user-photo-list2/user-photo-list2.component';
 import { PhotoLocationComponent } from './photo-location/photo-location.component';
-
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 
@@ -69,12 +69,14 @@ const FirebaseAuthConfig = {
     UserComponent,
     UserPhotoListComponent,
     UserPhotoList2Component,
-    PhotoLocationComponent
+    PhotoLocationComponent,
+  
    ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    MyDatePickerModule,
     routing,
     //AngularFireModule.initializeApp(firebaseConfig)
     AngularFireModule.initializeApp(firebaseConfig, FirebaseAuthConfig),
