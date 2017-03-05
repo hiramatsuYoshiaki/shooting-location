@@ -1,0 +1,42 @@
+<!--user list-->
+<div class="container"> 
+  <div class="row">
+  <div class="col-sm-12 col-md-12">
+    <p>
+  photo-user works!
+</p>
+
+
+   
+
+     <div class="page-header">
+        <h1>USERS <small>  </small></h1>
+      </div>
+
+      <div class="media">
+        <ul class="list-group">
+
+          <li *ngFor="let user of users  | async; let idx = index; "
+             [class.selected]="user === selectUser"
+              (click)="onSelectUser(user, idx)"
+               class="list-group-item">
+                <div  class="media-left media-middle">
+                
+              
+                </div>
+                <div class="media-body">
+
+                 <a [routerLink]="['photoSelect',user.uid]">PHOTO SELECT</a>
+                     <h2 class="media-heading"> {{idx+1}}<span>-</span>{{user.photoName}}</h2>
+                
+                </div>
+          </li>
+        </ul>
+      </div>
+      
+    
+
+
+    </div>
+  </div>
+</div>

@@ -1,13 +1,16 @@
 
-  <!--<app-user-photo-list [user]="user" [selectUser]="selectUser" [items]="items" [image]="image"></app-user-photo-list>-->
- <app-user-photo-list2 [user]="user" [selectUser]="selectUser" [items]="items" [image]="image"></app-user-photo-list2>
+
+ <!--<app-user-photo-list [user]="user" [selectUser]="selectUser" [items]="items" [image]="image"></app-user-photo-list>-->
+<app-user-photo-list2 [user]="user" [selectUser]="selectUser" [items]="items" [image]="image"></app-user-photo-list2>
 <!--user list-->
 <div class="container"> 
   <div class="row">
   <div class="col-sm-12 col-md-12">
 
+    <div *ngIf="!selectUser">
+
      <div class="page-header">
-        <h1>POTOGRATHER <small>Entry user  </small></h1>
+        <h1>USERS <small>  </small></h1>
       </div>
 
       <div class="media">
@@ -22,14 +25,14 @@
               
                 </div>
                 <div class="media-body">
-                  <p>User</p>
+                  <!--<p>User</p>-->
                   <h2 class="media-heading">{{user.photoName}}</h2>
                   <!--<h4 class="media-heading">{{user.intro}}</h4>-->
                 </div>
           </li>
         </ul>
       </div>
- 
+    </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,23 @@
+<div class="container"> 
+  <div class="row">
+  <div class="col-sm-12 col-md-12">
+    <h1>子ルータ</h1>
+    <div>
+      <ol class="breadcrumb">
+        <!--<li class="active"><a routerLink="home">Home</a></li>
+        <li class="active"><a routerLink="user">USER</a></li>
+        <li class="active"><a routerLink="userPhotoList">photo</a></li>-->
+
+        <li><a routerLink="user">USER SELECT</a></li>
+        <!--<li><a routerLink="photoSelect">PHOTO SELECT</a>-->
+        <li><a [routerLink]="['photoSelect',123]">PHOTO SELECT</a></li>
+        <li><a routerLink="photoDisplay">PHOTO DISPLAY</a></li>
+      </ol>
+    </div>
+     
+    <router-outlet></router-outlet>
+      
+ 
+    </div>
+  </div>
+</div>

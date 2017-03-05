@@ -387,8 +387,8 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                               imgLat: +newimgLat,
                              imgLan: +newimgLan
                            });
-       this. selectSpot = null;
-       this.appMessage = "画像情報を修正しました。";
+      this. selectSpot = null;
+      this.appMessage = "画像情報を修正しました。";
   }
   deleteItem(key: string) {    
     this.items.remove(key); 

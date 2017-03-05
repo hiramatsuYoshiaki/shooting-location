@@ -1,13 +1,25 @@
-<div *ngIf="selectUser">
-<!--<nav>
-	<ul class="pager">
-		<li class="previous"><a href="#">前へ</a></li>
-		<li class="next"><a href="#">次へ</a></li>
-	</ul>
-</nav>-->
+<p>
+  photos works!  {{index}}
+</p>
+<!--<div class="container"> 
+  <div class="row">
+  <div class="col-sm-12 col-md-12">
+    <h1>PHOTO SELECT</h1>
+    <div>
+      <ol class="breadcrumb">
+      
+        <li><a routerLink="spot">SPOT SELECT</a></li>
+        <li><a routerLink="back">Go To USER</a></li>
+       
+      </ol>
+    </div>
+      {{user}}
 
-<app-photo-details [selectSpot]="selectSpot" [image]="image"  ></app-photo-details>
-<app-s-location [selectSpot]="selectSpot" [image]="image" ></app-s-location>
+    </div>
+  </div>
+</div>-->
+
+{{user}}
 <!--spot list-->
 <div class="container"> 
   <div class="row">
@@ -16,9 +28,8 @@
       
      
       <div class="page-header">
-        <h1>{{selectUser.photoName}} <small> </small></h1>
-        <!--<h3>{{selectUser. intro}}</h3>-->
-        <!--<p>{{selectUser.uid}}</p>-->
+        <!--<h1>{{selectUser.photoName}} <small> </small></h1>-->
+      
       </div>
       
       <div class="media">
@@ -27,9 +38,9 @@
           [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
              
               <div class="media-left media-middle">
-                <!--<a href="#">-->
+              
                    <img [src]="image[idx]" class="media-object img-size-list" alt=""/>
-                <!--</a>-->
+              
               </div>
               <div class="media-body">
                 <h3 class="media-heading">{{item.title}}</h3>
@@ -52,15 +63,7 @@
         </ul>
         
 
-      </div><!-- media -->
-    </div><!--col-sm-12 col-md-6-->
-  </div><!--row-->
-  </div><!--container-->
- 
- 
-  
-  <app-location [image]="image"  [items]="items"></app-location>
-
-
-
-</div>
+      </div>
+    </div>
+  </div>
+  </div>

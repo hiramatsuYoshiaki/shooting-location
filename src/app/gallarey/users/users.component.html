@@ -1,0 +1,45 @@
+<p>
+  users works!
+</p>
+<div class="container"> 
+  <div class="row">
+  <div class="col-sm-12 col-md-12">
+    <h1>USER SELECT</h1>
+    <div>
+      <ol class="breadcrumb">
+      
+        <li><a routerLink="photos">PHOTOS SELECT</a></li>
+         <!--<li><a [routerLink]="['photos',123]">PHOTO SELECT</a></li>-->
+       
+      </ol>
+    </div>
+ 
+    </div>
+  </div>
+</div>
+
+
+<div class="page-header">
+        <h1>USERS <small>  </small></h1>
+      </div>
+
+      <div class="media">
+        <ul class="list-group">
+
+          <li *ngFor="let user of users  | async; let idx = index; "
+             [class.selected]="user === selectUser"
+              (click)="onSelectUser(user, idx)"
+               class="list-group-item">
+                <div  class="media-left media-middle">
+                
+              
+                </div>
+                <div class="media-body">
+
+                 <a [routerLink]="['photos',user.uid]">go to photos</a>
+                     <h2 class="media-heading"> {{idx+1}}<span>-</span>{{user.photoName}}</h2>
+                
+                </div>
+          </li>
+        </ul>
+      </div>
