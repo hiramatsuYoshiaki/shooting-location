@@ -1,20 +1,122 @@
-<p>
+<!--<p>
   spot works!
-</p>
-<div class="container"> 
+</p>-->
+<!--<div class="container"> 
   <div class="row">
   <div class="col-sm-12 col-md-12">
+    <p>{{user}}</p>
+    <p>{{idx}}</p>
+     <img [src]="image"  alt=""/>
     <h1>SPOT</h1>
     <div>
       <ol class="breadcrumb">
-      
-        <!--<li><a routerLink="spot">SPOT SELECT</a></li>-->
         <li><a routerLink="back">Go To PHOTO</a></li>
-         <!--<li><a [routerLink]="['photos',123]">PHOTO SELECT</a></li>-->
-       
       </ol>
     </div>
  
     </div>
   </div>
-</div>
+</div>-->
+
+
+ <!--Select Photo-->
+  <div *ngIf="selectSpot">
+
+
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+
+        <div class="page-header">
+          <!--<h1>PHOTO SPOT</h1>-->
+          <h4><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{selectSpot.category | uppercase}}</h4>
+          <h1>{{selectSpot.title}}<small>by {{ selectSpot.displayName }}</small></h1>
+        </div>
+
+        <div class="thumbnail">
+          <div class="caption">
+            <!--<h3>{{selectSpot.title}}</h3>-->
+             <ol class="breadcrumb">
+              <!--<li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{selectSpot.category}}</li>-->
+              <!--<li ><i class="fa fa-tag" aria-hidden="true"></i>{{selectSpot.tag}}</li>-->
+            </ol>
+          </div>
+
+           <!--<img [src]="image[selectSpot.id]"  alt=""/>-->
+           <img [src]="image"  alt=""/>
+           <br>
+           
+             
+               
+                
+           
+        <!--<div class="page-header">
+          <h1>SPOT</h1>
+        </div>
+            <sebm-google-map [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" [zoom] = "zoom">
+            <sebm-google-map-marker [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" >
+              <sebm-google-map-info-window [disableAutoPan]="true">
+                  <strong>{{selectSpot.title}}</strong>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+           <ol class="breadcrumb">
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{selectSpot.place}}</li>
+              <li><i class="fa fa-calendar" aria-hidden="true"></i>{{selectSpot.sdate}}</li>
+              <li ><i class="fa fa-clock-o" aria-hidden="true"></i>{{selectSpot.stime}}</li>
+           </ol>-->
+          <!--<h4>{{selectSpot.text}}...</h4>-->
+        </div> 
+         
+            
+
+      </div>
+     </div>
+    </div>
+
+     <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12">
+
+         <div class="page-header">
+          <!--<h1>SPOT</h1>-->
+          <h1>{{selectSpot.place}} </h1>
+            <p><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{selectSpot.sdate}}
+           <span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{selectSpot.stime}}</p>
+        </div>
+         <div class="thumbnail">
+            <sebm-google-map [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" [zoom] = "zoom">
+            <sebm-google-map-marker [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" >
+              <sebm-google-map-info-window [disableAutoPan]="true">
+                  <strong>{{selectSpot.title}}</strong>
+              </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+          </sebm-google-map>
+
+         </div>
+          <div class="panel panel-default">
+            <div class="panel-heading  panel-haeding-coment">
+              コメント
+            </div>
+            <div class="panel-body">
+              {{selectSpot.text}}
+            </div>
+          </div>
+
+
+           <button (click)="goBack()">Back</button>
+      </div>
+     </div>
+    </div>
+
+
+  </div><!--selectSpot-->
+
+  <!--<div class="panel panel-warning">
+	<div class="panel-heading">
+		パネルのヘッダー
+	</div>
+	<div class="panel-body">
+		パネルの内容
+	</div>
+</div>-->

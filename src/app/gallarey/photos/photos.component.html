@@ -1,6 +1,6 @@
-<p>
+<!--<p>
   photos works!  {{index}}
-</p>
+</p>-->
 <!--<div class="container"> 
   <div class="row">
   <div class="col-sm-12 col-md-12">
@@ -19,31 +19,41 @@
   </div>
 </div>-->
 
-{{user}}
+<!--{{user}}-->
+
 <!--spot list-->
 <div class="container"> 
   <div class="row">
   <div class="col-sm-12 col-md-12">
 
       
-     
       <div class="page-header">
-        <!--<h1>{{selectUser.photoName}} <small> </small></h1>-->
-      
+         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>
+         <h1>PHOTO SELECT </h1>
+
+          <ol   class="breadcrumb">
+            <li *ngFor="let top of topCategorys | async" 
+          
+            (click)="onSelectCategory(top.name)">
+                <span>{{top.name}}</span>
+            </li>
+          </ol>
+        <!--<p>撮影スポットをＭＡＰ表示する</p>-->
+        
       </div>
-      
       <div class="media">
         <ul class="list-group">
+
           <li *ngFor="let item of items  | async; let idx = index; " 
-          [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
-             
+          [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" 
+          class="list-group-item">
+
               <div class="media-left media-middle">
-              
                    <img [src]="image[idx]" class="media-object img-size-list" alt=""/>
-              
               </div>
               <div class="media-body">
                 <h3 class="media-heading">{{item.title}}</h3>
+                
                 <ol class="breadcrumb">
                   <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.place}}</li>
                   <li><i class="fa fa-calendar" aria-hidden="true"></i>{{item.sdate}}</li>
@@ -53,17 +63,17 @@
                   <li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{item.category}}</li>
                   <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
                 </ol>
-               
                  <h4 class="media-heading">{{item.text}}</h4>
-              
+                  <!--<a [routerLink]="['photos/spot',item.img]">go to Detail</a>-->
               </div>
-              
           </li>
 
         </ul>
-        
+        <button (click)="goBack()">Back</button>
 
       </div>
     </div>
   </div>
   </div>
+  <!--<app-location [image]="image"  [items]="items"></app-location>-->
+  <app-map [image]="image"  [items]="items"></app-map>

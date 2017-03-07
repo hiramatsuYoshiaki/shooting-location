@@ -38,10 +38,10 @@ const appRoutes: Routes= [
   // { path: 'userHome/user-select', component: SelectUserComponent },
   // { path: 'userHome/photo-select', component: PhotoSelectComponent },
   // { path: 'userHome/photo-display', component: PhotoDisplayComponent },
-  // { path: 'list', component: PhotoListComponent },
+  { path: 'list', component: PhotoListComponent },
   { path: 'acount', component: AuthComponent },
-  // { path: 'map', component:LocationComponent },
-  // { path: 'home/location/:imgURL', component:PhotoLocationComponent },
+ // { path: 'map', component:LocationComponent },
+  { path: 'home/location/:imgURL', component:PhotoLocationComponent },
   { path: '**', component: PageNotFoundComponent }
 
  

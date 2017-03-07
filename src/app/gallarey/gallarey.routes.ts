@@ -17,6 +17,7 @@ const  Gallarey: Routes= [
       { path: 'users/photos/:id', component:PhotosComponent  },
       { path: 'users/back', component:UsersComponent  },
       { path: 'users/photos/spot', component: SpotComponent },
+      { path: 'users/photos/spot/:id/:idx', component: SpotComponent },
       { path: 'users/photos/back', component: UsersComponent },
       { path: 'users/photos/spot/back', component: PhotosComponent },
       { path: 'photos', component: PhotosComponent },
