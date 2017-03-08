@@ -51,5 +51,5 @@ export class CategorySpotMarkerComponent implements OnInit {
       });
       
   }
-
+ 
 }

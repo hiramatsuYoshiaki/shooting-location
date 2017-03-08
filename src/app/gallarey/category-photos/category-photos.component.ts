@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
+//import { DataService } from '../../data.service';
 import { Spot } from '../../app.spot';
+//import { Category } from '../../category';
 
 
 @Component({
@@ -19,50 +23,39 @@ export class CategoryPhotosComponent implements OnInit {
    category:string;
   private sub: any;
   itemsCategory:Spot[]=[];
-  i:number = 0;
+  selectSpot: Spot;
   constructor( public af: AngularFire,
                private route: ActivatedRoute,
-               private router: Router,) { }
+               private router: Router,
+                private location: Location) { }
 
   ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
           this.user =   params['id']; 
-           this.category =   params['category']; 
-          console.log( params['id']);
-          console.log(params['category']);
+          this.category =   params['category']; 
           this.items = this.af.database.list('/photos', {
               query: {
                 orderByChild: 'displayName',
                 equalTo: params['id']
               }
           });
-          var i:number = 0;
           this.items.subscribe(items => items.forEach(
               (item , index )  => {
-                 
                   if(item.category === params['category']){
-                     this.i++;
+                    item.id = index;
                     this.itemsCategory.push(item);
                     firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
-                    console.log( item.title);
-                    console.log( index);
-                    console.log( this.image[index]);
-                   
-
                   }
                } 
            ));
-           
-          //  this.itemsCategory.forEach(
-          //     ( itemsCategory , index )  => {
-          //            firebase.storage().ref().child(itemsCategory.img).getDownloadURL().then(url => this.image[index] = url)
-          //            console.log(' itemsCategory ' +  this.image[index])
-          //     }
-              
-          //  );
-         
       });     
-     
   }
-
+   onSelect(spot:Spot, idx: number ) {
+    this.selectSpot = spot;
+    this.selectSpot.id = idx;
+    this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
+ }
+  goBack(): void {
+    this.location.back();
+  }
 }

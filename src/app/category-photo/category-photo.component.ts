@@ -30,4 +30,5 @@ export class CategoryPhotoComponent implements OnInit {
     this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
  }
  
+ 
 }
