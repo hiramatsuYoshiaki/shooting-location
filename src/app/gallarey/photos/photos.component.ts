@@ -63,7 +63,6 @@ export class PhotosComponent implements OnInit {
     this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
  }
  onSelectCategory(user:string, name:string){
-   console.log("onSelectCategory user: "+ user +"top-category-name: " + name );
     this.router.navigate(['gallarey/users/categoryPhotos',user,name]);
  }
  goBack(): void {
