@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -22,7 +23,8 @@ export class SpotMarkerComponent implements OnInit {
 
   constructor( public af: AngularFire,
                private route: ActivatedRoute,
-               private router: Router,) { }
+               private router: Router,
+               private location: Location) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -52,5 +54,7 @@ export class SpotMarkerComponent implements OnInit {
       });
       
   }
-
+  goBack(): void {
+    this.location.back();
+  }
 }

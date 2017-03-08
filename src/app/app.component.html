@@ -13,51 +13,23 @@
 		<div class="collapse navbar-collapse" id="navbarEexample">
 			<ul class="nav navbar-nav">
 				<!--<li class="active"><a routerLink="home">HOME</a></li>-->
-				
 				<li><a routerLink="home">HOME</a></li>
 				<li><a routerLink="gallarey">USER</a></li>
 				<!--<li><a routerLink="user">allUSERS</a></li>-->
 				<!--<li><a routerLink="userHome">USERS HOME</a></li>-->
 				<li><a routerLink="category">CATEGORY</a></li>
 				<!--<li><a routerLink="map">MAP</a></li>-->
-				<li><a routerLink="list">LIST</a></li>
+				<!--<li><a routerLink="list">LIST</a></li>-->
 				<li><a routerLink="acount">ACOUNT</a></li>
+				<li><a routerLink="login">LOGIN test</a></li>
+				<li><a routerLink="admin">ADMIN test</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
 <main>
-<!--<div class="container">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div *ngIf="(af.auth | async)">
-				<img [src]="(af.auth | async)?.auth.photoURL"  class="media-object" alt="user photo"/>
-				<p>uid:{{ (af.auth | async)?.uid }}</p>
-				<p>name:{{ (af.auth | async)?.auth.displayName }}</p>
-				<p>mail:{{ (af.auth | async)?.auth.email }}</p>
-				<p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>
-				<div><button (click)="logout()" class="btn btn-default">Logout</button></div>
-			</div>
-			<div *ngIf="!(af.auth | async)">
-				<div><button (click)="login()">Login with Google</button></div>
-			</div>
-		</div>
-	</div>
-</div> -->
-
-
-	
-
 	<router-outlet ></router-outlet>
-
-	<!--<app-category ></app-category>
-	<app-photo-list></app-photo-list>-->
-
-	<!--<app-location></app-location>-->
-	<!--<app-photo-details></app-photo-details>-->
-   
-
 </main>
 
 

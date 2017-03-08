@@ -13,6 +13,8 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
 import { LocationComponent } from './location/location.component';
 import { DataService } from './data.service';
 import { CategoryService } from './category.service';
+import { AuthService } from './auth-service';
+import { AuthGuard } from './auth-gard.service';
 import { UidService } from './uid.service';
 import { CategoryComponent } from './category/category.component';
 
@@ -40,11 +42,13 @@ import { UserPhotoList2Component } from './user-photo-list2/user-photo-list2.com
 // import { PhotoSelectComponent } from './photo-select/photo-select.component';
 // import { PhotoDisplayComponent } from './photo-display/photo-display.component';
 //ルーティング階層化
-import { UserModuleModule } from './user-module/user-module.module';
+import { UserModuleModule } from './user-module/user-module.module';//未使用
 import { GallareyModule } from './gallarey/gallarey.module';
 import { HomeSpotComponent } from './home/home-spot/home-spot.component';
 import { CategorySpotMarkerComponent } from './category-spot-marker/category-spot-marker.component';
-
+import { AdminModule } from './admin/Admin.Module';
+import {LoginComponent } from './login/login.component';
+import { LoginRoutingModule }      from './login/login-routing.module';
 
 
 
@@ -88,6 +92,9 @@ const FirebaseAuthConfig = {
     UserPhotoList2Component,
     HomeSpotComponent,
     CategorySpotMarkerComponent,
+   
+    LoginComponent,
+    
   
     //UserHomeComponent,
     // SelectUserComponent,
@@ -111,8 +118,10 @@ const FirebaseAuthConfig = {
        apiKey: 'AIzaSyCgyTcCuXRCcFetU66oipTr7LvjdVaVD9c'
      }),
      //ルーティング階層化
-     UserModuleModule,
-     GallareyModule
+     UserModuleModule,//未使用
+     GallareyModule,
+     AdminModule,
+     LoginRoutingModule
     
   ],
   providers: [DataService,

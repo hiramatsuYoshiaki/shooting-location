@@ -24,7 +24,6 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
 import { DataService } from '../../data.service';
-//import { UidService } from '../uid.service';
 import { Spot } from '../../app.spot';
 import { Category } from '../../category';
 
@@ -50,28 +49,14 @@ export class UsersComponent implements OnInit {
                private router: Router) { 
   
     this.users = this.DataService.getFirebaseCategorys();
-   
-
   }
   ngOnInit() {
-    //  this.selectSpot = this.route.params
-    //   .switchMap((params: Params) => {
-    //     this.selectIndex = +params['id'];
-    //       return this.service.getHeroes();
-    //   });
    }
    
   onSelectUser(user:Category, idx: number ): void {
     this.selectUser = user;
     this.selectIndex = idx;
-   
-    
-   // this.router.navigate(['gallarey/users/photos',idx]);
     this.router.navigate(['gallarey/users/photos',user.displayName]);
-    // console.log('on select to gallarey/users/photos');
-     console.log('on select to gallarey/users/photos'+user.displayName);
-    
-    
   };
   
 }

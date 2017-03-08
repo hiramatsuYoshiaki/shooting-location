@@ -21,7 +21,8 @@ import {UserHomeComponent }         from './user-home/user-home.component';
 import {GallareyComponent }         from './gallarey/gallarey.component';
 import {HomeSpotComponent }         from './home/home-spot/home-spot.component';
 import {CategorySpotMarkerComponent }         from './category-spot-marker/category-spot-marker.component';
-
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 // import {SelectUserComponent }         from './select-user/select-user.component';
 // import {PhotoSelectComponent }         from './photo-select/photo-select.component';
 // import {PhotoDisplayComponent }         from './photo-display/photo-display.component';
@@ -33,7 +34,7 @@ const appRoutes: Routes= [
   { path: 'category', component: CategoryComponent },
   { path: 'category/marker/:id/:img', component: CategorySpotMarkerComponent },
   { path: 'user', component: UserComponent },
-  { path: 'userHome', component: UserHomeComponent },
+  //{ path: 'userHome', component: UserHomeComponent },
   { path: 'gallarey', component: GallareyComponent },
   // { path: 'userHome/home', component: UserHomeComponent },
   // { path: 'userHome/user', component: UserComponent },
@@ -41,11 +42,19 @@ const appRoutes: Routes= [
   // { path: 'userHome/user-select', component: SelectUserComponent },
   // { path: 'userHome/photo-select', component: PhotoSelectComponent },
   // { path: 'userHome/photo-display', component: PhotoDisplayComponent },
-  { path: 'list', component: PhotoListComponent },
+ // { path: 'list', component: PhotoListComponent },
   { path: 'acount', component: AuthComponent },
  // { path: 'map', component:LocationComponent },
   { path: 'home/location/:imgURL', component:PhotoLocationComponent },
   { path: 'home/homeSpot/:imgURL', component:HomeSpotComponent },
+  { path: 'login', component:LoginComponent },
+  { path: 'admin', component:AdminComponent },
+
+
+
+
+
+
   { path: '**', component: PageNotFoundComponent }
 
  

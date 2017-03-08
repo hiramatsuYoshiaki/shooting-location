@@ -6,11 +6,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { Spot } from '../../app.spot';
 import { Category } from '../../category';
+import { slideInDownAnimation } from '../../animation';
 
 @Component({
   selector: 'app-spot',
   templateUrl: './spot.component.html',
-  styleUrls: ['./spot.component.scss']
+  styleUrls: ['./spot.component.scss'],
+  animations: [ slideInDownAnimation ]
 })
 export class SpotComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
