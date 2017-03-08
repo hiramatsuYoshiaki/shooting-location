@@ -7,12 +7,11 @@ import { Observable } from 'rxjs/Observable';
 import { FirebaseApp } from 'angularfire2';
 import * as firebase from 'firebase';
 import { DataService } from '../../data.service';
-//import { UidService } from '../uid.service';
 import { Spot } from '../../app.spot';
 import { Category } from '../../category';
 
 @Component({
-   selector: 'app-photos',
+  selector: 'app-photos',
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.scss'],
   providers: [DataService],
@@ -35,11 +34,8 @@ export class PhotosComponent implements OnInit {
                public af: AngularFire,
                private route: ActivatedRoute,
                private router: Router,
-                private location: Location) { 
-  //  console.log('constroctor onSelectUser User id ' + this.selectId)
-    //this.users = this.DataService.getFirebaseCategorys();
-    //this.items = this.UidService.filterUserBy(this.selectId);
-   // this.image = this.UidService.getStrageUser();
+               private location: Location) { 
+  
     this.topCategorys = this.DataService.getFirebaseTopCategorys();
 
   }
@@ -64,14 +60,14 @@ export class PhotosComponent implements OnInit {
   onSelect(spot:Spot, idx: number ) {
     this.selectSpot = spot;
     this.selectSpot.id = idx;
-  
     this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
-    console.log('on select to gallarey/users/photos/spot'+this.selectSpot.img);
-   
+ }
+ onSelectCategory(user:string, name:string){
+   console.log("onSelectCategory user: "+ user +"top-category-name: " + name );
+    this.router.navigate(['gallarey/users/categoryPhotos',user,name]);
  }
  goBack(): void {
     this.location.back();
   }
- 
   
 }

@@ -1,26 +1,6 @@
-<!--<p>
-  photos works!  {{index}}
-</p>-->
-<!--<div class="container"> 
-  <div class="row">
-  <div class="col-sm-12 col-md-12">
-    <h1>PHOTO SELECT</h1>
-    <div>
-      <ol class="breadcrumb">
-      
-        <li><a routerLink="spot">SPOT SELECT</a></li>
-        <li><a routerLink="back">Go To USER</a></li>
-       
-      </ol>
-    </div>
-      {{user}}
-
-    </div>
-  </div>
-</div>-->
-
-<!--{{user}}-->
-
+<p>
+  category-photos works!
+</p>
 <!--spot list-->
 <div class="container"> 
   <div class="row">
@@ -43,8 +23,12 @@
       </div>
       <div class="media">
         <ul class="list-group">
-
+<!--
           <li *ngFor="let item of items  | async; let idx = index; " 
+          [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" 
+          class="list-group-item">-->
+
+          <li *ngFor="let item of itemsCategory   let idx = index; " 
           [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" 
           class="list-group-item">
 
@@ -79,5 +63,3 @@
     </div>
   </div>
   </div>
-  <!--<app-location [image]="image"  [items]="items"></app-location>-->
-  <app-map [image]="image"  [items]="items"></app-map>

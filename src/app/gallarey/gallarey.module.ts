@@ -11,13 +11,15 @@ import { SpotComponent } from './spot/spot.component';
 //angular2-google-maps
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MapComponent } from './map/map.component';
+import { SpotMarkerComponent } from './spot-marker/spot-marker.component';
+import { CategoryPhotosComponent } from './category-photos/category-photos.component';
 
 @NgModule({
    declarations: [
     GallareyComponent,
     UsersComponent, 
     PhotosComponent, 
-    SpotComponent, MapComponent,
+    SpotComponent, MapComponent, SpotMarkerComponent, CategoryPhotosComponent,
     // LocationComponent
     ],
   imports: [

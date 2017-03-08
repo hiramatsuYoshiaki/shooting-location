@@ -19,6 +19,8 @@ import {CategoryService }         from './category.service';
 import {PageNotFoundComponent }         from './page-not-found/page-not-found.component';
 import {UserHomeComponent }         from './user-home/user-home.component';
 import {GallareyComponent }         from './gallarey/gallarey.component';
+import {HomeSpotComponent }         from './home/home-spot/home-spot.component';
+import {CategorySpotMarkerComponent }         from './category-spot-marker/category-spot-marker.component';
 
 // import {SelectUserComponent }         from './select-user/select-user.component';
 // import {PhotoSelectComponent }         from './photo-select/photo-select.component';
@@ -29,6 +31,7 @@ const appRoutes: Routes= [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'category/marker/:id/:img', component: CategorySpotMarkerComponent },
   { path: 'user', component: UserComponent },
   { path: 'userHome', component: UserHomeComponent },
   { path: 'gallarey', component: GallareyComponent },
@@ -42,6 +45,7 @@ const appRoutes: Routes= [
   { path: 'acount', component: AuthComponent },
  // { path: 'map', component:LocationComponent },
   { path: 'home/location/:imgURL', component:PhotoLocationComponent },
+  { path: 'home/homeSpot/:imgURL', component:HomeSpotComponent },
   { path: '**', component: PageNotFoundComponent }
 
  
@@ -52,4 +56,4 @@ export const appRoutingProviders: any[] = [];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 
 
-
+///category/marker/Yoshiaki%20Hiramatsu/%2Ftwilite%2FIMG_1364_5_6_tonemapped.jpg

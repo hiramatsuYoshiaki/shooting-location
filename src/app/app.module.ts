@@ -42,6 +42,8 @@ import { UserPhotoList2Component } from './user-photo-list2/user-photo-list2.com
 //ルーティング階層化
 import { UserModuleModule } from './user-module/user-module.module';
 import { GallareyModule } from './gallarey/gallarey.module';
+import { HomeSpotComponent } from './home/home-spot/home-spot.component';
+import { CategorySpotMarkerComponent } from './category-spot-marker/category-spot-marker.component';
 
 
 
@@ -84,6 +86,8 @@ const FirebaseAuthConfig = {
     UserComponent,
     UserPhotoListComponent,
     UserPhotoList2Component,
+    HomeSpotComponent,
+    CategorySpotMarkerComponent,
   
     //UserHomeComponent,
     // SelectUserComponent,

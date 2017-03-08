@@ -13,35 +13,36 @@
       
       <div class="media">
         <ul class="list-group">
-          <li *ngFor="let item of items  | async; let idx = index; " [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
+          <li *ngFor="let item of items  | async; let idx = index; " 
+          [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" class="list-group-item">
+             
               <div class="media-left media-middle">
                 <!--<a href="#">-->
                    <img [src]="image[idx]" class="media-object img-size-list" alt=""/>
                 <!--</a>-->
               </div>
               <div class="media-body">
-                <h4 class="media-heading">{{item.title}}<br><small>{{item.text}}</small></h4>
-                <h4 class="media-heading">{{item.displayName}}</h4>
-                <!--<h4 class="media-heading">{{item.imgLat}}</h4>
-                <h4 class="media-heading">{{item.imgLan}}</h4>
-                ...-->
-               <ol class="breadcrumb">
+                  <h4 class="media-heading">{{item.title}}</h4>
+                <p class="media-heading"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{item.category}} 
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{item.sdate}}</p>
+                <p class="media-heading"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{item.place}}</p>
+                <p class="media-heading"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{item.displayName}}</p>
+
+               <!--<ol class="breadcrumb">
                   <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.place}}</li>
                   <li><i class="fa fa-calendar" aria-hidden="true"></i>{{item.sdate}}</li>
                   <li ><i class="fa fa-clock-o" aria-hidden="true"></i>{{item.stime}}</li>
-                  <!--<li >{{item.camera}}</li>
-                  <li >{{itemrenze}}</li>-->
-               
                   <li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{item.category}}</li>
                   <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
-                </ol>
+                </ol>-->
               </div>
           </li>
 
         </ul>
-        
-
+       
       </div><!-- media -->
+     
+
     </div><!--col-sm-12 col-md-6-->
   </div><!--row-->
   </div><!--container-->

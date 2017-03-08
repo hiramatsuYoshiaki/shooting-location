@@ -12,12 +12,12 @@
           <sebm-google-map-marker 
             *ngFor="let m of items  | async; let i = index"
               [latitude]="m.imgLat"
-              [longitude]="m.imgLan"
-             
-          >
+              [longitude]="m.imgLan">
 
-            <sebm-google-map-info-window [disableAutoPan]="true">
-              <strong>{{m.title}}</strong>
+            <sebm-google-map-info-window [disableAutoPan]="true"  >
+              <a [routerLink]="['marker',m.displayName,m.img]">
+                <strong>{{m.title}}</strong>
+             </a>
             </sebm-google-map-info-window>
 
           </sebm-google-map-marker>
