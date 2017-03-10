@@ -63,10 +63,10 @@ export const firebaseConfig ={
 //ユーザー認証
 const FirebaseAuthConfig = {
   provider: AuthProviders.Google,
-   method: AuthMethods.Redirect
-  // method: AuthMethods.Popup,
-  // remember: 'default',
-  // scope:['email']
+  //  method: AuthMethods.Redirect
+  method: AuthMethods.Popup,
+  remember: 'default',
+  scope:['email']
     
 };
 

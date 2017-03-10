@@ -1,9 +1,46 @@
-<p>
+<!--<p>
   login works!
-</p>
- <h2>LOGIN</h2>
+</p>-->
+ 
+
+
+
+<div class="container">
+  <div class="row">
+   <div class="col-sm-12 col-md-12">
+      <div class="page-header">
+        <h1>ACOUNT <small>  Google</small></h1>
+      </div>
+
+      <div class="page-header" >
+       <h1>{{message}}</h1><br>
+
+        <div>
+          <button (click)="logout()" class="btn btn-info btn-md" *ngIf="authService.isLoggedIn">
+            Logout with Google
+          </button>
+        </div>
+     
+        
+        <div>
+          <button (click)="login() " class="btn btn-primary btn-md"  *ngIf="!authService.isLoggedIn">
+            Login with Google
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ 
+ <!--<h2>LOGIN</h2>
     <p>{{message}}</p>
     <p>
       <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
       <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-    </p>
+    </p>-->
+ 
+

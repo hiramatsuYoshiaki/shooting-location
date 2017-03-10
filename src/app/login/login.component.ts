@@ -17,6 +17,11 @@
 import { Component }   from '@angular/core';
 import { Router }      from '@angular/router';
 import { AuthService } from '../auth-service';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseApp } from 'angularfire2';
+import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
     selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,26 +29,41 @@ import { AuthService } from '../auth-service';
 })
 export class LoginComponent {
   message: string;
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public af: AngularFire,public authService: AuthService, public router: Router) {
     this.setMessage();
-  }
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
-  login() {
-    this.message = 'Trying to log in ...';
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'admin';
-        // Redirect the user
-        this.router.navigate([redirect]);
+    firebase.auth().onAuthStateChanged(function(user) {
+       if (user) {
+      
+         console.log('onAuthStateChanged logoin');
+         console.log('onAuthStateChanged login '+ user.displayName);
+          console.log('onAuthStateChanged login '+ user.email);
+          console.log('onAuthStateChanged login '+ user.photoURL);
+          console.log('onAuthStateChanged login '+ user.uid);
+      } else {
+         console.log('onAuthStateChanged logoff ');
       }
     });
+
+  }
+  setMessage() {
+    // this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this.message = 'Ｇｏｏｇｌｅアカウントで ' + (this.authService.isLoggedIn ? 'ログアウト' : 'ログイン')　+ 'してください。';
+  }
+ 
+  login() {
+      this.message = 'ログインしています ...';
+      this.af.auth.login();
+      this.authService.login();
+      this.setMessage();
+
+      if (this.authService.isLoggedIn) {
+       let redirect = this.authService.redirectUrl ="admin";
+        this.router.navigate([redirect]);
+      }
+   
   }
   logout() {
+    this.af.auth.logout();
     this.authService.logout();
     this.setMessage();
   }

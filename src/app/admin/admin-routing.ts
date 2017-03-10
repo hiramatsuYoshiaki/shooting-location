@@ -13,44 +13,21 @@ const AdminRouting: Routes= [
   {
     path: 'admin',
     component:  AdminComponent,
-     canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
         {
             path: '',
-          canActivateChild: [AuthGuard],   
+            canActivateChild: [AuthGuard],   
             children: [
-      
-      
         { path: 'mPhoto', component:ManagePhotoComponent  },
         { path: 'mUser', component:ManageUserComponent  },
         { path: '', component: DashboardComponent }
         ]
       }
     ]
-        
-   
   }
-  //     ]
-//   }
  ];
-//  const adminRoutes: Routes = [
-//   {
-//     path: '',
-//     component: AdminComponent,
-//     canActivate: [AuthGuard],
-//     children: [
-//       {
-//         path: '',
-//         canActivateChild: [AuthGuard],
-//         children: [
-//           { path: 'crises', component: ManageCrisesComponent },
-//           { path: 'heroes', component: ManageHeroesComponent },
-//           { path: '', component: AdminDashboardComponent }
-//         ]
-//       }
-//     ]
-//   }
-// ];
+
 
 export const  AdminRoutingProviders: any[] = [];
 
