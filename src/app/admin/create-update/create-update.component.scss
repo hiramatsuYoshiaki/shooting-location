@@ -1,0 +1,20 @@
+.detail-photo-size{
+    width: auto;
+    height: 100px;
+}
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+.sebm-google-map-container {
+  height: 500px;
+}
+
+.hidden {
+  display:none
+}
+.text_green{
+ color: green;
+}

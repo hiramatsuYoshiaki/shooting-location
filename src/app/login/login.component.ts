@@ -17,10 +17,7 @@
 import { Component }   from '@angular/core';
 import { Router }      from '@angular/router';
 import { AuthService } from '../auth-service';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { FirebaseApp } from 'angularfire2';
-import * as firebase from 'firebase';
-import { Observable } from 'rxjs/Observable';
+
 
 @Component({
     selector: 'app-login',
@@ -29,30 +26,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class LoginComponent {
   message: string;
-  constructor(public af: AngularFire,public authService: AuthService, public router: Router) {
-    this.setMessage();
-    firebase.auth().onAuthStateChanged(function(user) {
-       if (user) {
-      
-         console.log('onAuthStateChanged logoin');
-         console.log('onAuthStateChanged login '+ user.displayName);
-          console.log('onAuthStateChanged login '+ user.email);
-          console.log('onAuthStateChanged login '+ user.photoURL);
-          console.log('onAuthStateChanged login '+ user.uid);
-      } else {
-         console.log('onAuthStateChanged logoff ');
-      }
-    });
+  constructor(public authService: AuthService, public router: Router) {
+   
 
   }
   setMessage() {
     // this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-    this.message = 'Ｇｏｏｇｌｅアカウントで ' + (this.authService.isLoggedIn ? 'ログアウト' : 'ログイン')　+ 'してください。';
+    this.message = 'Ｇｏｏｇｌｅアカウントで ' + (this.authService.isLoggedIn ? 'ログアウト' : 'ログイン')　+ 'します。';
   }
  
   login() {
       this.message = 'ログインしています ...';
-      this.af.auth.login();
       this.authService.login();
       this.setMessage();
 
@@ -63,7 +47,6 @@ export class LoginComponent {
    
   }
   logout() {
-    this.af.auth.logout();
     this.authService.logout();
     this.setMessage();
   }

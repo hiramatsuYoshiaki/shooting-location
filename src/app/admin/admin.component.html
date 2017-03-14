@@ -1,12 +1,19 @@
-<p>
+<!--<p>
   admin works!
-</p>
- <h3>ADMIN</h3>
-    <nav>
+</p>-->
+<div class="container">
+  <div class="row">
+   <div class="col-sm-12 col-md-12">
+     <nav>
       <a routerLink="./" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+        [routerLinkActiveOptions]="{ exact: true }">ユーザー情報</a>
       <!--<a routerLink="dashborad" routerLinkActive="active">Dashborad</a>-->
-      <a routerLink="mPhoto" routerLinkActive="active">Manage Photo</a>
-      <a routerLink="mUser" routerLinkActive="active">Manage User</a>
+      <a routerLink="mPhoto" routerLinkActive="active">写真</a>
+      <a routerLink="mUser" routerLinkActive="active">カテゴリー</a>
     </nav>
     <router-outlet></router-outlet>
+   </div>
+ </div>
+</div>
+
+

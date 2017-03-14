@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseApp } from 'angularfire2';
+import * as firebase from 'firebase';
 
 
 @Injectable()
@@ -8,21 +11,41 @@ export class AuthService {
   redirectUrl: string;
 
  
- constructor() {
+ constructor(public af: AngularFire) {
     
 
   }
 
 
  login(): void {
-   
-    this.isLoggedIn = true;
-    console.log('authService logoin: '+this.isLoggedIn);
+    this.af.auth.login();
+    // firebase.auth().onAuthStateChanged((user) => {
+      // if (!user) {
+        // サインインしていない状態
+        // this.isLoggedIn = false;
+        // console.log('authService logoff: '+this.isLoggedIn);
+      // } else {
+        // サインイン済み
+        this.isLoggedIn = true;
+        console.log('authService logoin: '+this.isLoggedIn);
 
+      // }
+    // });
   }
+
   logout(): void {
-   
-    this.isLoggedIn = false;
-    console.log('authService logoff: '+this.isLoggedIn);
+    this.af.auth.logout();
+    // firebase.auth().onAuthStateChanged((user) => {
+      // if (!user) {
+        // サインインしていない状態
+        this.isLoggedIn = false;
+        console.log('authService logoff: '+this.isLoggedIn);
+      // } else {
+        // サインイン済み
+        // this.isLoggedIn = true;
+        // console.log('authService logoin: '+this.isLoggedIn);
+      // }
+    // });
   }
+
 }

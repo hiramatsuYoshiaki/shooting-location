@@ -1,0 +1,423 @@
+<!--<p>
+  create-update works!
+</p>-->
+ <div class="container">
+    <div class="row">
+    <div class="col-sm-12 col-md-12">
+     
+      <div class="panel panel-default">
+    
+          <div class="panel-heading">
+              <!--<div class="well well-sm">-->
+                <!--<h3>UPLOAD <small> New Photo</small></h3>-->
+
+                  <div [hidden]="newPanel">
+                    <label for="file">新規写真を登録するには、[写真をアップする]ボタンを押してください。修正削除は写真リストの[修正][削除]ボタンを押してください。 </label>
+                   <div> <button type="button" class="btn btn-success btn-xs" (click)="newPanel=true">写真をアップする</button></div><br><br>
+                   
+                  </div>
+                  <div [hidden]="!newPanel">
+                  
+                  </div>
+              <!--</div>-->
+             
+              <div [hidden]="newPanel">
+                    <p class="text_green">{{appMessage}}</p>
+              </div>
+              <div [hidden]="!newPanel">
+                <h4>登録パネル</h4>
+              </div>
+           </div>
+           <div *ngIf="newPanel">
+            <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom"  (mapClick)="mapClicked($event)">
+                  <sebm-google-map-marker [latitude]="latMap" [longitude]="lngMap">
+                    <sebm-google-map-info-window [disableAutoPan]="true">
+                        <strong>{{infoMap}}</strong>
+                    </sebm-google-map-info-window>
+                  </sebm-google-map-marker>
+             </sebm-google-map>
+           </div>
+           <div [hidden]="!newPanel">
+              <div class="panel-body">
+
+                   
+                <!--<form ngNoForm>-->
+                <form (ngSubmit)="upload(
+                          0,
+                          '',
+                          title.value,
+                          text.value,
+                          place.value,
+                          sdate.value,
+                          stime.value,
+                        camera.value,
+                        renze.value,
+                          'uid',
+                        'displayName',
+                        'email',
+                        category.value,
+                        tag.value,
+                        'imgURL',
+                        'imgPath',
+                        imgLat.value,
+                        imgLan.value)" #PhotoCrudComponent="ngForm"  novalidate> 
+
+                  <div>
+                    <div class="form-group">
+                          <label for="imgLat">経度</label>
+                          <input type="number" id="imgLat" #imgLat="ngModel" name="imgLat"
+                           [(ngModel)]="latMap" class="form-control" novalidate  required [value]="+latMap"  step="0.0000000000001">
+                           <div [hidden]="imgLat.valid || imgLat.pristine"
+                                class="alert alert-danger">
+                            経度は必須入力です。
+                          </div>
+                     </div>
+
+                     <div class="form-group">
+                          <label for="imgLan">緯度</label>
+                          <input type="number" id="imgLan" #imgLan="ngModel" name="imgLan"
+                          [(ngModel)]="lngMap" class="form-control" novalidate  required [value]="+imgLan"  step="0.0000000000001">
+                          <div [hidden]="imgLan.valid || imgLan.pristine"
+                              class="alert alert-danger">
+                         緯度は必須入力です。
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div>
+                    <label for="file">ファイルを選択ボタンを押して、登録する写真を選択してください。 </label>
+                    <input id="file" name="file" type="file" (change)="fileChange(input)" #input accept="image/*"  style="display:none">
+
+                    <div class="input-group">
+                        <!--<input id="file" name="file" type="file" >-->
+                       <div *ngFor="let src of fileSrcs; let i = index; let isLast=last;"  >  
+                          <div *ngIf="isLast">
+                              <input type="text" id="fileSrc" class="form-control"  [ngModel]="src.name" name="fileSrc" #fileSrc="ngModel"  required  novalidate >
+                               <div [hidden]="fileSrc.valid ||fileSrc.pristine"
+                                    class="alert alert-danger">
+                                アップロード画像は必須入力です。
+                              </div>
+                          </div>
+                        </div>
+
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-success btn-sm">
+                            <label for="file">
+                               <span class="glyphicon glyphicon-save" aria-hidden="true"></span>写真を選択
+                              </label>
+                          </button>
+                        </span>
+                   </div>
+                  <div *ngFor="let file_src of file_srcs; let i = index; let isLast=last;"  >  
+                    <div *ngIf="isLast">
+                      <img [attr.src]='file_src' #img alt="アップロード画像"/>
+                    </div>
+                  </div>
+                  </div>
+                  <br>
+                
+                  <div class="form-group">
+                    <label for="title">タイトル</label>
+                    <input type="text" class="form-control" id="title"
+                            required
+                            [(ngModel)]="newSpot.title" name="title"
+                            #title="ngModel"  novalidate>
+                    <div [hidden]="title.valid || title.pristine"
+                          class="alert alert-danger">
+                      タイトルは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="text">コメント</label>
+                    <textarea type="text" class="form-control" id="text"
+                            required
+                            [(ngModel)]="newSpot.text" name="text"
+                            #text="ngModel"  novalidate col="5"></textarea>
+                    <div [hidden]="text.valid || text.pristine"
+                          class="alert alert-danger">
+                     コメントは必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="place">場所</label>
+                    <input type="place" class="form-control" id="place"
+                            required
+                            [(ngModel)]="newSpot.place" name="place"
+                            #place="ngModel"  novalidate>
+                    <div [hidden]="place.valid || place.pristine"
+                          class="alert alert-danger">
+                     場所は必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="sdate">日付</label>
+                    <input type="date" class="form-control" id="sdate"
+                            required
+                            [(ngModel)]="newSpot.sdate" name="sdate"
+                            #sdate="ngModel"  novalidate>
+                    <div [hidden]="sdate.valid || sdate.pristine"
+                          class="alert alert-danger">
+                     日付は必須入力です。
+                    </div>
+                  </div>
+ 
+                  <!--<my-date-picker [options]="myDatePickerOptions"
+                (dateChanged)="onDateChanged($event)" class="form-control"></my-date-picker>-->
+
+                  <div class="form-group">
+                    <label for="stime">時間</label>
+                    <input type="time" class="form-control" id="stime"
+                            required
+                            [(ngModel)]="newSpot.stime" name="stime"
+                            #stime="ngModel"  novalidate>
+                    <div [hidden]="stime.valid || stime.pristine"
+                          class="alert alert-danger">
+                     時間は必須入力です。
+                    </div>
+                  </div>
+                  <div class="form-group hidden">
+                    <label for="camera">カメラ</label>
+                    <input type="camera" class="form-control" id="camera"
+                           
+                            [(ngModel)]="newSpot.camera" name="camera"
+                            #camera="ngModel"  novalidate>
+                    <!--<div [hidden]="camera.valid || camera.pristine"
+                          class="alert alert-danger">
+                     カメラは必須入力です。
+                    </div>-->
+                  </div>
+                  <div class="form-group hidden">
+                    <label for="renze">レンズ</label>
+                    <input type="renze" class="form-control" id="renze"
+                          
+                            [(ngModel)]="newSpot.renze" name="renze"
+                            #renze="ngModel"  novalidate>
+                    <!--<div [hidden]="renze.valid || renze.pristine"
+                          class="alert alert-danger">
+                     レンズは必須入力です。
+                    </div>-->
+                  </div>
+                  <div class="form-group">
+                    <label for="categor">カテゴリー</label>
+                    <select class="form-control"  #category="ngModel" [(ngModel)]="newSpot.category" name="category"  id="category" required>
+                      <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
+                    </select>
+                    <div [hidden]="category.valid || category.pristine"
+                          class="alert alert-danger">
+                     カテゴリーは必須入力です。
+                    </div>
+                  </div>
+                 
+              
+                  <div class="form-group hidden">
+                    <label for="tag">タグ</label>
+                    <input type="tag" class="form-control" id="tag"
+                          
+                            [(ngModel)]="newSpot.tag" name="tag"
+                            #tag="ngModel"  novalidate>
+                    <!--<div [hidden]="tag.valid || tag.pristine"
+                          class="alert alert-danger">
+                     タグは必須入力です。
+                    </div>-->
+                  </div>
+          
+          <br>
+          
+          
+           <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCrudComponent.form.valid">写真をFIREBASE STRAGEにアップロードする</button>
+             <button type="button" class="btn btn-info btn-xs" (click)="newPanel=false">キャンセル</button>
+        </form>
+        </div><!-- body -->
+         
+      <div>
+    </div><!--panel-->
+    
+  </div><!--col-sm-12 col-md-6-->
+  </div><!--row-->
+  </div><!--conteiner-->
+
+
+<!--Update-->
+<br><br>
+
+<div *ngIf="selectSpot ">
+ 
+  <div class="container">
+    <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="panel panel-default" >
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          
+
+         <h4>修正パネル</h4>
+        </div>
+       
+        <!--<input type="button" value="修正パネルを閉じる" (click)="closeUpdate()">-->
+        <div class="panel-body">
+       
+          <!--<form>-->
+             <form (ngSubmit)="updateItem(
+             selectSpot.$key, 
+             selectSpot.id,
+             selectSpot.img,
+             title.value,
+             text.value,
+             place.value,
+             sdate.value,
+             stime.value,
+             camera.value,
+            renze.value,
+            category.value,
+            tag.value,
+            imgLat.value,
+            imgLan.value
+          
+           )" #PhotoCrudComponent="ngForm"  novalidate>
+         <div>
+         <!--<div *ngIf="newPanel">-->
+            <sebm-google-map [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan" [zoom] = "12"  (mapClick)="mapClickedUpdate($event)">
+                  <sebm-google-map-marker [latitude]="selectSpot.imgLat" [longitude]="selectSpot.imgLan">
+                    <sebm-google-map-info-window [disableAutoPan]="true">
+                        <strong>{{infoMap}}</strong>
+                    </sebm-google-map-info-window>
+                  </sebm-google-map-marker>
+             </sebm-google-map>
+           <!--</div>-->
+        <div class="form-group">
+              <label for="imgLat">経度</label>
+              <input type="number" id="imgLat" #imgLat="ngModel" name="imgLat"
+                [(ngModel)]="selectSpot.imgLat" class="form-control" novalidate  required [value]="+selectSpot.imgLat"  step="0.0000000000001">
+                <div [hidden]="imgLat.valid || imgLat.pristine"
+                    class="alert alert-danger">
+                経度は必須入力です。
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="imgLan">緯度</label>
+              <input type="number" id="imgLan" #imgLan="ngModel" name="imgLan"
+              [(ngModel)]="selectSpot.imgLan" class="form-control" novalidate  required [value]="+selectSpot.imgLan"  step="0.0000000000001">
+              <div [hidden]="imgLan.valid || imgLan.pristine"
+                  class="alert alert-danger">
+              緯度は必須入力です。
+            </div>
+          </div>
+        </div>
+         <p>写真</p>
+         <img [src]="image[selectSpot.id]"  class="detail-photo-size"alt="登録画像"/>
+        <div class="form-group">
+          <label for="title">タイトル</label>
+          <input type="text" class="form-control" id="title"
+                  required
+                  [(ngModel)]="selectSpot.title" name="title"
+                  #title="ngModel"  novalidate>
+          <div [hidden]="title.valid || title.pristine"
+                class="alert alert-danger">
+            タイトルは必須入力です。
+          </div>
+        </div>
+          <div class="form-group">
+            <label for="text">コメント</label>
+            <input type="text" class="form-control" id="text"
+                    required
+                    [(ngModel)]="selectSpot.text" name="text"
+                    #text="ngModel"  novalidate>
+            <div [hidden]="text.valid || text.pristine"
+                  class="alert alert-danger">
+              コメントは必須入力です。
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="place">場所</label>
+            <input type="place" class="form-control" id="place"
+                    required
+                    [(ngModel)]="selectSpot.place" name="place"
+                    #place="ngModel"  novalidate>
+            <div [hidden]="place.valid || place.pristine"
+                  class="alert alert-danger">
+              場所は必須入力です。
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sdate">日付</label>
+            <input type="date" class="form-control" id="sdate"
+                    required
+                    [(ngModel)]="selectSpot.sdate" name="sdate"
+                    #sdate="ngModel"  novalidate>
+            <div [hidden]="sdate.valid || sdate.pristine"
+                  class="alert alert-danger">
+              日付は必須入力です。
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stime">時間</label>
+            <input type="time" class="form-control" id="stime"
+                    required
+                    [(ngModel)]="selectSpot.stime" name="stime"
+                    #stime="ngModel"  novalidate>
+            <div [hidden]="stime.valid || stime.pristine"
+                  class="alert alert-danger">
+              時間は必須入力です。
+            </div>
+          </div>
+          <div class="form-group hidden">
+            <label for="camera">カメラ</label>
+            <input type="camera" class="form-control" id="camera"
+                  
+                    [(ngModel)]="selectSpot.camera" name="camera"
+                    #camera="ngModel"  novalidate>
+            <!--<div [hidden]="camera.valid || camera.pristine"
+                  class="alert alert-danger">
+              カメラは必須入力です。
+            </div>-->
+          </div>
+          <div class="form-group hidden">
+            <label for="renze">レンズ</label>
+            <input type="renze" class="form-control" id="renze"
+                    
+                    [(ngModel)]="selectSpot.renze" name="renze"
+                    #renze="ngModel"  novalidate>
+            <!--<div [hidden]="renze.valid || renze.pristine"
+                  class="alert alert-danger">
+              レンズは必須入力です。
+            </div>-->
+          </div>
+         
+           <div class="form-group">
+            <label for="categor">カテゴリー</label>
+            <select class="form-control"  #category="ngModel" [(ngModel)]="selectSpot.category" name="category"  id="category" required>
+              <option *ngFor="let category of topCategory | async;" [value]="category.name" [class.selected]="category === selectSpot.category">{{category.name}}</option>
+            </select>
+            <div [hidden]="category.valid || category.pristine"
+                  class="alert alert-danger">
+              カテゴリーは必須入力です。
+            </div>
+          </div>
+             
+          <div class="form-group hidden">
+            <label for="tag">タグ</label>
+            <input type="tag" class="form-control" id="tag"
+                   
+                    [(ngModel)]="selectSpot.tag" name="tag"
+                    #tag="ngModel"  novalidate>
+            <!--<div [hidden]="tag.valid || tag.pristine"
+                  class="alert alert-danger">
+              タグは必須入力です。
+            </div>-->
+          </div>
+   <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCrudComponent.form.valid">修正</button>
+    <button type="button" class="btn btn-info btn-xs" (click)="closeUpdate()">キャンセル</button>
+   </form>
+        </div>
+
+       
+      </div>
+  </div><!--col-sm-12 col-md-6-->
+  </div><!--row-->
+  </div><!--conteiner-->
+</div><!--selectSpot-->
+
+
+
+

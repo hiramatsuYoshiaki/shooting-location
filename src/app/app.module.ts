@@ -49,6 +49,8 @@ import { CategorySpotMarkerComponent } from './category-spot-marker/category-spo
 import { AdminModule } from './admin/Admin.Module';
 import {LoginComponent } from './login/login.component';
 import { LoginRoutingModule }      from './login/login-routing.module';
+import { CanDeactivateGuard }     from './can-deactivate-guard.service';
+import { DialogService }           from './dialog.service';
 
 
 
@@ -128,6 +130,9 @@ const FirebaseAuthConfig = {
               CategoryService,
               UidService,
               appRoutingProviders,
+              CanDeactivateGuard,
+              DialogService
+              
               // routesUserProviders
   
   ],

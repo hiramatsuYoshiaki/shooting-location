@@ -6,8 +6,10 @@ import { AdminComponent } from './admin.component';
 import { ManagePhotoComponent } from './manage-photo/manage-photo.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateUpdateComponent } from './create-update/create-update.component';
 
 import { AuthGuard } from '../auth-gard.service';
+import { CanDeactivateGuard }     from '../can-deactivate-guard.service';
 
 const AdminRouting: Routes= [
   {
@@ -19,9 +21,17 @@ const AdminRouting: Routes= [
             path: '',
             canActivateChild: [AuthGuard],   
             children: [
-        { path: 'mPhoto', component:ManagePhotoComponent  },
-        { path: 'mUser', component:ManageUserComponent  },
-        { path: '', component: DashboardComponent }
+        {
+           path: 'mPhoto', component:ManagePhotoComponent 
+           },
+        { 
+          path: 'mUser', component:ManageUserComponent  
+        },
+        {
+           path: '', component: DashboardComponent,
+           canDeactivate: [CanDeactivateGuard], 
+
+          }
         ]
       }
     ]

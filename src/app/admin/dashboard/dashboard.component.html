@@ -1,3 +1,154 @@
-<p>
+<!--<p>
   dashboard works!
-</p>
+</p>-->
+<div class="container">
+  <div class="row">
+
+<!--ログイン-->
+    <div *ngIf="(af.auth | async)">
+      <div class="col-sm-12 col-md-12">
+
+        <div class="thumbnail">
+            <div class="media">
+
+              <div class="media-left">
+                  <img class="media-object photo-size-login" [src]="(af.auth | async)?.auth.photoURL"  alt="userphoto">
+              </div>
+              <div class="media-body">
+                <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
+                <p>こんにちは!写真の場所をマークしてみよう！</p>　
+                 <!--<div><button (click)="logout()" class="btn btn-info btn-xs">Logout with Google</button></div>-->
+                <!--<p>uid:{{ (af.auth | async)?.uid }}</p>
+                      <p>name:{{ (af.auth | async)?.auth.displayName }}</p>
+                      <p>mail:{{ (af.auth | async)?.auth.email }}</p>
+                      <p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>-->
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+   </div>
+</div>
+
+<div class="container">
+ <div class="row">
+<div class="col-sm-12 col-md-12">
+     <!--<div class="page-header">
+        <h1>PHOTOGRAPHER <small>Infomation</small></h1>
+      </div>-->
+         <div class="panel panel-default">  
+            <div [hidden]="submitted">
+           <!--<div *ngIf="!categorySW">-->
+            <div class="panel-heading">
+              <div class="well well-sm">
+                 <h4>USER <small>Infomation</small></h4>
+              </div>
+                <p>ユーザー名</p>
+                <h3>{{categoryName}}</h3>
+                <p>自己紹介</p>
+                <h4>{{categoryIntro}}</h4><br>
+
+                <div *ngIf="!categorySW">
+                    <!--修正-->
+                    <button type="button" class="btn btn-success btn-xs" (click)="updateSW=true">修正</button>
+
+                    <!--削除-->
+                    <!--<button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey) ">削除</button>-->
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userDell" data-backdrop="false">削除</button>
+                    <!-- モーダル・ダイアログ -->
+                    <div class="modal fade" id="userDell" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                            <h4 class="modal-title">フォトグラファー情報を削除します。</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>削除する場合は、削除ボタンを押してください。</p>
+                            <p>キャンセルする場合は、キャンセルを押してください。</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-xs" (click)="deleteUser(categoryKey)" data-dismiss="modal">削除</button>
+                            <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                     <!-- モーダル・ダイアログここまで -->
+                </div>
+            </div>
+          </div>
+
+            <!--新規登録-->
+            <div *ngIf="categorySW">
+              
+              <div class="panel-body"> 
+                <h4>各項目に入力して新規登録ボタンを押してください。</h4>
+
+                <form (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> 
+                <!--<form *ngIf="photoName" (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> -->
+                
+                 <div class="form-group">
+                   <label for="exampleInputPhotoName">ユーザー名:<span> {{categoryName}}</span></label>
+                  <input type="text" class="form-control" id="exampleInputPhotoName"
+                        required #photoName
+                        [(ngModel)]="categoryName" name="exampleInputPhotoName" #name="ngModel" maxlength="30">
+                 
+                  <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    タイトルは必須入力です。
+                  </div>
+                 </div>
+                 
+                 <div class="form-group">
+                   <label for="Intro">自己紹介:<span> {{categoryIntro}}</span></label>
+                    <textarea  rows="5" class="form-control" id="Intro"
+                        required #intro
+                        [(ngModel)]="categoryIntro" name="Intro" #name="ngModel" maxlength="100"></textarea>
+                  <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    自己紹介は必須入力です。
+                  </div>
+                 </div>
+                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">新規登録</button>
+                </form>
+              </div>
+            </div>
+             <!--修正-->
+            <div *ngIf="updateSW">
+              <div class="panel-body"> 
+                <h4>各項目を修正して修正ボタンを押してください。</h4>
+
+                <form (ngSubmit)="updateUser(categoryKey,photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> 
+                <!--<form *ngIf="photoName" (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> -->
+                 <div class="form-group">
+                   <label for="exampleInputPhotoName">フォトグラファー名:<span> {{categoryName}}</span></label>
+                  <input type="text" class="form-control" id="exampleInputPhotoName"
+                        required #photoName
+                        [(ngModel)]="categoryName" name="exampleInputPhotoName" #name="ngModel" maxlength="30">
+                 
+                  <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    タイトルは必須入力です。
+                  </div>
+                 </div>
+                 <div class="form-group">
+                   <label for="Intro">自己紹介:<span> {{categoryIntro}}</span></label>
+                    <textarea  rows="5" class="form-control" id="Intro"
+                        required #intro
+                        [(ngModel)]="categoryIntro" name="Intro" #name="ngModel" maxlength="100"></textarea>
+                  <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    自己紹介は必須入力です。
+                  </div>
+                 </div>
+                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">修正</button>
+                   <button type="button" class="btn btn-info btn-xs" (click)="updateSW=false">キャンセル</button>
+                </form>
+              </div>
+            </div>
+        </div> 
+      </div>  
+    </div> 
+</div> 
