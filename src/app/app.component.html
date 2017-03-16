@@ -8,22 +8,50 @@
 				<span class="icon-bar"></span>
 			</button>
       <a class="navbar-brand" href="#">{{WebTitle}}</a>
+	  
 		</div>
 		
 		<div class="collapse navbar-collapse" id="navbarEexample">
 			<ul class="nav navbar-nav">
 				<!--<li class="active"><a routerLink="home">HOME</a></li>-->
 				<li><a routerLink="home">HOME</a></li>
-				<li><a routerLink="gallarey">USER</a></li>
+				<li><a routerLink="gallarey">GALLAREY</a></li>
 				<!--<li><a routerLink="user">allUSERS</a></li>-->
 				<!--<li><a routerLink="userHome">USERS HOME</a></li>-->
 				<li><a routerLink="category">CATEGORY</a></li>
 				<!--<li><a routerLink="map">MAP</a></li>-->
 				<!--<li><a routerLink="list">LIST</a></li>-->
 				<li><a routerLink="acount">ACOUNT</a></li>
-				<li><a routerLink="login">LOGIN test</a></li>
-				<li><a routerLink="admin">ADMIN test</a></li>
+				
+				<li><a routerLink="admin">USER</a></li>
+				<li><a routerLink="login">
+						<!--ログイン-->
+						<div *ngIf="(af.auth | async)">
+							 <!--<button type="button" class="btn btn-default btn-xs" >LOGOUT</button>  		-->
+							 LOGOUT
+						</div>
+						<div *ngIf="!(af.auth | async)">
+							 <!--<button type="button" class="btn btn-primary btn-xs" >LOGIN</button>      -->
+							 LOGIN
+						</div>	
+					</a>
+				</li>
+				<!--<li>
+						<div *ngIf="(af.auth | async)">
+							<img class="media-object photo-size-login" [src]="(af.auth | async)?.auth.photoURL"  alt="userphoto">
+						</div>
+				</li>
+				<li>
+						<div *ngIf="(af.auth | async)">
+							<span>{{ (af.auth | async)?.auth.displayName }}さん</span>
+						</div>
+				</li>
+			-->
 			</ul>
+
+			
+
+
 		</div>
 	</div>
 </nav>

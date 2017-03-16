@@ -1,33 +1,4 @@
-<!--<p>
-  dashboard works!
-</p>-->
-<!--<div class="container">
-  <div class="row">
-
-
-    <div *ngIf="(af.auth | async)">
-      <div class="col-sm-12 col-md-12">
-
-        <div class="thumbnail">
-            <div class="media">
-
-              <div class="media-left">
-                  <img class="media-object photo-size-login" [src]="(af.auth | async)?.auth.photoURL"  alt="userphoto">
-              </div>
-              <div class="media-body">
-                <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
-                <p>こんにちは!写真の場所をマークしてみよう！</p>　
-                
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-   </div>
-</div>-->
+<p>Dashboard Page work!</p>
 
 <div class="container">
  <div class="row">
@@ -39,9 +10,9 @@
             <div [hidden]="submitted">
            <!--<div *ngIf="!categorySW">-->
             <div class="panel-heading">
-              <div class="well well-sm">
+              <!--<div class="well well-sm">
                  <h4>USER <small>Infomation</small></h4>
-              </div>
+              </div>-->
                 <p>ユーザー名</p>
                 <h3>{{categoryName}}</h3>
                 <p>自己紹介</p>
@@ -148,7 +119,7 @@
       </div>  
     </div> 
 </div> 
-<p>Dashboard</p>
+<!--<p>Dashboard</p>
 
     <p>Session ID: {{ sessionId | async }}</p>
     <a id="anchor"></a>
@@ -157,4 +128,4 @@
     Preloaded Modules
     <ul>
       <li *ngFor="let module of modules">{{ module }}</li>
-    </ul>
+    </ul>-->

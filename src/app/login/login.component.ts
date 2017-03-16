@@ -38,7 +38,8 @@ export class LoginComponent {
   }
   setMessage() {
     // this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-    this.message = 'Ｇｏｏｇｌｅアカウントで ' + (this.authService.isLoggedIn ? 'ログアウト' : 'ログイン')　+ '';
+    this.message = 'Ｇｏｏｇｌｅアカウントで ' 
+    + (this.authService.isLoggedIn ? 'ログアウト' : 'ログイン')　+ '';
   }
  
   login() {
@@ -64,10 +65,9 @@ export class LoginComponent {
      
 
       if (this.authService.isLoggedIn) {
-
         console.log('login to Route  goto admin');
-       let redirect = this.authService.redirectUrl ="admin";
-         this.router.navigate([redirect]);
+        let redirect = this.authService.redirectUrl ="admin";
+        this.router.navigate([redirect]);
      
       // Set our navigation extras object
         // that passes on our global query params and fragment
@@ -81,13 +81,11 @@ export class LoginComponent {
       //  this.router.navigate([redirect], navigationExtras);
       }else{
          console.log('Cancele to Route  goto login');
-       let redirect = this.authService.redirectUrl ="login";
+         let redirect = this.authService.redirectUrl ="login";
          this.router.navigate([redirect]);
-
       }
-     
-   
   }
+
   logout() {
      console.log('push logout');
     //this.authService.logout();
@@ -111,19 +109,9 @@ export class LoginComponent {
     if (this.authService.isLoggedIn) {
 
         console.log('login to Route  goto admin');
-       let redirect = this.authService.redirectUrl ="admin";
+       let redirect = this.authService.redirectUrl ="login";
        this.router.navigate([redirect]);
      
-      // Set our navigation extras object
-        // that passes on our global query params and fragment
-        // let navigationExtras: NavigationExtras = {
-        //   preserveQueryParams: true,
-        //   preserveFragment: true
-        // };
-
-
-        // Redirect the user
-      //  this.router.navigate([redirect], navigationExtras);
       }else{
          console.log('Cancele to Route  goto login');
          let redirect = this.authService.redirectUrl ="login";

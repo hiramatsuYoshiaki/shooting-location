@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-// import * as firebase from 'firebase';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import * as firebase from 'firebase';
 
 // import { Spot } from './app.spot';
 
@@ -26,13 +26,13 @@ export class AppComponent {
 // uerLogin: boolean = false;
 
 constructor(
-  // public af: AngularFire
+  public af: AngularFire
   ) {
     //  ログインユーザーの取得
-    //  firebase.auth().onAuthStateChanged(function(user) {
-      //  if (user) {
+     firebase.auth().onAuthStateChanged(function(user) {
+       if (user) {
         // User is signed in.
-        // console.log('onAuthStateChanged logoin');
+        console.log('onAuthStateChanged logoin');
         //ユーザーのプロフィールを取得する
           // console.log('onAuthStateChanged login '+ user.displayName);
           // console.log('onAuthStateChanged login '+ user.email);
@@ -54,13 +54,13 @@ constructor(
           // this.userPrividerId = profile.providerId;
           // this.uerLogin = true;
 
-      // } else {
-        //  console.log('onAuthStateChanged logoff ');
+      } else {
+         console.log('onAuthStateChanged logoff ');
         // No user is signed in.
           // this.uerLogin =false;
-      // }
+      }
 
-    // });
+    });
 
   // firebaseからのデータ取得
   // this.items = af.database.list('/photos');

@@ -4,12 +4,17 @@
 <div class="container">
   <div class="row">
    <div class="col-sm-12 col-md-12">
+     <div class="page-header">
+        <h1>USER <small>  post/update/setting</small></h1>
+      </div>
      <nav>
-      <a routerLink="./" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">ユーザー情報</a>
+       <a routerLink="./" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">ダッシュボード</a>
+       <a routerLink="mPhoto" routerLinkActive="active">新規</a>
+       <a routerLink="mPhoto" routerLinkActive="active">修正削除</a>
+       <a routerLink="mUser" routerLinkActive="active">ユーザー情報</a>
+        
       <!--<a routerLink="dashborad" routerLinkActive="active">Dashborad</a>-->
-      <a routerLink="mPhoto" routerLinkActive="active">写真</a>
-      <a routerLink="mUser" routerLinkActive="active">カテゴリー</a>
     </nav>
     <router-outlet></router-outlet>
    </div>

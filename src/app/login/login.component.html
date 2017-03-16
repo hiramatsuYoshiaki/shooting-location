@@ -1,28 +1,43 @@
-<!--<p>
-  login works!
-</p>-->
- 
-
-
-
 <div class="container">
   <div class="row">
    <div class="col-sm-12 col-md-12">
       <div class="page-header">
         <h1>ACOUNT <small>  Google</small></h1>
       </div>
-
       <div class="page-header" >
-       <h1>{{message}}</h1><br>
+       <!--<h1>{{message}}</h1><br>-->
 
-        <div>
-          <button (click)="logout()" class="btn btn-info btn-md" *ngIf="authService.isLoggedIn">
-            Logout with Google
-          </button>
+        <div *ngIf="authService.isLoggedIn">
+           <div class="thumbnail">
+            <div class="media">
+
+              <div class="media-left">
+                  <img class="media-object photo-size-login" [src]="(af.auth | async)?.auth.photoURL"  alt="userphoto">
+              </div>
+              <div class="media-body">
+                 <p>ようこそ！</p>
+                <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
+                 <p>撮った写真を地図上にコレクションしましょう。</p>
+              </div>
+
+            </div>
+          </div>
+         
+         
+        </div>
+
+        <div *ngIf="!authService.isLoggedIn">
+          <h3>Googleアカウントを使ってログインしましょう！</h3>
+          <p>写真を撮った場所を地図にマーキングできます。</p>
           
         </div>
-     
         
+        <div>
+          <button (click)="logout()" class="btn btn-default btn-md" *ngIf="authService.isLoggedIn">
+            Logout with Google
+          </button>
+        </div>
+
         <div>
           <button (click)="login() " class="btn btn-primary btn-md"  *ngIf="!authService.isLoggedIn">
             Login with Google
@@ -37,7 +52,7 @@
   <div class="row">
 
 <!--ログイン-->
-    <div *ngIf="(af.auth | async)">
+    <!--<div *ngIf="(af.auth | async)">
       <div class="col-sm-12 col-md-12">
 
         <div class="thumbnail">
@@ -49,11 +64,7 @@
               <div class="media-body">
                 <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
                 <p>こんにちは!写真の場所をマークしてみよう！</p>　
-                 <!--<div><button (click)="logout()" class="btn btn-info btn-xs">Logout with Google</button></div>-->
-                <!--<p>uid:{{ (af.auth | async)?.uid }}</p>
-                      <p>name:{{ (af.auth | async)?.auth.displayName }}</p>
-                      <p>mail:{{ (af.auth | async)?.auth.email }}</p>
-                      <p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>-->
+                
               </div>
 
             </div>
@@ -63,7 +74,7 @@
       </div>
 
    </div>
-</div>
+</div>-->
 
 
  

@@ -1,0 +1,20 @@
+.photo-size-login{
+    width: 100px;
+    height: auto;
+}
+.img-size-list{
+    width: 100px;
+    height: auto;
+    border:1px solid gray;
+}
+.selected {
+      background-color: ghostwhite !important;
+      color: gray;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}

@@ -1,6 +1,48 @@
-<!--<p>
+<p>
   manage-photo works!
-</p>-->
+</p>
+ <!--登録写真リスト-->
+ <div class="col-sm-12 col-md-12">
+      <div class="page-header">
+        <h1><small>写真リスト</small></h1>
+      </div>
+   </div>
+ <div class="col-sm-12 col-md-12">
+          <div class="media">
+            <ul class="list-group">
+              <li *ngFor="let item of items  | async; let idx = index; "
+               [class.selected]="item === selectSpot" 
+              class="list-group-item"
+               >
+                  <div *ngIf="item.uid === uid " >
+                    <div  class="media-left media-middle">
+                        <img [src]="image[idx]" class="media-object img-size-list" alt="eye catch photo"/>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{item.title}}<br><small>{{item.text}}</small></h4>
+                     
+                       <ol class="breadcrumb">
+                          <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.place}}</li>
+                          <li><i class="fa fa-calendar" aria-hidden="true"></i>{{item.sdate}}</li>
+                          <li ><i class="fa fa-clock-o" aria-hidden="true"></i>{{item.stime}}</li>
+                         
+                      
+                          <li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{item.category}}</li>
+                          <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
+                        </ol>
+                         <button (click)="onSelect(item, idx)" class="btn btn-success btn-xs">修正</button>
+                         <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
+                     
+                    </div>
+
+                </div>
+                  
+              </li>
+              
+            </ul>
+           
+        </div> 
+      </div>  
 <!--新規アップロード・修正・削除-->
  <app-create-update [selectSpot]="selectSpot" 
                  [image]="image" 
@@ -11,122 +53,7 @@
                  [email]="email"
                  
                 ></app-create-update>
-<!--<app-create-update></app-create-update>-->
-
- 
- <!--登録写真リスト-->
-
- <div class="col-sm-12 col-md-12">
-      <div class="page-header">
-        <h1><small>写真リスト</small></h1>
-      </div>
-   </div>
- <div class="col-sm-12 col-md-12">
-          <div class="media">
-            <ul class="list-group">
-              <!--<li *ngFor="let item of items  | async; let idx = index; "
-               [class.selected]="item === selectSpot" 
-               (click)="onSelect(item, idx)" 
-               >-->
-              <li *ngFor="let item of items  | async; let idx = index; "
-               [class.selected]="item === selectSpot" 
-              class="list-group-item"
-               >
-               
-                  <div *ngIf="item.uid === uid " >
-                    <div  class="media-left media-middle">
-                      <!--<a href="#">-->
-                        <!--<img [src]="image[item.id]" class="media-object img-size-list" alt="eye catch photo"/>-->
-                        <img [src]="image[idx]" class="media-object img-size-list" alt="eye catch photo"/>
-                      
-                      <!--</a>-->
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{item.title}}<br><small>{{item.text}}</small></h4>
-                      <!--<h4 class="media-heading"><small>投稿者：{{item.displayName}}</small></h4>
-                      <h4 class="media-heading"><small>uid：{{item.uid}}</small></h4>
-                      <h4 class="media-heading"><small>email：{{item.email}}</small></h4>
-                      <h4 class="media-heading"><small>category：{{item.category}}</small></h4>
-                      <h4 class="media-heading"><small>tag：{{item.tag}}</small></h4>
-                      <h4 class="media-heading"><small>imgLat：{{item.imgLat}}</small></h4>
-                      <h4 class="media-heading"><small>imgLan：{{item.imgLan}}</small></h4>
-                       ...-->
-                       <ol class="breadcrumb">
-                          <li><i class="fa fa-map-marker" aria-hidden="true"></i>{{item.place}}</li>
-                          <li><i class="fa fa-calendar" aria-hidden="true"></i>{{item.sdate}}</li>
-                          <li ><i class="fa fa-clock-o" aria-hidden="true"></i>{{item.stime}}</li>
-                          <!--<li >{{item.camera}}</li>
-                          <li >{{itemrenze}}</li>-->
-                      
-                          <li ><i class="fa fa-folder-o" aria-hidden="true"></i>{{item.category}}</li>
-                          <li ><i class="fa fa-tag" aria-hidden="true"></i>{{item.tag}}</li>
-                        </ol>
-                    
-                     
-                         <button (click)="onSelect(item, idx)" class="btn btn-success btn-xs">修正</button>
-                     
-                         <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
-                      <!--<button (click)="delete(item.$key, item.img)">削除</button>-->
-                       <!--<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userPhotoDell" data-backdrop="false">削除</button>
-                      <div class="modal fade" id="userPhotoDell" tabindex="-1">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                              <h4 class="modal-title">この写真を削除しますか？</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p>削除する場合は、削除ボタンを押してください。</p>
-                              <p>キャンセルする場合は、キャンセルを押してください。</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button (click)="delete(item.$key, item.img)" type="button" class="btn btn-primary btn-xs">削除</button>
-                              <button type="button" class="btn btn-info btn-xs" data-dismiss="modal">キャンセル</button>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>-->
+<!--<app-create-update></app-create-update>-->    
 
 
-
-
-                      
-                    </div>
-
-                </div>
-                  
-              </li>
-              <!--<li [class.selected]="item === selectSpot" 
-                  (click)="onSelectadd()" 
-                  class="list-group-item">
-                   <h4>新規登録する</h4>
-              </li>-->
-            </ul>
-           
-        </div> 
-      </div>  
-     
-
-
-<!--<app-photo-crud [selectSpot]="selectSpot" 
-                [image]="image" 
-                [items]="items"
-               
-                ></app-photo-crud>
-                -->
-
-
-<!--<h1>RUAD</h1>
-      <ul>
-            <li *ngFor="let item of items | async">
-                  <input type="text" #updatetext [value]="item.title" />
-                  <button (click)="updateItem(item.$key, updatetext.value)">Update</button>
-                  <button (click)="deleteItem(item.$key)">Delete</button>
-            </li>
-      </ul>
-      <input type="text" #newitem />
-      <button (click)="addItem(newitem.value)">Add</button>
-      <button (click)="deleteEverything()">Delete All</button>-->
 
