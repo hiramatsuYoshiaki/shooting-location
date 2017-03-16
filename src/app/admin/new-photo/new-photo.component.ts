@@ -1,11 +1,11 @@
 // import { Component, OnInit } from '@angular/core';
 
 // @Component({
-//   selector: 'app-manage-photo',
-//   templateUrl: './manage-photo.component.html',
-//   styleUrls: ['./manage-photo.component.scss']
+//   selector: 'app-new-photo',
+//   templateUrl: './new-photo.component.html',
+//   styleUrls: ['./new-photo.component.scss']
 // })
-// export class ManagePhotoComponent implements OnInit {
+// export class NewPhotoComponent implements OnInit {
 
 //   constructor() { }
 
@@ -13,6 +13,8 @@
 //   }
 
 // }
+
+
 
 
 import { Component, OnInit, Input } from '@angular/core';
@@ -27,11 +29,11 @@ import { Category } from '../../category';
 
 
 @Component({
-   selector: 'app-manage-photo',
-  templateUrl: './manage-photo.component.html',
-  styleUrls: ['./manage-photo.component.scss']
+   selector: 'app-new-photo',
+  templateUrl: './new-photo.component.html',
+  styleUrls: ['./new-photo.component.scss']
 })
-export class ManagePhotoComponent implements OnInit {
+export class NewPhotoComponent implements OnInit {
   spot: Spot;
   selectSpot: Spot;
   // @Input()  items: FirebaseListObservable<any[]>;
@@ -164,3 +166,4 @@ export class ManagePhotoComponent implements OnInit {
   }
 
 }
+

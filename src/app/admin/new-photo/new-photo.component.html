@@ -1,11 +1,13 @@
-
- <!--登録写真リスト-->
+<!--<p>
+  new-photo works!
+</p>-->
+<!--登録写真リスト-->
  <div class="col-sm-12 col-md-12">
       <div class="page-header">
-        <h1><small>写真リスト</small></h1>
+        <h1><small>新規マーク</small></h1>
       </div>
    </div>
- <div class="col-sm-12 col-md-12">
+ <!--<div class="col-sm-12 col-md-12">
           <div class="media">
             <ul class="list-group">
               <li *ngFor="let item of items  | async; let idx = index; "
@@ -52,7 +54,18 @@
             </ul>
            
         </div> 
-      </div>  
+      </div>  -->
+      <app-create-new-photo [selectSpot]="selectSpot" 
+                            [image]="image" 
+                            [category]="category" 
+                            [items]="items"
+                            [uid]="uid" 
+                            [displayName]="displayName" 
+                            [email]="email"
+                            ></app-create-new-photo>
+    <!--<app-create-new-photo></app-create-new-photo> -->
+                            
+
 
 
 

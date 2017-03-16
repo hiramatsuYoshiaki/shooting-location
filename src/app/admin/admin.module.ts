@@ -14,6 +14,8 @@ import {AdminRoutingProviders,AdminRoutingRouting } from './admin-routing';
 import { CreateUpdateComponent } from './create-update/create-update.component';
 //angular2-google-maps
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { NewPhotoComponent } from './new-photo/new-photo.component';
+import { CreateNewPhotoComponent } from './create-new-photo/create-new-photo.component';
 
 
 
@@ -22,7 +24,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     AdminComponent,
     ManagePhotoComponent,
     ManageUserComponent, 
-    DashboardComponent, CreateUpdateComponent
+    DashboardComponent, CreateUpdateComponent, NewPhotoComponent, CreateNewPhotoComponent
                  ],
   imports: [
     CommonModule,

@@ -1,11 +1,11 @@
 // import { Component, OnInit } from '@angular/core';
 
 // @Component({
-//   selector: 'app-create-update',
-//   templateUrl: './create-update.component.html',
-//   styleUrls: ['./create-update.component.scss']
+//   selector: 'app-create-new-photo',
+//   templateUrl: './create-new-photo.component.html',
+//   styleUrls: ['./create-new-photo.component.scss']
 // })
-// export class CreateUpdateComponent implements OnInit {
+// export class CreateNewPhotoComponent implements OnInit {
 
 //   constructor() { }
 
@@ -13,6 +13,10 @@
 //   }
 
 // }
+
+
+
+
 
 
 
@@ -45,11 +49,11 @@ interface Image {
 
 
 @Component({
-   selector: 'app-create-update',
-  templateUrl: './create-update.component.html',
-  styleUrls: ['./create-update.component.scss']
+  selector: 'app-create-new-photo',
+  templateUrl: './create-new-photo.component.html',
+  styleUrls: ['./create-new-photo.component.scss']
 })
-export class CreateUpdateComponent implements OnInit {
+export class CreateNewPhotoComponent implements OnInit {
 
   @Input() selectSpot: Spot;
   @Input() image: string [] = [] ;
