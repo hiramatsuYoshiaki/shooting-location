@@ -1,10 +1,10 @@
 <!--<p>
   dashboard works!
 </p>-->
-<div class="container">
+<!--<div class="container">
   <div class="row">
 
-<!--ログイン-->
+
     <div *ngIf="(af.auth | async)">
       <div class="col-sm-12 col-md-12">
 
@@ -17,11 +17,7 @@
               <div class="media-body">
                 <h3>{{ (af.auth | async)?.auth.displayName }}さん</h3>
                 <p>こんにちは!写真の場所をマークしてみよう！</p>　
-                 <!--<div><button (click)="logout()" class="btn btn-info btn-xs">Logout with Google</button></div>-->
-                <!--<p>uid:{{ (af.auth | async)?.uid }}</p>
-                      <p>name:{{ (af.auth | async)?.auth.displayName }}</p>
-                      <p>mail:{{ (af.auth | async)?.auth.email }}</p>
-                      <p>photo:{{ (af.auth | async)?.auth.photoURL }}</p>-->
+                
               </div>
 
             </div>
@@ -31,7 +27,7 @@
       </div>
 
    </div>
-</div>
+</div>-->
 
 <div class="container">
  <div class="row">
@@ -152,3 +148,13 @@
       </div>  
     </div> 
 </div> 
+<p>Dashboard</p>
+
+    <p>Session ID: {{ sessionId | async }}</p>
+    <a id="anchor"></a>
+    <p>Token: {{ token | async }}</p>
+
+    Preloaded Modules
+    <ul>
+      <li *ngFor="let module of modules">{{ module }}</li>
+    </ul>

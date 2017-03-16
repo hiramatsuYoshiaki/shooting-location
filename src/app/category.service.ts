@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class CategoryService {
    itemsCategory: FirebaseListObservable<any[]>;
+   itemsCategoryAll: FirebaseListObservable<any[]>;
    categorySubject: Subject<any>;
    imageCategory: string [] = [];
 
@@ -28,10 +29,13 @@ export class CategoryService {
       ));
     }
     
-      
+      getCategory(){
+         this.itemsCategoryAll = this.af.database.list('/photos');
+         return this.itemsCategoryAll;
+      }
       filterCategoryBy(category: string):FirebaseListObservable<any[]> {
         this.categorySubject.next(category); 
-        return this.itemsCategory
+        return this.itemsCategory;
       }
       getStrageCategory():string []{
         return this.imageCategory;

@@ -18,33 +18,58 @@ export class AuthService {
 
 
  login(): void {
-    this.af.auth.login();
-    // firebase.auth().onAuthStateChanged((user) => {
-      // if (!user) {
-        // サインインしていない状態
-        // this.isLoggedIn = false;
-        // console.log('authService logoff: '+this.isLoggedIn);
-      // } else {
-        // サインイン済み
-        this.isLoggedIn = true;
-        console.log('authService logoin: '+this.isLoggedIn);
+    //this.af.auth.login();
+    // this.af.auth.subscribe(auth => {
+    //     if(auth) {
+         
+           this.isLoggedIn = true;
+    //       console.log('login authService isLoggedIn: '+this.isLoggedIn);
+            
+    //     } else {
+         
+    //       this.isLoggedIn = false;
+    //       console.log('login authService isLoggedIn: '+this.isLoggedIn); 
+    //     }
+    // });
 
-      // }
+    // this.af.onAuthStateChanged((user) => {
+    //   if (!user) {
+    //     //サインインしていない状態
+    //     this.isLoggedIn = false;
+    //     console.log('login authService isLoggedIn: '+this.isLoggedIn);
+    //   } else {
+    //    // サインイン済み
+    //     this.isLoggedIn = true;
+    //     console.log('login authService isLoggedIn: '+this.isLoggedIn);
+
+    //   }
     // });
   }
 
   logout(): void {
-    this.af.auth.logout();
+    //this.af.auth.logout();
+    // this.af.auth.subscribe(auth => {
+    //     if(auth) {
+         
+    //       this.isLoggedIn = true;
+    //       console.log('login authService isLoggedIn: '+this.isLoggedIn);
+            
+    //     } else {
+          
+           this.isLoggedIn = false;
+    //       console.log('login authService isLoggedIn: '+this.isLoggedIn); 
+    //     }
+    // });
     // firebase.auth().onAuthStateChanged((user) => {
-      // if (!user) {
-        // サインインしていない状態
-        this.isLoggedIn = false;
-        console.log('authService logoff: '+this.isLoggedIn);
-      // } else {
-        // サインイン済み
-        // this.isLoggedIn = true;
-        // console.log('authService logoin: '+this.isLoggedIn);
-      // }
+    //   if (!user) {
+    //    // サインインしていない状態
+    //     this.isLoggedIn = false;
+    //     console.log('logout authService isLoggedIn: '+this.isLoggedIn);
+    //   } else {
+    //     //サインイン済み
+    //     this.isLoggedIn = true;
+    //     console.log('logout authService isLoggedIn: '+this.isLoggedIn);
+    //   }
     // });
   }
 

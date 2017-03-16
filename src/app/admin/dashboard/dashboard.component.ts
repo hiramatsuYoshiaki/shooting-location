@@ -9,6 +9,12 @@ import { Spot } from '../../app.spot';
 import { Category } from '../../category';
 // import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
+ //クエリパラメータとフラグメント
+import { ActivatedRoute }     from '@angular/router';
+import { Observable }         from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+// import { SelectivePreloadingStrategy } from '../selective-preloading-strategy';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -30,7 +36,16 @@ export class DashboardComponent implements OnInit {
     introNoChenge: string;
     categoryKey: string;
 
-  constructor(public af: AngularFire, public dialogService: DialogService) { 
+    //クエリパラメータとフラグメント
+    sessionId: Observable<string>;
+    token: Observable<string>;
+    modules: string[];
+
+  constructor(public af: AngularFire,
+              public dialogService: DialogService,
+              private route: ActivatedRoute) { 
+
+    // this.modules = preloadStrategy.preloadedModules;
    
     this.af.auth.subscribe(auth => {
         if(auth) {
@@ -72,7 +87,20 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Capture the session ID if available
+    this.sessionId = this.route
+      .queryParams
+      .map(params => params['session_id'] || 'None');
+
+    // Capture the fragment if available
+    this.token = this.route
+      .fragment
+      .map(fragment => fragment || 'None');
+ 
+
   }
+
+
   canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
     if (!this.categoryName || this.categoryName === this.nameNoChenge 
