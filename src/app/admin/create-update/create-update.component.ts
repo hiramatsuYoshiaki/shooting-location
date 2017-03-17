@@ -60,7 +60,7 @@ export class CreateUpdateComponent implements OnInit {
   @Input()  displayName: string;
   @Input()  email: string;
   topCategory: FirebaseListObservable<any[]>;
-  newPanel: boolean = false;
+ newPanel: boolean = false;
   appMessage: string =null;
  
 private myDatePickerOptions: IMyOptions = {
@@ -147,7 +147,7 @@ getUploadFile(){
  public fileSrcs =[{ name:'',size:0,type:'',filePath:'' }];
   
  closeUpdate(){
-   this.selectSpot = null;
+  //  this.selectSpot = null;
  } 
   
 
@@ -352,7 +352,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                                    
                     });
              });
-             this.newPanel = false;
+              this.newPanel = false;
              this.appMessage = "新規画像を登録しましたしました。";
         }
     }
@@ -405,7 +405,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                               imgLat: +newimgLat,
                              imgLan: +newimgLan
                            });
-      this. selectSpot = null;
+      // this. selectSpot = null;
       this.appMessage = "画像情報を修正しました。";
      
   }
