@@ -35,7 +35,7 @@
                     </div>
 
                 </div>
-                <div *ngIf="idx === onClickIdx && selectSpot">
+                <div *ngIf="idx === onClickIdx && selectSpot" class="UpdatePanel">
                   <app-create-update [selectSpot]="selectSpot" 
                             [image]="image" 
                             [category]="category" 
@@ -43,6 +43,8 @@
                             [uid]="uid" 
                             [displayName]="displayName" 
                             [email]="email"
+                            (updateCancele)="myValueChange($event)"
+
                             ></app-create-update>
                 </div>
                 

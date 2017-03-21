@@ -5,7 +5,7 @@
         <h1>PHOTOGRAPHER <small>Infomation</small></h1>
       </div>-->
          <div class="panel panel-default">  
-            <div [hidden]="submitted">
+            <!--<div [hidden]="submitted">-->
            <!--<div *ngIf="!categorySW">-->
             <div class="panel-heading">
               <!--<div class="well well-sm">
@@ -21,9 +21,8 @@
                     <button type="button" class="btn btn-success btn-xs" (click)="updateSW=true">修正</button>
 
                     <!--削除-->
-                    <!--<button type="button" class="btn btn-primary" (click)="deleteUser(categoryKey) ">削除</button>-->
                   <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#userDell" data-backdrop="false">削除</button>
-                    <!-- モーダル・ダイアログ -->
+                  
                     <div class="modal fade" id="userDell" tabindex="-1">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -44,30 +43,31 @@
                         </div>
                       </div>
                     </div>
-                     <!-- モーダル・ダイアログここまで -->
+                   
                 </div>
             </div>
-          </div>
+          <!--</div>-->
 
-            <!--新規登録-->
+          
             <div *ngIf="categorySW">
               
               <div class="panel-body"> 
                 <h4>各項目に入力して新規登録ボタンを押してください。</h4>
 
-                <form (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> 
-                <!--<form *ngIf="photoName" (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> -->
+                <form (ngSubmit)="newUser(photoName.value,intro.value)" #ManageUserNew="ngForm"> 
+               
+               
                 
                  <div class="form-group">
-                   <label for="exampleInputPhotoName">ユーザー名:<span> {{categoryName}}</span></label>
-                  <input type="text" class="form-control" id="exampleInputPhotoName"
+                   <label for="newPhotoName">ユーザー名:<span> {{categoryName}}</span></label>
+                  <input type="text" class="form-control" id="newPhotoName"
                         required #photoName
-                        [(ngModel)]="categoryName" name="exampleInputPhotoName" #name="ngModel" maxlength="30">
+                        [(ngModel)]="categoryName" name="newPhotoName" #name="ngModel" maxlength="30">
                  
                   <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     タイトルは必須入力です。
                   </div>
-                 </div>
+                </div>
                  
                  <div class="form-group">
                    <label for="Intro">自己紹介:<span> {{categoryIntro}}</span></label>
@@ -78,54 +78,56 @@
                     自己紹介は必須入力です。
                   </div>
                  </div>
-                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">新規登録</button>
+                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!ManageUserNew.form.valid">新規登録</button>
                 </form>
               </div>
             </div>
-             <!--修正-->
+           
+
+
             <div *ngIf="updateSW">
               <div class="panel-body"> 
                 <h4>各項目を修正して修正ボタンを押してください。</h4>
 
-                <form (ngSubmit)="updateUser(categoryKey,photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> 
-                <!--<form *ngIf="photoName" (ngSubmit)="newUser(photoName.value,intro.value)" #PhotoCategoryComponent="ngForm"> -->
+                <form (ngSubmit)="updateUser(categoryKey,photoName.value,intro.value)"
+                 #ManageUserUpdate="ngForm" novalidate> 
+                  <!--<form (ngSubmit)="test()"
+                 #ManageUserUpdate="ngForm" novalidate> -->
+               
                  <div class="form-group">
-                   <label for="exampleInputPhotoName">フォトグラファー名:<span> {{categoryName}}</span></label>
-                  <input type="text" class="form-control" id="exampleInputPhotoName"
+                   <label for="userPhotoName">フォトグラファー名:<span> {{categoryName}}</span></label>
+                  <input type="text" class="form-control" id="userPhotoName"
                         required #photoName
-                        [(ngModel)]="categoryName" name="exampleInputPhotoName" #name="ngModel" maxlength="30">
+                        [(ngModel)]="categoryName" name="userPhotoName" #name="ngModel" maxlength="30" novalidate>
                  
                   <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     タイトルは必須入力です。
                   </div>
+
                  </div>
+
                  <div class="form-group">
                    <label for="Intro">自己紹介:<span> {{categoryIntro}}</span></label>
                     <textarea  rows="5" class="form-control" id="Intro"
                         required #intro
-                        [(ngModel)]="categoryIntro" name="Intro" #name="ngModel" maxlength="100"></textarea>
+                        [(ngModel)]="categoryIntro" name="Intro" #name="ngModel" maxlength="100" novalidate></textarea>
                   <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     自己紹介は必須入力です。
                   </div>
                  </div>
-                    <button type="submit" class="btn btn-success btn-xs" [disabled]="!PhotoCategoryComponent.form.valid">修正</button>
+
+                   <button type="submit" class="btn btn-success btn-xs" [disabled]="!ManageUserUpdate.form.valid">修正</button>
                    <button type="button" class="btn btn-info btn-xs" (click)="updateSW=false">キャンセル</button>
                 </form>
+
               </div>
             </div>
         </div> 
+
+
       </div>  
     </div> 
 </div> 
-<!--<p>Dashboard</p>
 
-    <p>Session ID: {{ sessionId | async }}</p>
-    <a id="anchor"></a>
-    <p>Token: {{ token | async }}</p>
-
-    Preloaded Modules
-    <ul>
-      <li *ngFor="let module of modules">{{ module }}</li>
-    </ul>-->
 
 

@@ -1,20 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-manage-photo',
-//   templateUrl: './manage-photo.component.html',
-//   styleUrls: ['./manage-photo.component.scss']
-// })
-// export class ManagePhotoComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Observable } from 'rxjs';
@@ -34,12 +17,7 @@ import { Category } from '../../category';
 export class ManagePhotoComponent implements OnInit {
   spot: Spot;
   selectSpot: Spot;
-  // @Input()  items: FirebaseListObservable<any[]>;
-  // @Input() category: FirebaseListObservable<any[]>;
-  // @Input()  image: string [] = [];
-  // @Input()  uid: string;
-  // @Input()  displayName: string;
-  // @Input()  email: string;
+ 
   items: FirebaseListObservable<any[]>;
   category: FirebaseListObservable<any[]>;
   image: string [] = [];
@@ -106,11 +84,11 @@ export class ManagePhotoComponent implements OnInit {
     this.selectSpot = spot;
     this.selectSpot.id = idx;
     this.onClickIdx = +idx;
-
-  
   }
   
- 
+ myValueChange($event){
+    this.selectSpot = $event.value;
+ }
  
 
   updateItem(key: string,

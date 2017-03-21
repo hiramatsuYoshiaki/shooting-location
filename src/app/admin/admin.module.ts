@@ -24,7 +24,10 @@ import { CreateNewPhotoComponent } from './create-new-photo/create-new-photo.com
     AdminComponent,
     ManagePhotoComponent,
     ManageUserComponent, 
-    DashboardComponent, CreateUpdateComponent, NewPhotoComponent, CreateNewPhotoComponent
+    DashboardComponent,
+    CreateUpdateComponent, 
+    NewPhotoComponent, 
+    CreateNewPhotoComponent
                  ],
   imports: [
     CommonModule,

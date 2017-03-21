@@ -1,22 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-create-update',
-//   templateUrl: './create-update.component.html',
-//   styleUrls: ['./create-update.component.scss']
-// })
-// export class CreateUpdateComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-
-
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -45,7 +27,7 @@ interface Image {
 
 
 @Component({
-   selector: 'app-create-update',
+  selector: 'app-create-update',
   templateUrl: './create-update.component.html',
   styleUrls: ['./create-update.component.scss']
 })
@@ -59,11 +41,16 @@ export class CreateUpdateComponent implements OnInit {
   @Input()  uid: string;
   @Input()  displayName: string;
   @Input()  email: string;
+
+  @Output() updateCancele = new EventEmitter();
+
   topCategory: FirebaseListObservable<any[]>;
- newPanel: boolean = false;
+  newPanel: boolean = false;
+  
   appMessage: string =null;
+  selectSpotNull:Spot = null;
  
-private myDatePickerOptions: IMyOptions = {
+  private myDatePickerOptions: IMyOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
@@ -101,7 +88,7 @@ private myDatePickerOptions: IMyOptions = {
   latMap: number  = 34.6661326894375;
   lngMap: number = 133.91807389155386;
   infoMap: string = "撮影場所";
-exif:any;
+  exif:any;
 
   constructor(public af: AngularFire, private changeDetectorRef: ChangeDetectorRef, private element: ElementRef, public router: Router) { 
     //  var storageRef = firebase.storage().ref();
@@ -112,9 +99,10 @@ exif:any;
   ngOnInit() {
    
   }
+  
 onDateChanged(event: IMyDateModel) {
  // event properties are: event.date, event.jsdate, event.formatted and event.epoc
-    }
+ }
 
   
 
@@ -132,7 +120,7 @@ getUploadFile(){
       this.latMap = +$event.coords.lat;
       this.lngMap = +$event.coords.lng;
   }
-   mapClickedUpdate($event: MouseEvent) {
+ mapClickedUpdate($event: MouseEvent) {
       this.selectSpot.imgLat = +$event.coords.lat;
       this.selectSpot.imgLan = +$event.coords.lng;
   }
@@ -148,7 +136,14 @@ getUploadFile(){
   
  closeUpdate(){
   //  this.selectSpot = null;
+   this.emmit();
  } 
+
+ emmit(){
+    this.updateCancele.emit({
+      value: this.selectSpotNull
+    })
+  }
   
 
 fileChange(input){

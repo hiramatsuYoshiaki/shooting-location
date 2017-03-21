@@ -24,9 +24,11 @@ const AdminRouting: Routes= [
             children: [
                 { path: 'mPhoto', component:ManagePhotoComponent },
                 { path: 'newPhoto', component:NewPhotoComponent },
-                { path: 'mUser', component:ManageUserComponent   },
-                { path: '', component: DashboardComponent,
-                  canDeactivate: [CanDeactivateGuard], }
+               
+                { path: 'mUser', component:ManageUserComponent,
+                  canDeactivate: [CanDeactivateGuard],
+              },
+                { path: '', component: DashboardComponent }
             ]
          }
     ]

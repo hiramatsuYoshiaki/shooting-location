@@ -1,18 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
 
-// @Component({
-//   selector: 'app-manage-user',
-//   templateUrl: './manage-user.component.html',
-//   styleUrls: ['./manage-user.component.scss']
-// })
-// export class ManageUserComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
@@ -51,6 +37,7 @@ export class ManageUserComponent implements OnInit {
     nameNoChenge: string;
     introNoChenge: string;
     categoryKey: string;
+    categoryEmail: string;
 
     //クエリパラメータとフラグメント
     sessionId: Observable<string>;
@@ -81,6 +68,7 @@ export class ManageUserComponent implements OnInit {
         this.nameNoChenge = categoryItem.photoName;
         this.introNoChenge = categoryItem.intro;
         this.categoryKey = categoryItem.$key;
+        this.categoryEmail = categoryItem.email;
         this.categorySW = false;
         // console.log('uid:'+this.uid+' photoName: '+ categoryItem.photoName);
       }
@@ -104,25 +92,26 @@ export class ManageUserComponent implements OnInit {
 
   ngOnInit() {
     // Capture the session ID if available
-    this.sessionId = this.route
-      .queryParams
-      .map(params => params['session_id'] || 'None');
+    // this.sessionId = this.route
+    //   .queryParams
+    //   .map(params => params['session_id'] || 'None');
 
     // Capture the fragment if available
-    this.token = this.route
-      .fragment
-      .map(fragment => fragment || 'None');
- 
-
-  }
+    // this.token = this.route
+    //   .fragment
+    //   .map(fragment => fragment || 'None');
+   }
 
 
   canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-    if (!this.categoryName || this.categoryName === this.nameNoChenge 
-       ) {
+    if ((!this.categoryName || this.categoryName === this.nameNoChenge) &&
+     (!this.categoryIntro ||  this.categoryIntro === this.introNoChenge )  ) {
       return true;
     }
+    //   if (!this.categoryIntro ||  this.categoryIntro === this.introNoChenge ) {
+      
+    //   return true;
     // Otherwise ask the user with the dialog service and return its
     // promise which resolves to true or false when the user decides
     return this.dialogService.confirm('ユーザー情報の修正をキャンセルしますか？');
@@ -139,8 +128,8 @@ export class ManageUserComponent implements OnInit {
                           cate5:"",
                           cate6:"",
                           cate7:"",
-                          displayName:this.displayName,
-                          email: this.email,
+                          displayName: this.categoryName,
+                          email:  this.categoryEmail,
                           intro:intro,
                           photoName: photoName,
                           uid:this.uid
@@ -155,13 +144,15 @@ export class ManageUserComponent implements OnInit {
                             cate5:"",
                             cate6:"",
                             cate7:"",
-                            displayName:this.displayName,
-                            email: this.email,
+                            displayName: this.categoryName,
+                            email: this.categoryEmail,
                             intro:intro,
                             photoName: photoName,
                             uid:this.uid
                            });
-     this.updateSW = false;              
+    this.updateSW = false;   
+    console.log('updateUser');  
+    // this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });         
 
   }
     deleteUser(key: string) {    

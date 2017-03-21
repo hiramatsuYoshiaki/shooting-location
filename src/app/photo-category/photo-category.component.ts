@@ -14,7 +14,7 @@ export class PhotoCategoryComponent implements OnInit {
   // @Input()  items: FirebaseListObservable<any[]>;
   // @Input() category: FirebaseListObservable<any[]>;
    category: FirebaseListObservable<any[]>;
-    items: FirebaseListObservable<any[]>;
+   items: FirebaseListObservable<any[]>;
  
   //@Input()  image: string [] = [];
   image: string [] = [];
