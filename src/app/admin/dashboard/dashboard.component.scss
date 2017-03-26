@@ -18,3 +18,23 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
+ul {
+  list-style: none;
+  
+}
+ul li span{
+  margin-left: 5px; 
+}
+.page-header-height{
+   height: 50px;
+   overflow: hidden;
+}
+
+.panal-height{
+  height: 400px;
+  background-color: ghostwhite !important;
+}
+.panel-category{
+  padding: 6px 24px;
+
+}

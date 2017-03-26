@@ -1,2 +1,106 @@
-<p>Dashboard Page work!</p>
+<!--<p>user name: {{displayName}}</p>
+<p>Total: {{cnt}}</p>
+<p>Twilite: {{cat_twilite}}</p>-->
+<!--<ul>
+    <li *ngFor="let top of topCategorys | async; let idx = index; " >
+        <p>{{top.name}}</p>
+       
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let cat_name of cats_name; let idx = index; " >
+        <p>{{cat_name}}</p>
+       
+    </li> 
+</ul>-->
+<!--<ul>
+    <li *ngFor="let cat_top of cats_top; let idx = index; " >
+        <p>category:{{cat_top.name}} ({{cat_top.cnt}})</p>
+      
+       
+    </li>
+</ul>-->
+<!--<p>CATEGORY LIST</p>
+<ul>
+    <li *ngFor="let cat of category_list; let idx = index; " >
+       
+        <p>No.{{idx+1}}-{{cat.name}}<span class="badge">{{cat.cnt}}</span></p>
+       
+        
+    </li>
+</ul>-->
+<div class="container">
+ <div class="row">
+
+    <div class="col-sm-6 col-md-3">
+        <div class="page-header page-header-height">
+            <h4>TOTAL PHOTOS<small></small></h4>
+        </div>
+        <div class="panel panel-default panal-height">  
+
+            <!--<div class="panel-heading">-->
+                <ul>
+                    <li>
+                        <h3>TOTAL</h3>
+                        <h1>{{total_cnt}}</h1>
+                        <h3>photos</h3>
+                    </li>
+                </ul>
+            <!--</div>-->
+       </div>
+    </div> 
+    <div class="col-sm-6 col-md-3">
+         <div class="page-header  page-header-height">
+            <h4>CATEGORY LIST<small></small></h4>
+        </div>
+        <div class="panel panel-default panal-height">  
+
+            <!--<div class="panel-heading">-->
+                <ul class="panel-category">
+                    <li *ngFor="let cat of category_list; let idx = index; " >
+                        <h4>{{cat.name}}<span class="badge">{{cat.cnt}}</span></h4>
+                    </li>
+                </ul>
+            <!--</div>-->
+       </div>
+    </div> 
+   
+    <div class="col-sm-12 col-md-6">
+        <div class="page-header  page-header-height">
+            <h4>CATEGORY LIST<small></small></h4>
+        </div>
+        <div class="panel panel-default panal-height">  
+
+            <!--<div class="panel-heading">-->
+                <ul class="panel-category">
+                    <li *ngFor="let cat of category_list; let idx = index; " >
+                        <!--<h4>No.{{idx+1}}-{{cat.name}}<span class="badge">{{cat.cnt}}</span></h4>-->
+                        <!--<h4>{{cat.name}}</h4>-->
+
+                        <!--<div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;" >
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>-->
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="getProg(idx) + '%'" >
+                               {{cat.name}}:{{getProg(idx)}}%
+                            </div>
+                        </div>
+                       
+                    </li>
+                </ul>
+            <!--</div>-->
+       </div>
+    </div>   
+
+  </div>  
+</div>  
+
+<!--total_cnt:number = 0; 
+progres_width: number =0;-->
+
+
+
+
 
