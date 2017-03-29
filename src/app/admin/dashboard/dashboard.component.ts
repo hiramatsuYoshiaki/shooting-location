@@ -25,17 +25,25 @@ interface category_table {
     name: string;
     cnt: number;
     prog: number;
+    total: number;
+    position:number;
+    pos_leng:number;
+    position_r:number;
+    pos_leng_r:number;
+    position_l:number;
+    pos_leng_l:number;
+
 }
 const CATEGORY_LIST: category_table[] = [
-  { id: 1, name: 'Twilite',cnt:0,prog:0 },
-  { id: 2, name: 'Night',cnt:0,prog:0 },
-  { id: 3, name: 'Natures',cnt:0,prog:0 },
-  { id: 4, name: 'Structures',cnt:0,prog:0 },
-  { id: 5, name: 'Vehicles',cnt:0,prog:0 },
-  { id: 6, name: 'Peples',cnt:0,prog:0 },
-  { id: 7, name: 'Creatures',cnt:0,prog:0 },
-  { id: 8, name: 'Bycicle',cnt:0,prog:0 },
-  { id: 9, name: 'Others',cnt:0,prog:0 }
+  { id: 1, name: 'Twilite',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 2, name: 'Night',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 3, name: 'Natures',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 4, name: 'Structures',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 5, name: 'Vehicles',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 6, name: 'Peples',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 7, name: 'Creatures',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 8, name: 'Bycicle',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 },
+  { id: 9, name: 'Others',cnt:0,prog:0,total:0,position:0,pos_leng:0,position_r:0,pos_leng_r:0,position_l:0,pos_leng_l:0 }
 ];
 
 
@@ -154,11 +162,11 @@ progres_width: number =60;
       if(item.category == this.category_list[0].name){
         this.category_list[0].cnt++;
         this.total_cnt++;
-       
-        
-      }
 
-       if(item.category == this.category_list[1].name){
+      }
+      
+      
+      if(item.category == this.category_list[1].name){
         this.category_list[1].cnt++;
         this.total_cnt++;
         
@@ -199,58 +207,260 @@ progres_width: number =60;
         this.total_cnt++;
         
       }
-      //  if(item.category == this.category_list[9].name){
-      //   this.category_list[9].cnt++
-      // }
-        // console.log('item category: '+item.category );
+      if(this.total_cnt !== 0 || this.total_cnt !== null){
+
+
+         
+
+
+
+
+     
+          this.category_list[0].total = this.total_cnt;
+          this.category_list[0].prog = Math.round(( this.category_list[0].cnt / this.category_list[0].total )*100);
+          this.category_list[0].position = 0;
+          this.category_list[0].pos_leng = Math.round(( this.category_list[0].cnt / this.category_list[0].total)*360);
+          console.log('category:'+this.category_list[0].name +  ' prog: ' + this.category_list[0].prog 
+          + ' position:'+ this.category_list[0].position + ' pos_leng:'+ this.category_list[0].pos_leng);
+
+          if(this.category_list[0].pos_leng > 180){
+            this.category_list[0].pos_leng_r = 180;
+            this.category_list[0].position_r = this.category_list[0].position;
+            this.category_list[0].pos_leng_l = this.category_list[0].pos_leng - 180;
+            this.category_list[0].position_l =  this.category_list[0].position + 180 ;
+          }else{
+            this.category_list[0].pos_leng_r = this.category_list[0].pos_leng;
+            this.category_list[0].position_r = this.category_list[0].position;
+            this.category_list[0].pos_leng_l = 0;
+            this.category_list[0].position_l = 0;
+          }
+
+          this.category_list[1].total = this.total_cnt;
+          this.category_list[1].prog = Math.round(( this.category_list[1].cnt / this.category_list[1].total )*100);
+          this.category_list[1].position =  Math.round(( this.category_list[0].prog/100)*360);
+          this.category_list[1].pos_leng = Math.round(( this.category_list[1].cnt / this.category_list[1].total)*360);
+        console.log('category:'+this.category_list[1].name +  ' prog: ' + this.category_list[1].prog 
+          + ' position:'+ this.category_list[1].position + ' pos_leng:'+ this.category_list[1].pos_leng);
+          if(this.category_list[1].pos_leng > 180){
+            this.category_list[1].pos_leng_r = 180;
+            this.category_list[1].position_r = this.category_list[1].position;
+            this.category_list[1].pos_leng_l = this.category_list[1].pos_leng - 180;
+            this.category_list[1].position_l =  this.category_list[1].position + 180 ;
+          }else{
+            this.category_list[1].pos_leng_r = this.category_list[1].pos_leng;
+            this.category_list[1].position_r = this.category_list[1].position;
+            this.category_list[1].pos_leng_l = 0;
+            this.category_list[1].position_l = 0;
+          }
+          
+          this.category_list[2].total = this.total_cnt;
+          this.category_list[2].prog = Math.round(( this.category_list[2].cnt / this.category_list[2].total )*100);
+          this.category_list[2].position =  Math.round(((this.category_list[0].prog + this.category_list[1].prog)/100)*360);
+          this.category_list[2].pos_leng = Math.round(( this.category_list[2].cnt / this.category_list[2].total)*360);
+        console.log('category:'+this.category_list[2].name +  ' prog: ' + this.category_list[2].prog 
+          + ' position:'+ this.category_list[2].position + ' pos_leng:'+ this.category_list[2].pos_leng);
+           if(this.category_list[2].pos_leng > 180){
+            this.category_list[2].pos_leng_r = 180;
+            this.category_list[2].position_r = this.category_list[2].position;
+            this.category_list[2].pos_leng_l = this.category_list[2].pos_leng - 180 ;
+            this.category_list[2].position_l =  this.category_list[2].position + 180;
+          }else{
+            this.category_list[2].pos_leng_r = this.category_list[2].pos_leng;
+            this.category_list[2].position_r = this.category_list[2].position;
+            this.category_list[2].pos_leng_l = 0;
+            this.category_list[2].position_l = 0;
+          }
+          
+
+          this.category_list[3].total = this.total_cnt;
+          this.category_list[3].prog = Math.round(( this.category_list[3].cnt / this.category_list[3].total )*100);
+          this.category_list[3].position =  Math.round(((this.category_list[0].prog + this.category_list[1].prog + this.category_list[2].prog)/100)*360);
+          this.category_list[3].pos_leng = Math.round(( this.category_list[3].cnt / this.category_list[3].total)*360);
+          if(this.category_list[3].pos_leng > 180){
+            this.category_list[3].pos_leng_r = 180;
+            this.category_list[3].position_r = this.category_list[3].position;
+            this.category_list[3].pos_leng_l = this.category_list[3].pos_leng - 180;
+            this.category_list[3].position_l =  this.category_list[3].position + 180 ;
+          }else{
+            this.category_list[3].pos_leng_r = this.category_list[3].pos_leng;
+            this.category_list[3].position_r = this.category_list[3].position;
+            this.category_list[3].pos_leng_l = 0;
+            this.category_list[3].position_l = 0;
+          }
+
+          this.category_list[4].total = this.total_cnt;
+          this.category_list[4].prog = Math.round(( this.category_list[4].cnt / this.category_list[4].total )*100);
+          this.category_list[4].position =  Math.round(((this.category_list[0].prog 
+                                                        + this.category_list[1].prog 
+                                                        + this.category_list[2].prog
+                                                        + this.category_list[3].prog
+                                                        )
+                                                        /100)*360);
+          this.category_list[4].pos_leng = Math.round(( this.category_list[4].cnt / this.category_list[4].total)*360);
+          if(this.category_list[4].pos_leng > 180){
+            this.category_list[4].pos_leng_r = 180;
+            this.category_list[4].position_r = this.category_list[4].position;
+            this.category_list[4].pos_leng_l = this.category_list[4].pos_leng - 180;
+            this.category_list[4].position_l =  this.category_list[4].position + 180 ;
+          }else{
+            this.category_list[4].pos_leng_r = this.category_list[4].pos_leng;
+            this.category_list[4].position_r = this.category_list[4].position;
+            this.category_list[4].pos_leng_l = 0;
+            this.category_list[4].position_l = 0;
+          }
+
+
+          this.category_list[5].total = this.total_cnt;
+          this.category_list[5].prog = Math.round(( this.category_list[5].cnt / this.category_list[5].total )*100);
+          this.category_list[5].position =  Math.round(((this.category_list[0].prog 
+                                                        + this.category_list[1].prog 
+                                                        + this.category_list[2].prog
+                                                        + this.category_list[3].prog
+                                                        + this.category_list[4].prog
+                                                        )
+                                                        /100)*360);
+          this.category_list[5].pos_leng = Math.round(( this.category_list[5].cnt / this.category_list[5].total)*360);
+          if(this.category_list[5].pos_leng > 180){
+            this.category_list[5].pos_leng_r = 180;
+            this.category_list[5].position_r = this.category_list[5].position;
+            this.category_list[5].pos_leng_l = this.category_list[5].pos_leng - 180;
+            this.category_list[5].position_l =  this.category_list[5].position + 180 ;
+          }else{
+            this.category_list[5].pos_leng_r = this.category_list[5].pos_leng;
+            this.category_list[5].position_r = this.category_list[5].position;
+            this.category_list[5].pos_leng_l = 0;
+            this.category_list[5].position_l = 0;
+          }
+
+          this.category_list[6].total = this.total_cnt;
+          this.category_list[6].prog = Math.round(( this.category_list[6].cnt / this.category_list[6].total )*100);
+          this.category_list[6].position =  Math.round(((this.category_list[0].prog 
+                                                        + this.category_list[1].prog 
+                                                        + this.category_list[2].prog
+                                                        + this.category_list[3].prog
+                                                        + this.category_list[4].prog
+                                                        + this.category_list[5].prog
+                                                        )
+                                                        /100)*360);
+          this.category_list[6].pos_leng = Math.round(( this.category_list[6].cnt / this.category_list[6].total)*360);
+          if(this.category_list[6].pos_leng > 180){
+            this.category_list[6].pos_leng_r = 180;
+            this.category_list[6].position_r = this.category_list[6].position;
+            this.category_list[6].pos_leng_l = this.category_list[6].pos_leng - 180;
+            this.category_list[6].position_l =  this.category_list[6].position + 180 ;
+          }else{
+            this.category_list[6].pos_leng_r = this.category_list[6].pos_leng;
+            this.category_list[6].position_r = this.category_list[6].position;
+            this.category_list[6].pos_leng_l = 0;
+            this.category_list[6].position_l = 0;
+          }
+
+          this.category_list[7].total = this.total_cnt;
+          this.category_list[7].prog = Math.round(( this.category_list[7].cnt / this.category_list[7].total )*100);
+
+          this.category_list[7].position =  Math.round(((this.category_list[0].prog 
+                                                        + this.category_list[1].prog 
+                                                        + this.category_list[2].prog
+                                                        + this.category_list[3].prog
+                                                        + this.category_list[4].prog
+                                                        + this.category_list[5].prog
+                                                        + this.category_list[6].prog
+                                                        )
+                                                        /100)*360);
+          // if(this.category_list[7].position >= 360){
+          //   this.category_list[7].position = 0;
+          // }                                             
+          this.category_list[7].pos_leng = Math.round(( this.category_list[7].cnt / this.category_list[7].total)*360);
+          console.log('category:'+this.category_list[7].name +  ' prog: ' + this.category_list[7].prog 
+          + ' position:'+ this.category_list[7].position + ' pos_leng:'+ this.category_list[7].pos_leng);
+          if(this.category_list[7].pos_leng > 180){
+            this.category_list[7].pos_leng_r = 180;
+            this.category_list[7].position_r = this.category_list[7].position;
+            this.category_list[7].pos_leng_l = this.category_list[7].pos_leng - 180;
+            this.category_list[7].position_l =  this.category_list[7].position + 180 ;
+          }else{
+            this.category_list[7].pos_leng_r = this.category_list[7].pos_leng;
+            this.category_list[7].position_r = this.category_list[7].position;
+            this.category_list[7].pos_leng_l = 0;
+            this.category_list[7].position_l = 0;
+          }
+
+          this.category_list[8].total = this.total_cnt;
+          this.category_list[8].prog = Math.round(( this.category_list[8].cnt / this.category_list[8].total )*100);
+          this.category_list[8].position =  Math.round(((this.category_list[0].prog 
+                                                        + this.category_list[1].prog 
+                                                        + this.category_list[2].prog
+                                                        + this.category_list[3].prog
+                                                        + this.category_list[4].prog
+                                                        + this.category_list[5].prog
+                                                        + this.category_list[6].prog
+                                                        + this.category_list[7].prog
+                                                        )
+                                                        /100)*360);
+
+          this.category_list[8].pos_leng = Math.round( 360 - this.category_list[8].position);
+
+          console.log('category:'+this.category_list[8].name +  ' prog: ' + this.category_list[8].prog 
+          + ' position:'+ this.category_list[8].position + ' pos_leng:'+ this.category_list[8].pos_leng);
+          if(this.category_list[8].pos_leng > 180){
+            this.category_list[8].pos_leng_r = 180;
+            this.category_list[8].position_r = this.category_list[8].position;
+
+            this.category_list[8].pos_leng_l = Math.round( 360 - this.category_list[8].position );
+            this.category_list[8].position_l =  this.category_list[8].position + 180 ;
+
+          }else{
+            this.category_list[8].pos_leng_r = Math.round( 360 - this.category_list[8].position);
+            this.category_list[8].position_r = this.category_list[8].position;
+            this.category_list[8].pos_leng_l = 0;
+            this.category_list[8].position_l = 0;
+          }
+    
+      }
+     
+     
+
+     
+      //  if(item.category == this.cats_obj.Twilite.name){
+      //    this.cats_obj.Twilite.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Night.name){
+      //    this.cats_obj.Night.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Natures.name){
+      //    this.cats_obj.Natures.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Structures.name){
+      //    this.cats_obj.Structures.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Vehcles.name){
+      //    this.cats_obj.Vehcles.cnt++;
+      //  }
+      //   if(item.category == this.cats_obj.Peples.name){
+      //    this.cats_obj.Peples.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Creturers.name){
+      //    this.cats_obj.Creturers.cnt++;
+      //  }
+      //  if(item.category == this.cats_obj.Bycicle.name){
+      //    this.cats_obj.Bycicle.cnt++;
+      //  }
+      //   if(item.category == this.cats_obj.Others.name){
+      //    this.cats_obj.Others.cnt++;
+      //  }
        
-       if(item.category == this.cats_obj.Twilite.name){
-         this.cats_obj.Twilite.cnt++;
-       }
-       if(item.category == this.cats_obj.Night.name){
-         this.cats_obj.Night.cnt++;
-       }
-       if(item.category == this.cats_obj.Natures.name){
-         this.cats_obj.Natures.cnt++;
-       }
-       if(item.category == this.cats_obj.Structures.name){
-         this.cats_obj.Structures.cnt++;
-       }
-       if(item.category == this.cats_obj.Vehcles.name){
-         this.cats_obj.Vehcles.cnt++;
-       }
-        if(item.category == this.cats_obj.Peples.name){
-         this.cats_obj.Peples.cnt++;
-       }
-       if(item.category == this.cats_obj.Creturers.name){
-         this.cats_obj.Creturers.cnt++;
-       }
-       if(item.category == this.cats_obj.Bycicle.name){
-         this.cats_obj.Bycicle.cnt++;
-       }
-        if(item.category == this.cats_obj.Others.name){
-         this.cats_obj.Others.cnt++;
-       }
+        // console.log('Twilite '+this.cats_obj['Twilite'].cnt);
+        // console.log('Night '+this.cats_obj['Night'].cnt);
+        // console.log('Natures '+this.cats_obj['Natures'].cnt);
+        // console.log('Structures '+this.cats_obj['Structures'].cnt);
+        // console.log('Vehicles '+this.cats_obj['Vehcles'].cnt);
+        // console.log('Peples '+this.cats_obj['Peples'].cnt);
+        // console.log('Creatures '+this.cats_obj['Creturers'].cnt);
+        // console.log('Bycicle '+this.cats_obj['Bycicle'].cnt);
+        // console.log('Others '+this.cats_obj['Others'].cnt);
+
+
        
-        console.log('Twilite '+this.cats_obj['Twilite'].cnt);
-        console.log('Night '+this.cats_obj['Night'].cnt);
-        console.log('Natures '+this.cats_obj['Natures'].cnt);
-        console.log('Structures '+this.cats_obj['Structures'].cnt);
-        console.log('Vehicles '+this.cats_obj['Vehcles'].cnt);
-        console.log('Peples '+this.cats_obj['Peples'].cnt);
-        console.log('Creatures '+this.cats_obj['Creturers'].cnt);
-        console.log('Bycicle '+this.cats_obj['Bycicle'].cnt);
-        console.log('Others '+this.cats_obj['Others'].cnt);
-
-
-        // console.log('Twilite2 '+this.cats_obj[item.category].name);
-
-        //this.cats_obj.Night.cnt++;
-        //console.log('Twilite1 '+this.cats_obj.Night.cnt);
-        //console.log('Twilite2 '+this.cats_obj['Night'].cnt);
-        
-        //console.log('Twilite 999 '+this.cats_obj[].cnt);
-        //console.log('category: '+item.category+'cnt: '+this.cats_obj[item.category].cnt);
 
     }
     ));
@@ -282,22 +492,9 @@ progres_width: number =60;
     this.topCategorys.subscribe(topCategory => topCategory.forEach(
        (category_item, index) =>{
           var cnt: number = 0;
-       
-       
-
-           
-       
-
-        console.log('topCategory.forEach: '+category_item.name );  
+        //console.log('topCategory.forEach: '+category_item.name );  
         this.cats_top.push({name:category_item.name,cnt:cnt});
-        console.log('topCategory.forEach------: ' + cnt);
-
-        
-
-
-
-
-
+       // console.log('topCategory.forEach------: ' + cnt);
 
 
         //console.log(category_item.name+ ': (' + cnt +') ' );
@@ -305,28 +502,6 @@ progres_width: number =60;
 
        }
      ));
-   
-    // this.items.subscribe(items => items.forEach(
-    //   (item , index )  => {
-      
-    //     console.log('item category: '+item.category );
-        
-    //     if(item.category == category_item.name){
-    //          cnt++;
-    //          console.log('match!!!: '+cnt)
-    //     }
-        
-    //   }
-      
-    //   ));
-
-
-    
-
-
- 
-
-
 
       // for(var i=0; i<=this.topCategorys; i++) {...}
     this.items.subscribe(items => items.forEach(
@@ -338,34 +513,55 @@ progres_width: number =60;
 
   ngOnInit() {  }
   
-  // getCnt(category_item:any):number{
-  //    var cnt: number = 0;
-  //     this.items.subscribe(items => items.forEach(
-  //             (item , index )  => {
-              
-  //               console.log('item category: '+item.category );
-                
-  //               if(item.category == category_item.name){
-  //                    cnt++;
-  //                    console.log('match!!!: '+cnt)
-  //               }
-                
-  //             }
-  //     ));
-  //   return cnt;
-    
+ 
+
+
+  // getProg(idx:number){
+  //   if(this.total_cnt){
+  //         this.category_list[idx].prog =
+  //          Math.round((this.category_list[idx].cnt/this.total_cnt)*100);
+  //          console.log('cnt:'+this.category_list[idx].cnt);
+  //          console.log('total:'+this.total_cnt);
+  //          console.log('prog:'+this.category_list[idx].prog);
+  //          console.log('idx:'+idx);
+  //         return  this.category_list[idx].prog;
+  //       }
    
+  // } 
+
+  // getDounutsParam(idx:number){
+    // var deg:number=0;
+    // var prog:number=0;
+    // if(this.total_cnt){
+      // prog = Math.round((this.category_list[idx].cnt/this.total_cnt)*100);
+      // deg = 360*(prog/100);
+      //  console.log('deg:'+deg);
+      // return 180;
+  //   }else{
+  //     return 0;
+  //   }
+  // }
+
+  // getDounutPosition(idx:number){
+  //   var deg:number=0;
+  //   var positiont_deg:number=0;
+  //   var prog:number=0;
+  //    if(this.total_cnt){
+  //       for(var i=0; i<= idx; i++){
+  //         prog = Math.round((this.category_list[idx].cnt/this.total_cnt)*100);
+  //         deg = 360*(prog/100);
+  //         positiont_deg = positiont_deg + deg;
+  //           console.log('idx:'+idx);
+  //           console.log('position deg:'+positiont_deg);
+  //       }
+  //       return positiont_deg;
   //  }
+  //  return 0
+  // }
+  
 
 
 
-  getProg(idx:number){
-    if(this.total_cnt){
-          this.category_list[idx].prog = Math.round((this.category_list[idx].cnt/this.total_cnt)*100);
-          return  this.category_list[idx].prog;
-        }
-    return 0;
 
-  } 
 
 }

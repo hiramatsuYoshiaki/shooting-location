@@ -1,104 +1,366 @@
-<!--<p>user name: {{displayName}}</p>
-<p>Total: {{cnt}}</p>
-<p>Twilite: {{cat_twilite}}</p>-->
-<!--<ul>
-    <li *ngFor="let top of topCategorys | async; let idx = index; " >
-        <p>{{top.name}}</p>
-       
-    </li>
-</ul>
-<ul>
-    <li *ngFor="let cat_name of cats_name; let idx = index; " >
-        <p>{{cat_name}}</p>
-       
-    </li> 
-</ul>-->
-<!--<ul>
-    <li *ngFor="let cat_top of cats_top; let idx = index; " >
-        <p>category:{{cat_top.name}} ({{cat_top.cnt}})</p>
-      
-       
-    </li>
-</ul>-->
-<!--<p>CATEGORY LIST</p>
-<ul>
-    <li *ngFor="let cat of category_list; let idx = index; " >
-       
-        <p>No.{{idx+1}}-{{cat.name}}<span class="badge">{{cat.cnt}}</span></p>
-       
-        
-    </li>
-</ul>-->
+
+<!-- http://codepen.io/jlalovi/details/bIyAr -->
 <div class="container">
- <div class="row">
+    <div class="row">
+    
+  <!-- DONUT CHART BLOCK (LEFT-CONTAINER) --> 
+  <div class="col-sm-6 col-md-6">
+  <div class="donut-chart-block block"> 
+      <ul class="os-percentages horizontal-list">
+            <li>
+                <p class="twilite os scnd-font-color">Twilite</p>
+                <p class="os-percentage">{{category_list[0].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="night os scnd-font-color">Night</p>
+                <p class="os-percentage">{{category_list[1].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="natures os scnd-font-color">Natures</p>
+                <p class="os-percentage">{{category_list[2].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="structures os scnd-font-color">Structures</p>
+                <p class="os-percentage">{{category_list[3].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="vehicles os scnd-font-color">Vehicles</p>
+                <p class="os-percentage">{{category_list[4].prog}}<sup>%</sup></p>
+            </li>
+        </ul>
+       
+        <h2 class="titular">USER's Photos</h2>
+        <div class="donut-chart">
+        <!-- PORCIONES GRAFICO CIRCULAR
+            ELIMINADO #donut-chart
+            MODIFICADO CSS de .donut-chart -->
+            <!--<div id="porcion1" class="recorte"><div class="quesito ios" data-rel="51"></div></div>
+            <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="19"></div></div>
+            <div id="porcion3" class="recorte"><div class="quesito win" data-rel="11"></div></div>
+            <div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>-->
+            <div *ngIf="category_list[0].pos_leng !== 0">    
+            <!--<div id="porcion1"  [style.transform]="'rotate(' + category_list[0].position + 'deg)'" class="recorte">
+                <div [style.transform]="'rotate(' + category_list[0].pos_leng + 'deg)'" 
+                class="quesito ios "  data-rel="50"></div>
+            </div>-->
+             <div id="porcion1"  [style.transform]="'rotate(' + category_list[0].position_r + 'deg)'" class="recorte">
+                <div [style.transform]="'rotate(' + category_list[0].pos_leng_r + 'deg)'" 
+                class="quesito ios "  data-rel="50"></div>
+            </div>
 
-    <div class="col-sm-6 col-md-3">
-        <div class="page-header page-header-height">
-            <h4>TOTAL PHOTOS<small></small></h4>
+             <div id="porcion1"  [style.transform]="'rotate(' + category_list[0].position_l + 'deg)'" class="recorte">
+                <div [style.transform]="'rotate(' + category_list[0].pos_leng_l + 'deg)'" 
+                class="quesito ios "  data-rel="50"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[1].pos_leng !== 0"> 
+            <!--<div id="porcion2" [style.transform]="'rotate(' + category_list[1].position + 'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[1].pos_leng + 'deg)'"
+                 class="quesito mac" data-rel="10"></div>
+            </div>-->
+            <div id="porcion2" [style.transform]="'rotate(' + category_list[1].position_r + 'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[1].pos_leng_r + 'deg)'"
+                 class="quesito mac" data-rel="10"></div>
+            </div>
+            <div id="porcion2" [style.transform]="'rotate(' + category_list[1].position_l + 'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[1].pos_leng_l + 'deg)'"
+                 class="quesito mac" data-rel="10"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[2].pos_leng !== 0"> 
+            <!--<div id="porcion3" [style.transform]="'rotate(' + category_list[2].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[2].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcion3" [style.transform]="'rotate(' + category_list[2].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[2].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcion3" [style.transform]="'rotate(' + category_list[2].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[2].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+            
+            <div *ngIf="category_list[3].pos_leng !== 0"> 
+            <!--<div id="porcion4" [style.transform]="'rotate(' + category_list[3].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[3].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcion4" [style.transform]="'rotate(' + category_list[3].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[3].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcion4" [style.transform]="'rotate(' + category_list[3].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[3].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[4].pos_leng !== 0"> 
+            <!--<div id="porcion5" [style.transform]="'rotate(' + category_list[4].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[4].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcion5" [style.transform]="'rotate(' + category_list[4].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[4].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcion5" [style.transform]="'rotate(' + category_list[4].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[4].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[5].pos_leng !== 0"> 
+            <!--<div id="porcion6" [style.transform]="'rotate(' + category_list[5].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[5].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcion6" [style.transform]="'rotate(' + category_list[5].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[5].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcion6" [style.transform]="'rotate(' + category_list[5].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[5].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[6].pos_leng !== 0"> 
+            <!--<div id="porcion7" [style.transform]="'rotate(' + category_list[6].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[6].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcion7" [style.transform]="'rotate(' + category_list[6].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[6].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcion7" [style.transform]="'rotate(' + category_list[6].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[6].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+
+            <div *ngIf="category_list[7].pos_leng !== 0"> 
+            <div id="porcion8" [style.transform]="'rotate(' + category_list[7].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[7].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+             <div id="porcion8" [style.transform]="'rotate(' + category_list[7].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[7].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+             <div id="porcion8" [style.transform]="'rotate(' + category_list[7].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[7].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+           
+            </div>
+            
+            <div *ngIf="category_list[8].pos_leng !== 0"> 
+            <!--<div id="porcionFin" [style.transform]="'rotate(' + category_list[8].position +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[8].pos_leng + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>-->
+            <div id="porcionFin" [style.transform]="'rotate(' + category_list[8].position_r +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[8].pos_leng_r + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            <div id="porcionFin" [style.transform]="'rotate(' + category_list[8].position_l +'deg)'"  class="recorte">
+                <div [style.transform]="'rotate(' + category_list[8].pos_leng_l + 'deg)'" 
+                class="quesito win" data-rel="10"></div>
+            </div>
+            </div>
+            
+            
+
+            <!--<div id="porcionFin" [style.transform]="'rotate('+ category_list[8].position +'deg)'"  class="recorte">
+                <div class="quesito linux" data-rel="10"></div>
+            </div>-->
+        <!-- FIN AÑADIDO GRÄFICO -->
+                <p class="center-date">{{total_cnt}}<br><span class="scnd-font-color">Total</span></p>        
         </div>
-        <div class="panel panel-default panal-height">  
+        <ul class="os-percentages horizontal-list">
+            <li>
+                <p class="peples os scnd-font-color">Peples</p>
+                <p class="os-percentage">{{category_list[5].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="creatures os scnd-font-color">Creatures</p>
+                <p class="os-percentage">{{category_list[6].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="bycicle os scnd-font-color">Bycicle</p>
+                <p class="os-percentage">{{category_list[7].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="others os scnd-font-color">others</p>
+                <p class="os-percentage">{{category_list[8].prog}}<sup>%</sup></p>
+            </li>
+            <li>
+                <p class="total os scnd-font-color">total</p>
+                <p class="os-percentage">100<sup>%</sup></p>
+            </li>
+        </ul>
+        
+ </div>
+ </div>
 
-            <!--<div class="panel-heading">-->
-                <ul>
-                    <li>
-                        <h3>TOTAL</h3>
-                        <h1>{{total_cnt}}</h1>
-                        <h3>photos</h3>
-                    </li>
-                </ul>
-            <!--</div>-->
+ <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
+ <div class="col-sm-6 col-md-6">
+ <div class="line-chart-block block">
+     <div class="line-chart">
+       <div class='grafico'>
+       <ul class='eje-y'>
+         <li data-ejeY='30'></li>
+         <li data-ejeY='20'></li>
+         <li data-ejeY='10'></li>
+         <li data-ejeY='0'></li>
+       </ul>
+       <ul class='eje-x'>
+         <li>Apr</li>
+         <li>May</li>
+         <li>Jun</li>
+       </ul>
+         <span data-valor='25'>
+           <span data-valor='8'>
+             <span data-valor='13'>
+               <span data-valor='5'>   
+                 <span data-valor='23'>   
+                 <span data-valor='12'>
+                     <span data-valor='15'>
+                     </span></span></span></span></span></span></span>
        </div>
-    </div> 
-    <div class="col-sm-6 col-md-3">
-         <div class="page-header  page-header-height">
-            <h4>CATEGORY LIST<small></small></h4>
-        </div>
-        <div class="panel panel-default panal-height">  
+     </div>
 
-            <!--<div class="panel-heading">-->
-                <ul class="panel-category">
-                    <li *ngFor="let cat of category_list; let idx = index; " >
-                        <h4>{{cat.name}}<span class="badge">{{cat.cnt}}</span></h4>
-                    </li>
-                </ul>
-            <!--</div>-->
-       </div>
-    </div> 
-   
-    <div class="col-sm-12 col-md-6">
-        <div class="page-header  page-header-height">
-            <h4>CATEGORY LIST<small></small></h4>
-        </div>
-        <div class="panel panel-default panal-height">  
+        <ul class="time-lenght horizontal-list">
+            <li><a class="time-lenght-btn" href="#14">Week</a></li>
+            <li><a class="time-lenght-btn" href="#15">Month</a></li>
+            <li><a class="time-lenght-btn" href="#16">Year</a></li>
+        </ul>
+        <ul class="month-data clear">
+            <li>
+                <p>APR<span class="scnd-font-color"> 2013</span></p>
+                <p><span class="entypo-plus increment"> </span>21<sup>%</sup></p>
+            </li>
+            <li>
+                <p>MAY<span class="scnd-font-color"> 2013</span></p>
+                <p><span class="entypo-plus increment"> </span>48<sup>%</sup></p>
+            </li>
+            <li>
+                <p>JUN<span class="scnd-font-color"> 2013</span></p>
+                <p><span class="entypo-plus increment"> </span>35<sup>%</sup></p>
+            </li>
+        </ul>
+    </div>
+    </div>
+                
 
-            <!--<div class="panel-heading">-->
-                <ul class="panel-category">
-                    <li *ngFor="let cat of category_list; let idx = index; " >
-                        <!--<h4>No.{{idx+1}}-{{cat.name}}<span class="badge">{{cat.cnt}}</span></h4>-->
-                        <!--<h4>{{cat.name}}</h4>-->
+  <!-- bar-chart-block  -->
+  <div class="col-sm-6 col-md-6">
+  <div class="bar-chart-block block">
+    <h2 class='titular'>By Country <span>*1000</span></h2>
+    <div class='grafico bar-chart'>
+       <ul class='eje-y'>
+         <li data-ejeY='80'></li>
+         <li data-ejeY='60'></li>
+         <li data-ejeY='40'></li>
+         <li data-ejeY='20'></li>
+         <li data-ejeY='0'></li>
+       </ul>
+       <!--<ul class='eje-x'>
+         <li data-ejeX='37'><i>Twilite</i></li>
+         <li data-ejeX='56'><i>Night</i></li>
+         <li data-ejeX='25'><i>Nature</i></li>
+         <li data-ejeX='18'><i>Structures</i></li>
+         <li data-ejeX='45'><i>Vehicles</i></li>
+         <li data-ejeX='50'><i>Peples</i></li>
+         <li data-ejeX='33'><i>Creatures</i></li>
+         <li data-ejeX='20'><i>Bycicle</i></li>
+         <li data-ejeX='20'><i>Others</i></li>
+       </ul>-->
+        <ul class='eje-x'>
+         <li data-ejeX='37'>
+             <span class="column-shape column-shape-1" 
+            
+              [style.height]=" (category_list[0].prog * 10 )+'%'" 
+             ></span>
+             <i>Twilite</i>
+         </li>
+         <li data-ejeX='56'>
+              <span class="column-shape column-shape-2" 
+            
+              [style.height]=" (category_list[1].prog * 10 )+'%'" 
+             ></span>
+             <i>Night</i>
+        </li>
+         <li data-ejeX='25'>
+             <span class="column-shape column-shape-3" 
+            
+              [style.height]=" (category_list[2].prog * 10 )+'%'" 
+             ></span>
+             <i>Nature</i>
+        </li>
+         <li data-ejeX='18'>
+             <span class="column-shape column-shape-4" 
+             
+              [style.height]=" (category_list[3].prog * 10 )+'%'" 
+             ></span>
+             <i>Structures</i>
+         </li>
+         <li data-ejeX='45'>
+             <span class="column-shape column-shape-5" 
+            
+              [style.height]=" (category_list[4].prog * 10 )+'%'" 
+             ></span>
+             <i>Vehicles</i>
+         </li>
+         <li data-ejeX='50'>
+             <span class="column-shape column-shape-6" 
+            
+              [style.height]=" (category_list[5].prog * 10 )+'%'" 
+             ></span>
+             <i>Peples</i>
+         </li>
+         <li data-ejeX='33'>
+             <span class="column-shape column-shape-7" 
+            
+              [style.height]=" (category_list[6].prog * 10 )+'%'" 
+             ></span>
+             <i>Creatures</i>
+         </li>
+         <li data-ejeX='20'>
+             <span class="column-shape column-shape-8" 
+            
+              [style.height]=" (category_list[7].prog * 10 )+'%'" 
+             ></span>
+             <i>Bycicle</i>
+         </li>
+         <li data-ejeX='20'>
+             <span class="column-shape column-shape-9" 
+            
+              [style.height]=" (category_list[8].prog * 10 )+'%'" 
+             ></span>
+             <i>Others</i>
+         </li>
+       </ul>
+      
+      
+    </div>
+  </div>
+  </div>
 
-                        <!--<div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 60%;" >
-                                <span class="sr-only">60% Complete</span>
-                            </div>
-                        </div>-->
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" [style.width]="getProg(idx) + '%'" >
-                               {{cat.name}}:{{getProg(idx)}}%
-                            </div>
-                        </div>
-                       
-                    </li>
-                </ul>
-            <!--</div>-->
-       </div>
-    </div>   
+</div><!-- row -->
+</div><!-- contener -->
 
-  </div>  
-</div>  
+<!--<p class='nota-final'>Este pen es sólo para que <strong>@jlalovi</strong> complemente con los gráficos <a href='http://codepen.io/jlalovi/details/bIyAr'>el suyo</a>.</p>-->
+  <div>
+  <span class="column-shape column-shape-4">shape</span>   
+  </div>
 
-<!--total_cnt:number = 0; 
-progres_width: number =0;-->
 
 
 
