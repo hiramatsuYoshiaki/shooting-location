@@ -52,6 +52,8 @@ import { LoginRoutingModule }      from './login/login-routing.module';
 import { CanDeactivateGuard }     from './can-deactivate-guard.service';
 import { DialogService }           from './dialog.service';
 
+import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
+
 
 
 export const firebaseConfig ={
@@ -123,7 +125,8 @@ const FirebaseAuthConfig = {
      UserModuleModule,//未使用
      GallareyModule,
      AdminModule,
-     LoginRoutingModule
+     LoginRoutingModule,
+     Angular2FontAwesomeModule
     
   ],
   providers: [DataService,

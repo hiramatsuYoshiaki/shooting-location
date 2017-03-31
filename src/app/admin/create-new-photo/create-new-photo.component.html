@@ -143,15 +143,33 @@
                   </div>
                   <div class="form-group">
                     <label for="place">場所</label>
-                    <input type="place" class="form-control" id="place"
+                    <!--<input type="place" class="form-control" id="place"
                             required
                             [(ngModel)]="newSpot.place" name="place"
-                            #place="ngModel"  novalidate>
+                            #place="ngModel"  novalidate>-->
+                    <select class="form-control"  #place="ngModel" [(ngModel)]="newSpot.place" name="place"  id="place" required>
+                      <option *ngFor="let place of list_Place ;"  [value]="place.name">{{place.name}}</option>
+                    </select>        
                     <div [hidden]="place.valid || place.pristine"
                           class="alert alert-danger">
                      場所は必須入力です。
                     </div>
                   </div>
+
+                   <!--<div class="form-group">
+                    <label for="categor">カテゴリー</label>
+                    <select class="form-control"  #category="ngModel" [(ngModel)]="newSpot.category" name="category"  id="category" required>
+                      <option *ngFor="let category of topCategory | async;" [value]="category.name">{{category.name}}</option>
+                    </select>
+                    <div [hidden]="category.valid || category.pristine"
+                          class="alert alert-danger">
+                     カテゴリーは必須入力です。
+                    </div>
+                  </div>-->
+
+
+
+
                   <div class="form-group">
                     <label for="sdate">日付</label>
                     <input type="date" class="form-control" id="sdate"
@@ -163,9 +181,6 @@
                      日付は必須入力です。
                     </div>
                   </div>
- 
-                
-
                   <div class="form-group">
                     <label for="stime">時間</label>
                     <input type="time" class="form-control" id="stime"
@@ -183,7 +198,6 @@
                            
                             [(ngModel)]="newSpot.camera" name="camera"
                             #camera="ngModel"  novalidate>
-                  
                   </div>
                   <div class="form-group hidden">
                     <label for="renze">レンズ</label>
@@ -191,7 +205,6 @@
                           
                             [(ngModel)]="newSpot.renze" name="renze"
                             #renze="ngModel"  novalidate>
-                 
                   </div>
                   <div class="form-group">
                     <label for="categor">カテゴリー</label>

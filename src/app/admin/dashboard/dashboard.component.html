@@ -2,6 +2,112 @@
 <!-- http://codepen.io/jlalovi/details/bIyAr -->
 <div class="container">
     <div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header">
+            <h1><small>ダッシュボード</small></h1>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3">
+    <!--<div class="col-lg-3 col-md-6">-->
+        <div class="panel  panel-color-backcolor">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                      <i class="fa fa-camera fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{total_cnt}}</div>
+                        <div class="huge-text">All Photo Total</div>
+                    </div>
+                </div>
+            </div>
+            <!--<a href="#">-->
+                <div class="panel-footer">
+                    <span class="pull-left">Posted Photo Total</span>
+                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                    <div class="clearfix"></div>
+                </div>
+            <!--</a>-->
+        </div>
+    </div>
+    <!--<div class="col-lg-3 col-md-6">-->
+     <div class="col-sm-3 col-md-3">
+        <div class="panel  panel-color-backcolor">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-plus fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{new_cnt}}</div>
+                        <div class="huge-text">New Photos</div>
+                    </div>
+                </div>
+            </div>
+            <!--<a href="#">-->
+                <div class="panel-footer">
+                    <span class="pull-left">New Photos by month</span>
+                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                    <div class="clearfix"></div>
+                </div>
+            <!--</a>-->
+        </div>
+    </div>
+    <!--<div class="col-lg-3 col-md-6">-->
+            <div class="col-sm-3 col-md-3">
+        <div class="panel  panel-color-backcolor">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-folder-open-o fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{posted_category}}</div>
+                        <div class="huge-text">Posted Category</div>
+                    </div>
+                </div>
+            </div>
+            <!--<a href="#">-->
+                <div class="panel-footer">
+                    <span class="pull-left">Applicable categories</span>
+                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                    <div class="clearfix"></div>
+                </div>
+            <!--</a>-->
+        </div>
+    </div>
+    <!--<div class="col-lg-3 col-md-6">-->
+            <div class="col-sm-3 col-md-3">
+        <div class="panel  panel-color-backcolor">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div class="huge-text">Top Category</div>
+                    </div>
+                </div>
+            </div>
+            <!--<a href="#">-->
+                <div class="panel-footer">
+                    <span class="pull-left">Frequent category</span>
+                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                    <div class="clearfix"></div>
+                </div>
+            <!--</a>-->
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     
   <!-- DONUT CHART BLOCK (LEFT-CONTAINER) --> 
   <div class="col-sm-6 col-md-6">
@@ -9,27 +115,27 @@
       <ul class="os-percentages horizontal-list">
             <li>
                 <p class="twilite os scnd-font-color">Twilite</p>
-                <p class="os-percentage">{{category_list[0].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[0].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="night os scnd-font-color">Night</p>
-                <p class="os-percentage">{{category_list[1].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[1].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="natures os scnd-font-color">Natures</p>
-                <p class="os-percentage">{{category_list[2].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[2].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="structures os scnd-font-color">Structures</p>
-                <p class="os-percentage">{{category_list[3].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[3].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="vehicles os scnd-font-color">Vehicles</p>
-                <p class="os-percentage">{{category_list[4].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[4].cnt}}<sup></sup></p>
             </li>
         </ul>
        
-        <h2 class="titular">USER's Photos</h2>
+        <h2 class="titular">Posted photos</h2>
         <div class="donut-chart">
         <!-- PORCIONES GRAFICO CIRCULAR
             ELIMINADO #donut-chart
@@ -186,31 +292,118 @@
         <ul class="os-percentages horizontal-list">
             <li>
                 <p class="peples os scnd-font-color">Peples</p>
-                <p class="os-percentage">{{category_list[5].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[5].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="creatures os scnd-font-color">Creatures</p>
-                <p class="os-percentage">{{category_list[6].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[6].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="bycicle os scnd-font-color">Bycicle</p>
-                <p class="os-percentage">{{category_list[7].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[7].cnt}}<sup></sup></p>
             </li>
             <li>
                 <p class="others os scnd-font-color">others</p>
-                <p class="os-percentage">{{category_list[8].prog}}<sup>%</sup></p>
+                <p class="os-percentage">{{category_list[8].cnt}}<sup></sup></p>
             </li>
             <li>
-                <p class="total os scnd-font-color">total</p>
-                <p class="os-percentage">100<sup>%</sup></p>
+                <p class="total os scnd-font-color">Total</p>
+                <p class="os-percentage">{{total_cnt}}<sup></sup></p>
             </li>
         </ul>
         
  </div>
  </div>
 
- <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
- <div class="col-sm-6 col-md-6">
+ 
+                
+
+  <!-- bar-chart-block  -->
+  <div class="col-sm-6 col-md-6">
+  <div class="bar-chart-block block">
+    <h2 class='titular'>Posted Category (%) <span></span></h2>
+    <div class='grafico bar-chart'>
+       <ul class='eje-y'>
+         <li data-ejeY='80'></li>
+         <li data-ejeY='60'></li>
+         <li data-ejeY='40'></li>
+         <li data-ejeY='20'></li>
+         <li data-ejeY='0'></li>
+       </ul>
+       <!--<ul class='eje-x'>
+         <li data-ejeX='37'><i>Twilite</i></li>
+         <li data-ejeX='56'><i>Night</i></li>
+         <li data-ejeX='25'><i>Nature</i></li>
+         <li data-ejeX='18'><i>Structures</i></li>
+         <li data-ejeX='45'><i>Vehicles</i></li>
+         <li data-ejeX='50'><i>Peples</i></li>
+         <li data-ejeX='33'><i>Creatures</i></li>
+         <li data-ejeX='20'><i>Bycicle</i></li>
+         <li data-ejeX='20'><i>Others</i></li>
+       </ul>-->
+        <ul class='eje-x'>
+         <li data-ejeX='37'>
+             <span class="column-shape column-shape-1" 
+              [style.height]=" (category_list[0].prog * 10 )+'%'" 
+             ></span>
+             <i>Twilite</i>
+         </li>
+         <li data-ejeX='56'>
+              <span class="column-shape column-shape-2" 
+              [style.height]=" (category_list[1].prog * 10 )+'%'" 
+             ></span>
+             <i>Night</i>
+        </li>
+         <li data-ejeX='25'>
+             <span class="column-shape column-shape-3" 
+              [style.height]=" (category_list[2].prog * 10 )+'%'" 
+             ></span>
+             <i>Nature</i>
+        </li>
+         <li data-ejeX='18'>
+             <span class="column-shape column-shape-4" 
+              [style.height]=" (category_list[3].prog * 10 )+'%'" 
+             ></span>
+             <i>Structures</i>
+         </li>
+         <li data-ejeX='45'>
+             <span class="column-shape column-shape-5" 
+              [style.height]=" (category_list[4].prog * 10 )+'%'" 
+             ></span>
+             <i>Vehicles</i>
+         </li>
+         <li data-ejeX='50'>
+             <span class="column-shape column-shape-6" 
+              [style.height]=" (category_list[5].prog * 10 )+'%'" 
+             ></span>
+             <i>Peples</i>
+         </li>
+         <li data-ejeX='33'>
+             <span class="column-shape column-shape-7" 
+              [style.height]=" (category_list[6].prog * 10 )+'%'" 
+             ></span>
+             <i>Creatures</i>
+         </li>
+         <li data-ejeX='20'>
+             <span class="column-shape column-shape-8" 
+              [style.height]=" (category_list[7].prog * 10 )+'%'" 
+             ></span>
+             <i>Bycicle</i>
+         </li>
+         <li data-ejeX='20'>
+             <span class="column-shape column-shape-9" 
+              [style.height]=" (category_list[8].prog * 10 )+'%'" 
+             ></span>
+             <i>Others</i>
+         </li>
+       </ul>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
+ <!--<div class="col-sm-12 col-md-12">
  <div class="line-chart-block block">
      <div class="line-chart">
        <div class='grafico'>
@@ -221,6 +414,9 @@
          <li data-ejeY='0'></li>
        </ul>
        <ul class='eje-x'>
+         <li>Apr</li>
+         <li>May</li>
+         <li>Jun</li>
          <li>Apr</li>
          <li>May</li>
          <li>Jun</li>
@@ -256,110 +452,90 @@
             </li>
         </ul>
     </div>
-    </div>
-                
+    </div>-->
 
-  <!-- bar-chart-block  -->
-  <div class="col-sm-6 col-md-6">
-  <div class="bar-chart-block block">
-    <h2 class='titular'>By Country <span>*1000</span></h2>
-    <div class='grafico bar-chart'>
-       <ul class='eje-y'>
-         <li data-ejeY='80'></li>
-         <li data-ejeY='60'></li>
-         <li data-ejeY='40'></li>
-         <li data-ejeY='20'></li>
-         <li data-ejeY='0'></li>
-       </ul>
-       <!--<ul class='eje-x'>
-         <li data-ejeX='37'><i>Twilite</i></li>
-         <li data-ejeX='56'><i>Night</i></li>
-         <li data-ejeX='25'><i>Nature</i></li>
-         <li data-ejeX='18'><i>Structures</i></li>
-         <li data-ejeX='45'><i>Vehicles</i></li>
-         <li data-ejeX='50'><i>Peples</i></li>
-         <li data-ejeX='33'><i>Creatures</i></li>
-         <li data-ejeX='20'><i>Bycicle</i></li>
-         <li data-ejeX='20'><i>Others</i></li>
-       </ul>-->
-        <ul class='eje-x'>
-         <li data-ejeX='37'>
-             <span class="column-shape column-shape-1" 
-            
-              [style.height]=" (category_list[0].prog * 10 )+'%'" 
-             ></span>
-             <i>Twilite</i>
-         </li>
-         <li data-ejeX='56'>
-              <span class="column-shape column-shape-2" 
-            
-              [style.height]=" (category_list[1].prog * 10 )+'%'" 
-             ></span>
-             <i>Night</i>
-        </li>
-         <li data-ejeX='25'>
-             <span class="column-shape column-shape-3" 
-            
-              [style.height]=" (category_list[2].prog * 10 )+'%'" 
-             ></span>
-             <i>Nature</i>
-        </li>
-         <li data-ejeX='18'>
-             <span class="column-shape column-shape-4" 
-             
-              [style.height]=" (category_list[3].prog * 10 )+'%'" 
-             ></span>
-             <i>Structures</i>
-         </li>
-         <li data-ejeX='45'>
-             <span class="column-shape column-shape-5" 
-            
-              [style.height]=" (category_list[4].prog * 10 )+'%'" 
-             ></span>
-             <i>Vehicles</i>
-         </li>
-         <li data-ejeX='50'>
-             <span class="column-shape column-shape-6" 
-            
-              [style.height]=" (category_list[5].prog * 10 )+'%'" 
-             ></span>
-             <i>Peples</i>
-         </li>
-         <li data-ejeX='33'>
-             <span class="column-shape column-shape-7" 
-            
-              [style.height]=" (category_list[6].prog * 10 )+'%'" 
-             ></span>
-             <i>Creatures</i>
-         </li>
-         <li data-ejeX='20'>
-             <span class="column-shape column-shape-8" 
-            
-              [style.height]=" (category_list[7].prog * 10 )+'%'" 
-             ></span>
-             <i>Bycicle</i>
-         </li>
-         <li data-ejeX='20'>
-             <span class="column-shape column-shape-9" 
-            
-              [style.height]=" (category_list[8].prog * 10 )+'%'" 
-             ></span>
-             <i>Others</i>
-         </li>
-       </ul>
-      
-      
+
+
+
+<!--<div class="col-sm-12 col-md-12">
+     <div class="line-chart-block block">
+
+         <div class="card">
+  <div class="donut-chart chart1">
+    <div class="slice one"></div>
+    <div class="slice two"></div>
+    <div class="chart-center">
+      <span></span>
     </div>
   </div>
+</div>
+
+<div class="card">
+  <div class="donut-chart chart2">
+    <div class="slice one"></div>
+    <div class="slice two"></div>
+    <div class="chart-center">
+      <span></span>
+    </div>
   </div>
+</div>
+
+<div class="card">
+  <div class="donut-chart chart3">
+    <div class="slice one"></div>
+    <div class="slice two"></div>
+    <div class="chart-center">
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="donut-chart chart4">
+    <div class="slice one"></div>
+    <div class="slice two"></div>
+    <div class="chart-center">
+      <span></span>
+    </div>
+  </div>
+</div>
+
+
+
+         
+     </div>
+</div>-->
+
+
+
+
+ 
+ 
 
 </div><!-- row -->
+
+
+  
+               
+
+               
+
+              
+                    
+               
+
+
+
+
+
+
+
 </div><!-- contener -->
 
 <!--<p class='nota-final'>Este pen es sólo para que <strong>@jlalovi</strong> complemente con los gráficos <a href='http://codepen.io/jlalovi/details/bIyAr'>el suyo</a>.</p>-->
-  <div>
+  <!--<div>
   <span class="column-shape column-shape-4">shape</span>   
-  </div>
+  </div>-->
 
 
 

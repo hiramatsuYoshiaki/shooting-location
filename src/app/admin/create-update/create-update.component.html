@@ -89,10 +89,14 @@
           </div>
           <div class="form-group">
             <label for="place">場所</label>
-            <input type="place" class="form-control" id="place"
+            <!--<input type="text" class="form-control" id="place"
                     required
                     [(ngModel)]="selectSpot.place" name="place"
-                    #place="ngModel"  novalidate>
+                    #place="ngModel"  novalidate>-->
+             <select class="form-control"  #place="ngModel" [(ngModel)]="selectSpot.place" name="place"  id="place" required>
+              <option *ngFor="let place of list_Place;" [value]="place.name" [class.selected]="place.name === selectSpot.place">{{place.name}}</option>
+             </select>
+          
             <div [hidden]="place.valid || place.pristine"
                   class="alert alert-danger">
               場所は必須入力です。
@@ -126,7 +130,6 @@
                   
                     [(ngModel)]="selectSpot.camera" name="camera"
                     #camera="ngModel"  novalidate>
-         
           </div>
           <div class="form-group hidden">
             <label for="renze">レンズ</label>
@@ -134,9 +137,7 @@
                     
                     [(ngModel)]="selectSpot.renze" name="renze"
                     #renze="ngModel"  novalidate>
-           
           </div>
-         
            <div class="form-group">
             <label for="categor">カテゴリー</label>
             <select class="form-control"  #category="ngModel" [(ngModel)]="selectSpot.category" name="category"  id="category" required>
