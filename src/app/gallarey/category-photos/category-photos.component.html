@@ -6,7 +6,6 @@
   <div class="row">
   <div class="col-sm-12 col-md-12">
 
-      
       <div class="page-header">
          <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>
          <h1>PHOTO SELECT </h1>
@@ -37,9 +36,11 @@
               </div>
               <div class="media-body">
                 <h4 class="media-heading">{{item.title}}</h4>
-                <p class="media-heading"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{item.category}} 
-                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{item.sdate}}</p>
-                <p class="media-heading"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{item.place}}</p>
+                <p class="media-heading">
+                  <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{item.category}} 
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{item.sdate}}</p>
+                <p class="media-heading">
+                  <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{item.place}}</p>
                 <!--<p class="media-heading"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{item.displayName}}</p>-->
                 
                 <!--<ol class="breadcrumb">
@@ -57,9 +58,41 @@
           </li>
 
         </ul>
-        <button (click)="goBack()">Back</button>
+
+
+
+
+
+
+        <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom">
+          <sebm-google-map-marker 
+            *ngFor="let m of itemsCategory   let i = index"
+              [latitude]="m.imgLat"
+              [longitude]="m.imgLan">
+
+            <sebm-google-map-info-window [disableAutoPan]="true"  >
+              <a [routerLink]="['marker',m.displayName,m.img]">
+                <strong>{{m.title}}</strong>
+             </a>
+            </sebm-google-map-info-window>
+
+          </sebm-google-map-marker>
+
+          </sebm-google-map>
+
+        <div>
+          <button (click)="goBack()">Back</button>
+        </div>
 
       </div>
+
+      
+
+
+
+
     </div>
   </div>
   </div>
+
+

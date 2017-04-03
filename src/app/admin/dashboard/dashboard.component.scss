@@ -215,8 +215,13 @@ border-top-right-radius: 5px;
 
 
 
-			.line-chart-block, .bar-chart-block {
+			 .bar-chart-block {
 				height: 436px;
+				
+			}
+      	.line-chart-block {
+				height:auto;
+				
 			}
 				.line-chart {
 					height: 200px;
@@ -261,6 +266,7 @@ border-top-right-radius: 5px;
 							color: #e64c65;
 						}
 
+           
 /******************************************
 ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 ESTILOS PROPIOS DE LOS GRÄFICOS
@@ -462,6 +468,10 @@ p.center-date {
     // transform: rotate(20deg);
   }
 
+//add hiramatsu
+.date-tatal-span{
+  margin: 0px 2px;
+}
 
 //  .os.twilite {
 // 							border-top: 4px solid #e64c65;
@@ -656,6 +666,13 @@ USO NÚMEROS MÁGICOS EN ALGUNOS VALORES
 POR NO PARARME A ESTUDIAR A FONDO
 EL CSS DEL PEN ORIGINAL
 *****************************/
+
+
+
+
+
+
+
 
 // * {
 //   -webkit-box-sizing: border-box;

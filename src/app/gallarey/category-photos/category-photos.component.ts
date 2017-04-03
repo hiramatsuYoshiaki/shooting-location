@@ -20,14 +20,18 @@ export class CategoryPhotosComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
   image: string [] =[];
   user:string;
-   category:string;
+  category:string;
   private sub: any;
   itemsCategory:Spot[]=[];
   selectSpot: Spot;
+  zoom: number = 5;
+  //center point
+  lat: number  = 37.2653099;
+  lng: number = 136.8457031;
   constructor( public af: AngularFire,
                private route: ActivatedRoute,
                private router: Router,
-                private location: Location) { }
+               private location: Location) { }
 
   ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
@@ -45,7 +49,7 @@ export class CategoryPhotosComponent implements OnInit {
                     item.id = index;
                     this.itemsCategory.push(item);
                     firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
-                  }
+                }
                } 
            ));
       });     

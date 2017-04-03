@@ -5,7 +5,7 @@
 <div class="row">
    <div class="col-sm-12 col-md-12">
       <div class="page-header">
-        <h1>RECOMEND CATEGORY <small></small></h1>
+        <h1>RECOMEND SPOT <small></small></h1>
       </div>
   </div>
    
@@ -27,13 +27,13 @@
 
    <div class="col-sm-4 col-md-4">
     <div class="thumbnail">
-       <img src="../../assets/img8753.jpg" alt="..." class="img-responsive">
+       <img src="../../assets/img8370.jpg" alt="..." class="img-responsive">
       <div class="caption">
         <!--<p>ギャラリー</p>-->
-         <p>カテゴリー：Bycicle</p>
-        <h3>桃太郎大通りの自転車</h3>
-      
-       <p><a [routerLink]="['homeSpot','/twilite/img8753.jpg']">撮影スポットをＭＡＰ表示する</a><p>
+         <p>カテゴリー：Vehicles</p>
+        <h3>福山自動車時計博物館</h3>
+       <!--<p><a [routerLink]="['homeSpot','/twilite/img8753.jpg']">撮影スポットをＭＡＰ表示する</a><p>-->
+       <p><a [routerLink]="['homeSpot','/twilite/img8370.jpg']">撮影スポットをＭＡＰ表示する</a><p>
       
       </div>
     </div>
@@ -44,13 +44,35 @@
       <div class="caption">
         <!--<p>ギャラリー</p>-->
          <p>カテゴリー：Night</p>
-        <h3>神戸港のモザイクガーデン</h3>
+        <h3>神戸港Ｕｍｉｅモザイクの夜景</h3>
       
        <p><a [routerLink]="['homeSpot','/twilite/img9575a.jpg']">撮影スポットをＭＡＰ表示する</a><p>
       
       </div>
     </div>
   </div>
+  <div class="col-sm-12 col-md-12">
+        <!--<div class="page-header">
+          <h1>PHOTOS LOCATION <small></small></h1>
+        </div>-->
+
+         <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom] = "zoom">
+          <sebm-google-map-marker 
+            *ngFor="let m of recomend_spot;   let i = index"
+              [latitude]="m.imgLat"
+              [longitude]="m.imgLan">
+
+            <sebm-google-map-info-window [disableAutoPan]="true"  >
+              <a [routerLink]="['marker',m.displayName,m.img]">
+                <strong>{{m.title}}</strong>
+             </a>
+            </sebm-google-map-info-window>
+
+          </sebm-google-map-marker>
+
+          </sebm-google-map>
+
+      </div>
   
   
 
@@ -61,37 +83,42 @@
  <div class="row">
   <div class="col-sm-12 col-md-12">
       <div class="page-header">
-        <h1>みんなで【絶景】撮影ポイントを共有しよう！<small></small></h1>
+        <h1>写真を撮った場所を地図にマーキング！<small></small></h1>
       </div>
       <ul class="list-group">
         <li class="list-group-item">
           <h3>1.Ｇｏｏｇｌｅアカウントでログインします。</h3>
-          <p>メニューの［ＡＣＯＵＮＴ］をクリックします。</p>
+          <p>メニューの［LOGIN］をクリックします。</p>
           <p>［login with Ｇoogle］ボタンをクリックします。</p>
           <p>ポップアップウインドウが開くので［login with google］ボタンをクリックします。</p>
           <p>［パスワード］を入力して［ログイン］ボタンをクリックします。</p>
+          <p>＊Googleアカウントがない場合は作成してください。</p>
 
         </li>
         <li class="list-group-item">
-          <h3>2.フォトグラファー名を登録します。（最初に1度だけ行います。）</h3>
-          <p>メニューの［ＡＣＯＵＮＴ］をクリックします。</p>
+          <h3>2.フォトグラファー名を登録します。</h3>
+          <p>メニューの［USERS］をクリックします。</p>
+          <p>USERSページのサブメニューの［ユーザー］をクリックします。</p>
           <p>［フォトグラファー名］と［自己紹介］を入力します。</p>
           <p>［フォトグラファー登録］ボタンをクリックします。</p>
         </li>
         <li class="list-group-item">
          <h3>3.写真を投稿します。</h3>
-          　<p>メニューの［ＡＣＯＵＮＴ］をクリックします。</p>
-           <p>アカウントページの一番下の［登録パネル］ボタンをクリックします。</p>
-           <p>写真を登録するために［ファイルを選択］ボタンをクリックします。</p>
-           <p>ポップアップウインドウでローカルファイルを選択し［開く］ボタンをクリックします。</p>
-           <p>各入力項目を入力します。</p>
-           <p>［写真をＦＩＲＥＢＡＳＥ　ＳＴＲＡＧＥにアップロードする］ボタンをクリックします。</p>
+          　<p>USERSページのサブメニューの［新規追加］をクリックします。</p>
+            <p>各入力項目を入力します。</p>
+           <p>［写真追加］ボタンをクリックします。</p>
         </li>
         <li class="list-group-item">
-          <h3>4.投稿した写真の場所をＧｏｏｇｌｅＭａｐで見ることができます。</h3>
+         <h3>4.写真を修正・削除します。</h3>
+          　<p>USERSページのサブメニューの［画像一覧］をクリックします。</p>
+            <p>各入力項目を入力します。</p>
+           <p>［修正］［削除］ボタンをクリックしてください。</p>
         </li>
         <li class="list-group-item">
-         <h3> 5.フォトグラファー別やカテゴリー別に写真を見ることができます。</h3>
+          <h3>5.登録した写真の場所をＧｏｏｇｌｅＭａｐで見ることができます。</h3>
+        </li>
+        <li class="list-group-item">
+          <h3> 6.フォトグラファー別やカテゴリー別に写真を見ることができます。</h3>
         </li>
       </ul>
     </div>

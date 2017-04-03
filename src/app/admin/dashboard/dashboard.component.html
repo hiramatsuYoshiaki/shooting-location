@@ -85,8 +85,8 @@
                         <i class="fa fa-trophy fa-3x" aria-hidden="true"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
-                        <div class="huge-text">Top Category</div>
+                        <div class="huge">{{year_posted}}</div>
+                        <div class="huge-text">{{now_year}}-Posted</div>
                     </div>
                 </div>
             </div>
@@ -402,10 +402,11 @@
   </div>
 
 
-  <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
- <!--<div class="col-sm-12 col-md-12">
+ <!-- LINE CHART BLOCK (LEFT-CONTAINER) -->
+ <div class="col-sm-12 col-md-12">
  <div class="line-chart-block block">
-     <div class="line-chart">
+      <h2 class='titular'>Year/Monthly Report <span></span></h2>
+     <!--<div class="line-chart">
        <div class='grafico'>
        <ul class='eje-y'>
          <li data-ejeY='30'></li>
@@ -417,9 +418,7 @@
          <li>Apr</li>
          <li>May</li>
          <li>Jun</li>
-         <li>Apr</li>
-         <li>May</li>
-         <li>Jun</li>
+        
        </ul>
          <span data-valor='25'>
            <span data-valor='8'>
@@ -430,14 +429,21 @@
                      <span data-valor='15'>
                      </span></span></span></span></span></span></span>
        </div>
-     </div>
+     </div>-->
 
         <ul class="time-lenght horizontal-list">
-            <li><a class="time-lenght-btn" href="#14">Week</a></li>
-            <li><a class="time-lenght-btn" href="#15">Month</a></li>
-            <li><a class="time-lenght-btn" href="#16">Year</a></li>
+           
+            <!--<li><a class="time-lenght-btn" href="#16">Year</a></li>
+            <li><a class="time-lenght-btn" href="#15">Month</a></li>-->
+             <!--<li><a class="time-lenght-btn" href="#14">Week</a></li>-->
+           <!--<li><button type="button" (click)="date_dsp = true"></button>Month</li>-->
+            <button type="button" class="btn btn-success btn-xs" (click)="date_dsp=false">Year</button>
+            <button type="button" class="btn btn-success btn-xs" (click)="date_dsp=true">Month</button>
+           
+           
         </ul>
-        <ul class="month-data clear">
+
+        <!--<ul class="month-data clear">
             <li>
                 <p>APR<span class="scnd-font-color"> 2013</span></p>
                 <p><span class="entypo-plus increment"> </span>21<sup>%</sup></p>
@@ -450,10 +456,55 @@
                 <p>JUN<span class="scnd-font-color"> 2013</span></p>
                 <p><span class="entypo-plus increment"> </span>35<sup>%</sup></p>
             </li>
-        </ul>
-    </div>
-    </div>-->
+        </ul>-->
+        <!--<ul  *ngFor="let date of date_table" class="month-data clear date-tatal" >
+            <li>
+                <p>{{date.year}} <span class="scnd-font-color date-tatal-span"> Total:</span>{{date.mAll}}<span class="scnd-font-color"> Photos Posted</span></p>
+                <p><span class="entypo-plus increment">Month Data</span><sup></sup></p>
+            </li>
+        </ul>-->
+         <ul  *ngFor="let date of date_table" class="month-data clear date-tatal" >
+            <li>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <p>{{date.year}} <span class="scnd-font-color date-tatal-span"> Total:</span>{{date.mAll}}<span class="scnd-font-color"> </span></p>
+                    <p><span class="entypo-plus increment"></span><sup></sup></p>
+                </div>
+                <div *ngIf="date_dsp">
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Jan:</span>{{date.m1}}<span class="scnd-font-color"></span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Feb:</span>{{date.m2}}<span class="scnd-font-color"></span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Mar:</span>{{date.m3}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Apr:</span>{{date.m4}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> May:</span>{{date.m5}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Jun:</span>{{date.m6}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Jul:</span>{{date.m7}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Aug:</span>{{date.m8}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Sep:</span>{{date.m9}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Oct:</span>{{date.m10}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Nov:</span>{{date.m11}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                  <div class="col-xs-12 col-sm-6 col-md-3"><p> <span class="scnd-font-color date-tatal-span"> Dec:</span>{{date.m12}}<span class="scnd-font-color"> </span></p>
+                  <p><span class="entypo-plus increment"></span><sup></sup></p></div>
+                </div>
 
+            </li>
+        </ul>
+        
+
+    </div>
+    </div>
+<!--
+    Jan Feb Mar Apr May Jun  jul Aug sep Oct Nov Dec
+    a-->
 
 
 

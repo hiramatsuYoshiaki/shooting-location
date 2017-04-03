@@ -159,6 +159,7 @@ export class DashboardComponent implements OnInit {
   now_year:number;
   now_month:number;
   now_day:number;
+  date_dsp:Boolean = false;
 
 
 
@@ -192,6 +193,7 @@ cnt: number = 0;
 total_cnt:number = 0; 
 new_cnt:number = 0; 
 posted_category:number =0;
+year_posted:number =0;
 progres_width: number =60;
    
 
@@ -279,6 +281,7 @@ progres_width: number =60;
      }
   
 this.posted_category =0;
+this.year_posted =0;
 
  
 //------------------------------------------
@@ -399,6 +402,10 @@ this.posted_category =0;
       if(item_date_yera == now_year && item_date_month == now_month){
         this.new_cnt++;
          console.log( 'new cnt ' + this.new_cnt );
+      };
+      if(item_date_yera == now_year ){
+        this.year_posted++;
+         console.log( 'year_posted ' + this.year_posted );
       };
 
       for(var i=0; i<10; i++){
