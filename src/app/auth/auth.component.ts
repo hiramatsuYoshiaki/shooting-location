@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
      firebase.auth().onAuthStateChanged(function(user) {
        if (user) {
         // User is signed in.
-         console.log('onAuthStateChanged logoin');
+        //  console.log('onAuthStateChanged logoin');
         //  this.uid = user.uid;
           // this.uid = user.uid.toString();
           // this.user = user;
@@ -63,7 +63,7 @@ export class AuthComponent implements OnInit {
 
 
       } else {
-         console.log('onAuthStateChanged logoff ');
+        //  console.log('onAuthStateChanged logoff ');
         // No user is signed in.
           // this.uerLogin =false;
           this.uid = null;

@@ -30,7 +30,8 @@
         <div class="page-header">
           <!--<h1>PHOTO SPOT</h1>-->
           <h4><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>{{selectSpot.category | uppercase}}</h4>
-          <h1>{{selectSpot.title}}<small>by {{ selectSpot.displayName }}</small></h1>
+          <h1>{{selectSpot.title}}<small> </small></h1>
+          <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ selectSpot.camera }}</h4>
         </div>
 
         <div class="thumbnail">
@@ -43,7 +44,7 @@
           </div>
 
            <!--<img [src]="image[selectSpot.id]"  alt=""/>-->
-           <img [src]="image"  alt="投稿画像"/>
+           <img *ngIf="image" [src]="image"  alt="投稿画像"/>
            <br>
            
              

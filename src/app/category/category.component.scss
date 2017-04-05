@@ -6,3 +6,15 @@
       background-color: ghostwhite !important;
       color: gray;
 }
+.list-group-item:hover{
+    cursor: pointer;
+    background: whitesmoke;
+}
+// .link-color-black{
+//   color:brown;
+// }
+.link-color-black:hover{
+  color:gary;
+  font-weight: bold;
+  cursor: pointer;
+}

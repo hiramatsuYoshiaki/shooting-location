@@ -7,8 +7,9 @@
   <div class="col-sm-12 col-md-12">
 
       <div class="page-header">
-         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>
-         <h1>PHOTO SELECT </h1>
+         <!--<h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>-->
+         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{photoName}}</h4>
+         <h1>PHOTO SELECT</h1>
 
           <ol   class="breadcrumb">
             <li *ngFor="let top of topCategorys | async" 
@@ -32,7 +33,7 @@
           class="list-group-item">
 
               <div class="media-left media-middle">
-                   <img [src]="image[item.id]" class="media-object img-size-list" alt="投稿画像"/>
+                   <img  *ngIf="image[item.id]" [src]="image[item.id]" class="media-object img-size-list" alt="投稿画像"/>
               </div>
               <div class="media-body">
                 <h4 class="media-heading">{{item.title}}</h4>
@@ -54,6 +55,10 @@
                 </ol>-->
                  <!--<h4 class="media-heading">{{item.text}}</h4>-->
                   <!--<a [routerLink]="['photos/spot',item.img]">go to Detail</a>-->
+                   <p class="media-heading link-color">
+                      詳しく見る
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                  </p>
               </div>
           </li>
 

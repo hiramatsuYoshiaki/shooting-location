@@ -151,7 +151,7 @@ export class ManageUserComponent implements OnInit {
                             uid:this.uid
                            });
     this.updateSW = false;   
-    console.log('updateUser');  
+    // console.log('updateUser');  
     // this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });         
 
   }

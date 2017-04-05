@@ -20,7 +20,7 @@ const  Gallarey: Routes= [
       { path: 'users/photos/:id/marker/:dsp/:img', component:SpotMarkerComponent  },
       { path: 'users/back', component:UsersComponent  },
       { path: 'users/photos/spot', component: SpotComponent },
-      { path: 'users/photos/spot/:id/:idx', component: SpotComponent },
+      { path: 'users/photos/spot/:id/:idx/:category', component: SpotComponent },
       { path: 'users/photos/back', component: UsersComponent },
       { path: 'users/photos/spot/back', component: PhotosComponent },
       { path: 'users/categoryPhotos/:id/:category', component: CategoryPhotosComponent },

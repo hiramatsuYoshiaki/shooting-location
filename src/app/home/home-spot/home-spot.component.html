@@ -53,7 +53,7 @@
           </div>
 
            <!--<img [src]="image[selectSpot.id]"  alt=""/>-->
-           <img [src]="image"  alt=""/>
+           <img *ngIf="image" [src]="image"  alt=""/>
            <br>
            
              

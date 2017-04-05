@@ -1,24 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-create-new-photo',
-//   templateUrl: './create-new-photo.component.html',
-//   styleUrls: ['./create-new-photo.component.scss']
-// })
-// export class CreateNewPhotoComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
-
-
-
-
-
-
 
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
@@ -115,6 +94,7 @@ export class CreateNewPhotoComponent implements OnInit {
   @Input() category: FirebaseListObservable<any[]>;
   @Input()  uid: string;
   @Input()  displayName: string;
+  @Input() photoName: string;
   @Input()  email: string;
   topCategory: FirebaseListObservable<any[]>;
   newPanel: boolean = false;
@@ -372,7 +352,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
         let success = false;
         // This currently only grabs item 0, TODO refactor it to grab them all
         for (let selectedFile of [(<HTMLInputElement>document.getElementById('file')).files[0]]) {
-            console.log(selectedFile);
+            // console.log(selectedFile);
             // Make local copies of services because "this" will be clobbered
              let router = this.router;
              let af = this.af;
@@ -391,7 +371,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                                     place: newplace,
                                     sdate: newsdate, 
                                     stime: newstime,
-                                    camera: newcamera,
+                                    camera: this.photoName,
                                     renze: newrenze, 
                                     uid: this.uid, 
                                     displayName: this.displayName, 

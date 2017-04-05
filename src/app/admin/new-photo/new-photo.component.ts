@@ -51,7 +51,7 @@ export class NewPhotoComponent implements OnInit {
   categorySW:boolean = true;
   updateSW:boolean = false;
 
-  categoryName: string;
+  photoName: string;
   categoryIntro: string;
   categoryKey: string;
   onClickIdx: number;
@@ -76,7 +76,7 @@ export class NewPhotoComponent implements OnInit {
     (categoryItem , index )  => {
       if(categoryItem.uid === this.uid){
         this.displayName = categoryItem.displayName;
-        this.categoryName = categoryItem.photoName;
+        this.photoName = categoryItem.photoName;
         this.categoryIntro = categoryItem.intro;
         this.categoryKey = categoryItem.$key;
         this.categorySW = false;

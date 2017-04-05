@@ -14,7 +14,7 @@
                >
                   <div *ngIf="item.uid === uid " >
                     <div  class="media-left media-middle">
-                        <img [src]="image[idx]" class="media-object img-size-list" alt="eye catch photo"/>
+                        <img  *ngIf="image[idx]" [src]="image[idx]" class="media-object img-size-list" alt="eye catch photo"/>
                     </div>
                     <div class="media-body">
                       <h4 class="media-heading">{{item.title}}<br><small>{{item.text}}</small></h4>

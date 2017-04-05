@@ -17,6 +17,7 @@ export class CategoryComponent implements OnInit {
    topCategorys: FirebaseListObservable<any[]>;
    items: FirebaseListObservable<any[]>;
    image: string [] ;
+   photoName:string[] =[];
  
   constructor(private DataService: DataService,private CategoryService:CategoryService) { 
 
@@ -35,10 +36,9 @@ export class CategoryComponent implements OnInit {
   onSelectCategory(category:string): void {
    
     this.selectCategory = category;
-        this.items = this.CategoryService.filterCategoryBy(this.selectCategory); 
-        this.image = this.CategoryService.getStrageCategory();
-        console.log(this.selectCategory);
-    
+    this.items = this.CategoryService.filterCategoryBy(this.selectCategory); 
+    this.image = this.CategoryService.getStrageCategory();
+    // console.log(this.selectCategory);
   }
   
   zoom: number = 10;

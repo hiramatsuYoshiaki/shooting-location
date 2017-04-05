@@ -85,12 +85,10 @@ const LIST_PLACE: List_Place[] = [
   styleUrls: ['./create-update.component.scss']
 })
 export class CreateUpdateComponent implements OnInit {
-
+  @Input() items: FirebaseListObservable<any[]>;
   @Input() selectSpot: Spot;
   @Input() image: string [] = [] ;
-  @Input() items: FirebaseListObservable<any[]>;
- 
-  @Input() category: FirebaseListObservable<any[]>;
+   @Input() category: FirebaseListObservable<any[]>;
   @Input()  uid: string;
   @Input()  displayName: string;
   @Input()  email: string;
@@ -362,7 +360,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
         let success = false;
         // This currently only grabs item 0, TODO refactor it to grab them all
         for (let selectedFile of [(<HTMLInputElement>document.getElementById('file')).files[0]]) {
-            console.log(selectedFile);
+            // console.log(selectedFile);
             // Make local copies of services because "this" will be clobbered
              let router = this.router;
              let af = this.af;
@@ -371,7 +369,7 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
             
              var iRef = storageRef.child(path);
              iRef.put(selectedFile).then((snapshot) => {
-                 console.log('Uploaded a blob or file! Now storing the reference at',`/${this.folder}/images/`);
+                //  console.log('Uploaded a blob or file! Now storing the reference at',`/${this.folder}/images/`);
             //     af.database.list(`/${folder}/images/`).push({ path: path, filename: selectedFile.name })
                   this.items.push({ 
                                     id: 0, 
@@ -452,7 +450,15 @@ resize(img, MAX_WIDTH:number, MAX_HEIGHT:number, callback){
                              tag: newtag,
                               imgLat: +newimgLat,
                              imgLan: +newimgLan
-                           });
+                           }).then(resolve => {
+                console.log('all good');
+            }, reject => {
+                console.log('error');
+            })
+            .catch(reject => {
+                console.log('catch');
+            })
+                           ;
       // this. selectSpot = null;
       this.appMessage = "画像情報を修正しました。";
      

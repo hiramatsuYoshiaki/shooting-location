@@ -43,7 +43,7 @@ export class LoginComponent {
   }
  
   login() {
-    console.log('push logoin');
+    // console.log('push logoin');
       this.message = 'ログインしています ...';
        this.setMessage();
       //this.authService.login();
@@ -53,19 +53,19 @@ export class LoginComponent {
           
             // this.isLoggedIn = true;
             this.authService.login();
-            console.log('aaa auth true  authService.isLoggedIn: '+this.authService.isLoggedIn);
+            // console.log('aaa auth true  authService.isLoggedIn: '+this.authService.isLoggedIn);
               
           } else {
           
             // this.isLoggedIn = false;
              this.authService.logout();
-            console.log('bbb auth false  authService.isLoggedIn: '+this.authService.isLoggedIn); 
+            // console.log('bbb auth false  authService.isLoggedIn: '+this.authService.isLoggedIn); 
           }
       });
      
 
       if (this.authService.isLoggedIn) {
-        console.log('login to Route  goto admin');
+        // console.log('login to Route  goto admin');
         let redirect = this.authService.redirectUrl ="admin";
         this.router.navigate([redirect]);
      
@@ -80,14 +80,14 @@ export class LoginComponent {
         // Redirect the user
       //  this.router.navigate([redirect], navigationExtras);
       }else{
-         console.log('Cancele to Route  goto login');
+        //  console.log('Cancele to Route  goto login');
          let redirect = this.authService.redirectUrl ="login";
          this.router.navigate([redirect]);
       }
   }
 
   logout() {
-     console.log('push logout');
+    //  console.log('push logout');
     //this.authService.logout();
     this.af.auth.logout();
      this.af.auth.subscribe(auth => {
@@ -95,25 +95,25 @@ export class LoginComponent {
           
             // this.isLoggedIn = true;
             this.authService.login();
-            console.log('auth true  authService.isLoggedIn: '+this.authService.isLoggedIn);
+            // console.log('auth true  authService.isLoggedIn: '+this.authService.isLoggedIn);
               
           } else {
           
             // this.isLoggedIn = false;
              this.authService.logout();
-            console.log('auth false  authService.isLoggedIn: '+this.authService.isLoggedIn); 
+            // console.log('auth false  authService.isLoggedIn: '+this.authService.isLoggedIn); 
           }
       });
      
     this.setMessage();
     if (this.authService.isLoggedIn) {
 
-        console.log('login to Route  goto admin');
+        // console.log('login to Route  goto admin');
        let redirect = this.authService.redirectUrl ="login";
        this.router.navigate([redirect]);
      
       }else{
-         console.log('Cancele to Route  goto login');
+        //  console.log('Cancele to Route  goto login');
          let redirect = this.authService.redirectUrl ="login";
          this.router.navigate([redirect]);
 

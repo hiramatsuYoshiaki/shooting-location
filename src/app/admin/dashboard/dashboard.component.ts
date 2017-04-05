@@ -254,12 +254,12 @@ progres_width: number =60;
      this.now_year = this.date.getFullYear();
      this.now_month = this.date.getMonth();
      this.now_day = this.date.getDate();
-     console.log(this.date.getFullYear());
-     console.log(this.date.getMonth());
-     console.log(this.date.getDate());
+    //  console.log(this.date.getFullYear());
+    //  console.log(this.date.getMonth());
+    //  console.log(this.date.getDate());
      for(var i=0; i<10; i++){
         var set_year = this.now_year - i;
-         console.log('table set year:' +set_year);
+        //  console.log('table set year:' +set_year);
         this.date_table.push({
             year: set_year,
               m1: 0,
@@ -380,7 +380,7 @@ this.year_posted =0;
       for(var i=0; i<48; i++){
         if(item.place == this.list_place[i].name){
         this.list_place[i].cnt++;
-        console.log('name: '+this.list_place[i].name+ ' cnt:' + this.list_place[i].cnt);
+        // console.log('name: '+this.list_place[i].name+ ' cnt:' + this.list_place[i].cnt);
         }
       }
 
@@ -389,10 +389,10 @@ this.year_posted =0;
       var now_month = new Date().getMonth() + 1;
 
       var item_date = new Date(Date.parse(item.sdate))
-      console.log( 'item title ' +  item.title +  ' item sdate ' +  item.sdate);
-      console.log( 'item date year ' + item_date.getFullYear() );
-      console.log( 'item date month ' + (item_date.getMonth() + 1) );
-      console.log( 'item date day ' + item_date.getDate() );
+      // console.log( 'item title ' +  item.title +  ' item sdate ' +  item.sdate);
+      // console.log( 'item date year ' + item_date.getFullYear() );
+      // console.log( 'item date month ' + (item_date.getMonth() + 1) );
+      // console.log( 'item date day ' + item_date.getDate() );
 
       // set date
       var item_date = new Date(Date.parse(item.sdate));
@@ -401,11 +401,11 @@ this.year_posted =0;
 
       if(item_date_yera == now_year && item_date_month == now_month){
         this.new_cnt++;
-         console.log( 'new cnt ' + this.new_cnt );
+        //  console.log( 'new cnt ' + this.new_cnt );
       };
       if(item_date_yera == now_year ){
         this.year_posted++;
-         console.log( 'year_posted ' + this.year_posted );
+        //  console.log( 'year_posted ' + this.year_posted );
       };
 
       for(var i=0; i<10; i++){
@@ -426,22 +426,22 @@ this.year_posted =0;
             if(item_date_month == 11){ this.date_table[i].m11++; }
             if(item_date_month == 12){ this.date_table[i].m12++; }
            
-            console.log('year: '+ item_date_yera 
-             + ' m1:' + this.date_table[i].m1
-             + ' m2:' + this.date_table[i].m2
-             + ' m3:' + this.date_table[i].m3
-             + ' m4:' + this.date_table[i].m4
-             + ' m5:' + this.date_table[i].m5
-             + ' m6:' + this.date_table[i].m6
-             + ' m7:' + this.date_table[i].m7
-             + ' m8:' + this.date_table[i].m8
-             + ' m9:' + this.date_table[i].m9
-             + ' m10:' + this.date_table[i].m10
-             + ' m11:' + this.date_table[i].m11
-             + ' m12:' + this.date_table[i].m12
-             + ' All:' + this.date_table[i].mAll
+            // console.log('year: '+ item_date_yera 
+            //  + ' m1:' + this.date_table[i].m1
+            //  + ' m2:' + this.date_table[i].m2
+            //  + ' m3:' + this.date_table[i].m3
+            //  + ' m4:' + this.date_table[i].m4
+            //  + ' m5:' + this.date_table[i].m5
+            //  + ' m6:' + this.date_table[i].m6
+            //  + ' m7:' + this.date_table[i].m7
+            //  + ' m8:' + this.date_table[i].m8
+            //  + ' m9:' + this.date_table[i].m9
+            //  + ' m10:' + this.date_table[i].m10
+            //  + ' m11:' + this.date_table[i].m11
+            //  + ' m12:' + this.date_table[i].m12
+            //  + ' All:' + this.date_table[i].mAll
            
-             );
+            //  );
         }
         
       }

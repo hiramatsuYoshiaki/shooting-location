@@ -18,12 +18,15 @@ import { Spot } from '../../app.spot';
 })
 export class CategoryPhotosComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
+  categorys: FirebaseListObservable<any[]>;
   image: string [] =[];
   user:string;
   category:string;
   private sub: any;
   itemsCategory:Spot[]=[];
   selectSpot: Spot;
+  photoName:string;
+  
   zoom: number = 5;
   //center point
   lat: number  = 37.2653099;
@@ -35,29 +38,45 @@ export class CategoryPhotosComponent implements OnInit {
 
   ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
-          this.user =   params['id']; 
-          this.category =   params['category']; 
+          this.user =   params['id'];//displayName 
+          this.category =   params['category']; //TopCategory
           this.items = this.af.database.list('/photos', {
               query: {
                 orderByChild: 'displayName',
                 equalTo: params['id']
               }
           });
+          //photoName photoName:string;
+          this.categorys = this.af.database.list('/category');
+          this.categorys.subscribe(categorys => categorys.forEach(
+            (category,index) => {
+              if(category.displayName === this.user){
+                this.photoName = category.photoName;
+              }
+
+          }));
+
+
+          
           this.items.subscribe(items => items.forEach(
               (item , index )  => {
                   if(item.category === params['category']){
                     item.id = index;
                     this.itemsCategory.push(item);
                     firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
-                }
+                    
+                   }
                } 
            ));
+
+
       });     
   }
    onSelect(spot:Spot, idx: number ) {
     this.selectSpot = spot;
     this.selectSpot.id = idx;
-    this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
+
+    this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id,this.category]);
  }
   goBack(): void {
     this.location.back();

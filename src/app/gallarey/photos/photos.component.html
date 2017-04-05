@@ -1,25 +1,3 @@
-<!--<p>
-  photos works!  {{index}}
-</p>-->
-<!--<div class="container"> 
-  <div class="row">
-  <div class="col-sm-12 col-md-12">
-    <h1>PHOTO SELECT</h1>
-    <div>
-      <ol class="breadcrumb">
-      
-        <li><a routerLink="spot">SPOT SELECT</a></li>
-        <li><a routerLink="back">Go To USER</a></li>
-       
-      </ol>
-    </div>
-      {{user}}
-
-    </div>
-  </div>
-</div>-->
-
-<!--{{user}}-->
 
 <!--spot list-->
 <div class="container"> 
@@ -28,7 +6,8 @@
 
       
       <div class="page-header">
-         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>
+         <!--<h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user}}</h4>-->
+         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{photoName}}</h4>
          <h1>PHOTO SELECT </h1>
 
           <ol   class="breadcrumb">
@@ -45,11 +24,13 @@
         <ul class="list-group">
 
           <li *ngFor="let item of items  | async; let idx = index; " 
-          [class.selected]="item === selectSpot" (click)="onSelect(item,idx)" 
+          [class.selected]="item === selectSpot" (click)="onSelect(item,idx,image[idx])" 
           class="list-group-item">
 
               <div class="media-left media-middle">
-                   <img [src]="image[idx]" class="media-object img-size-list" alt="投稿画像"/>
+                   <img *ngIf="image[idx]" [src]="image[idx]" class="media-object img-size-list" alt="投稿画像"/>
+                   <!--<img *ngIf="myData" [src]="myData.imageUrl"/>-->
+                   <!--<img src="{{ myData?.imageUrl }}"/>-->
               </div>
               <div class="media-body">
                 <h4 class="media-heading">{{item.title}}</h4>
@@ -69,6 +50,11 @@
                 </ol>-->
                  <!--<h4 class="media-heading">{{item.text}}</h4>-->
                   <!--<a [routerLink]="['photos/spot',item.img]">go to Detail</a>-->
+                   <p class="media-heading link-color">
+                      詳しく見る
+                      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                  </p>
+                  
               </div>
           </li>
 

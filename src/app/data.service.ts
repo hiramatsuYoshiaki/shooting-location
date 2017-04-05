@@ -32,6 +32,7 @@ export class DataService {
       //console.log('title '+ item.title +' lat '+ item.lat[index] +' lng '+ item.lng[index]);
         } 
       ));
+     
   
   }
 

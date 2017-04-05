@@ -32,7 +32,7 @@ export class HomeSpotComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.imgURL = params['imgURL']; 
-       console.log('getpram'+ params['imgURL']);
+      //  console.log('getpram'+ params['imgURL']);
        this.items = this.af.database.list('/photos', {
               query: {
                 orderByChild: 'img',
@@ -45,7 +45,7 @@ export class HomeSpotComponent implements OnInit {
             if( item.img === params['imgURL']){
                 this.selectSpot = item;
                 // this.selectSpot.id = this.idx;
-                 console.log( "selectSpot title"+this.selectSpot.title);
+                //  console.log( "selectSpot title"+this.selectSpot.title);
                 firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image = url)
             }
           } 

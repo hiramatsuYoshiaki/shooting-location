@@ -29,3 +29,16 @@
   height: 300px;
   width: auto;
 }
+.thumbnail .fa{
+  margin-left:4px;
+  font-size: 18px;
+}
+.thumbnail a{
+  color:brown;
+  text-decoration: none; 
+}
+.thumbnail a:hover{
+  cursor: pointer;
+  color:red;
+}
+

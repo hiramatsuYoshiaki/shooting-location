@@ -24,3 +24,14 @@ ol {
    margin-left: 10px;
 
 }
+.list-group-item:hover{
+    cursor: pointer;
+    background: whitesmoke;
+}
+.link-color{
+  color:brown;
+}
+.link-color:hover{
+  color:red;
+  cursor: pointer;
+}

@@ -18,6 +18,7 @@ export class SpotComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
   image: string ;
   user:string;
+  category:string;
   idx:number;
   private sub: any;
   selectSpot: Spot;
@@ -32,6 +33,7 @@ export class SpotComponent implements OnInit {
       this.sub = this.route.params.subscribe(params => {
         this.user = params['id']; 
         this.idx = +params['idx']; 
+        this.category = params['category']; 
       });
       this.sub = this.route.params.subscribe(params => {
    
@@ -41,17 +43,39 @@ export class SpotComponent implements OnInit {
                 equalTo: params['id']
               }
           });
-          this.items.subscribe(items => items.forEach(
-              (item , index )  => {
-              //   firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
-              if(index === this.idx){
-                  this.selectSpot = item;
-                  this.selectSpot.id = this.idx;
-                  firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image = url)
-              }
-           } 
+
+          if(this.category == "all"){
+
+            this.items.subscribe(items => items.forEach(
+                  (item , index )  => {
+                    if(index === this.idx){
+                      this.selectSpot = item;
+                      this.selectSpot.id = this.idx;
+                      firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image = url)
+                    }
+                  } 
+              ));
+          }else{
+            var i:number =0;
+            this.items.subscribe(items => items.forEach(
+                (item , index )  => {
+                    if(item.category === this.category){
+                        if(i === this.idx){
+                          this.selectSpot = item;
+                          this.selectSpot.id = this.idx;
+                          firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image = url)
+                        }
+                      //item.id = index;
+                     // this.itemsCategory.push(item);
+                      //firebase.storage().ref().child(item.img).getDownloadURL().then(url => this.image[index] = url)
+                      i++;
+                    }
+                } 
+              ));
+                  
+
+          }
               
-          ));
       });
       
   }
@@ -60,3 +84,6 @@ export class SpotComponent implements OnInit {
   }
 
 }
+
+
+ 

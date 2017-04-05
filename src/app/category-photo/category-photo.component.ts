@@ -20,14 +20,19 @@ export class CategoryPhotoComponent implements OnInit {
  selectSpot: Spot;
   constructor(private route: ActivatedRoute,
                private router: Router,
-               private location: Location) { }
+               private location: Location) {
+
+    
+     
+  }
 
   ngOnInit() {
+   
   }
   onSelect(spot:Spot, idx: number ) {
     this.selectSpot = spot;
     this.selectSpot.id = idx;
-    this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id]);
+    this.router.navigate(['gallarey/users/photos/spot',this.selectSpot.displayName,this.selectSpot.id,this.selectCategory]);
  }
  
  
